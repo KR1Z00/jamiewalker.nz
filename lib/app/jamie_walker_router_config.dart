@@ -26,7 +26,7 @@ final jamieWalkerRouterConfig = GoRouter(
     GoRoute(
       path: JamieWalkerRoute.home.routePath,
       builder: (context, state) {
-        return const HomePage();
+        return HomePage();
       },
     ),
   ],
