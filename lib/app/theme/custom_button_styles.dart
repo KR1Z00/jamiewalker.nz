@@ -26,4 +26,30 @@ extension CustomButtonStyles on ButtonStyle {
       ),
     );
   }
+
+  static ButtonStyle primaryActionButton() {
+    return ButtonStyle(
+      backgroundColor: MaterialStateProperty.all(
+        CustomColors.secondaryColor.l1,
+      ),
+      foregroundColor: MaterialStateProperty.all(
+        Colors.black,
+      ),
+      padding: MaterialStateProperty.all(
+        const EdgeInsets.symmetric(
+          vertical: 20,
+          horizontal: 30,
+        ),
+      ),
+      overlayColor: MaterialStateProperty.all(
+        Colors.white.withOpacity(0.5),
+      ),
+      textStyle: MaterialStateProperty.all(
+        const TextStyle(
+          fontSize: 28,
+          fontWeight: FontWeight.w600,
+        ),
+      ),
+    );
+  }
 }
