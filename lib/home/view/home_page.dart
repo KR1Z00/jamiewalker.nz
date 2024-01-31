@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:jamie_walker_website/app/extensions/mobile_size.dart';
+import 'package:jamie_walker_website/app/extensions/screen_size.dart';
 import 'package:jamie_walker_website/app/jamie_walker_router_config.dart';
 import 'package:jamie_walker_website/app/theme/custom_button_styles.dart';
 import 'package:jamie_walker_website/app/theme/custom_colors.dart';
@@ -57,73 +57,79 @@ class _WelcomeSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
+    return context.wrappedForHorizontalPosition(
+      child: Column(
+        mainAxisSize: MainAxisSize.max,
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          SizedBox(
-            width: 600,
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  "Hey there!",
-                  style: TextStyle(
-                    fontSize: 64,
-                    color: CustomColors.secondaryColor.l1,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                Row(
+          Row(
+            mainAxisSize: MainAxisSize.max,
+            children: [
+              Expanded(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text(
-                      "My name is ",
-                      style: TextStyle(
-                        fontSize: 24,
-                        color: Colors.white,
-                      ),
-                    ),
                     Text(
-                      "Jamie Walker",
+                      "Hey there!",
                       style: TextStyle(
-                        fontSize: 24,
+                        fontSize: 64,
                         color: CustomColors.secondaryColor.l1,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
+                    Row(
+                      children: [
+                        const Text(
+                          "My name is ",
+                          style: TextStyle(
+                            fontSize: 24,
+                            color: Colors.white,
+                          ),
+                        ),
+                        Text(
+                          "Jamie Walker",
+                          style: TextStyle(
+                            fontSize: 24,
+                            color: CustomColors.secondaryColor.l1,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
+                    ),
+                    const Padding(
+                      padding: EdgeInsets.only(top: 30),
+                      child: Text(
+                        "I build cutting-edge mobile apps, producing highly satisfactory results for my valued clients to help their businesses grow.",
+                        style: TextStyle(
+                          fontSize: 20,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 80),
+                      child: TextButton(
+                        style: CustomButtonStyles.primaryActionButton(),
+                        onPressed: () {},
+                        child: const Text("Hire Me"),
+                      ),
+                    ),
                   ],
                 ),
-                const Padding(
-                  padding: EdgeInsets.only(top: 30),
-                  child: Text(
-                    "I build cutting-edge mobile apps, producing highly satisfactory results for my valued clients to help their business grow.",
-                    style: TextStyle(
-                      fontSize: 20,
-                      color: Colors.white,
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 80),
-                  child: TextButton(
-                    style: CustomButtonStyles.primaryActionButton(),
-                    onPressed: () {},
-                    child: const Text("Hire Me"),
-                  ),
-                ),
-              ],
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(left: 40),
-            child: ConstrainedBox(
-              constraints: BoxConstraints.tight(const Size.square(600)),
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(300),
-                child: Image.asset('profile_picture_square.jpg'),
               ),
-            ),
+              const SizedBox(
+                width: 20,
+              ),
+              Expanded(
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(20),
+                  child: Image.asset(
+                    'profile_picture_square.jpg',
+                  ),
+                ),
+              ),
+            ],
           ),
         ],
       ),

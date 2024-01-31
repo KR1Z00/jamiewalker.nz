@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:jamie_walker_website/app/extensions/mobile_size.dart';
+import 'package:jamie_walker_website/app/extensions/screen_size.dart';
 import 'package:jamie_walker_website/app/jamie_walker_router_config.dart';
 import 'package:jamie_walker_website/app/theme/custom_colors.dart';
 import 'package:jamie_walker_website/generic/view/navigation_button.dart';
@@ -19,11 +19,10 @@ class JamieWalkerAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
-    final layoutForMobile = context.layoutForMobile();
+    final layoutForMobile = context.layoutAppBarForMobile();
     return ColoredBox(
       color: CustomColors.primaryColor.d2,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 40),
+      child: context.wrappedForHorizontalPosition(
         child: Column(
           children: [
             Expanded(
