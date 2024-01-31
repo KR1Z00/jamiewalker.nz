@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:jamie_walker_website/app/extensions/mobile_size.dart';
 import 'package:jamie_walker_website/app/jamie_walker_router_config.dart';
+import 'package:jamie_walker_website/app/theme/custom_colors.dart';
 import 'package:jamie_walker_website/generic/view/navigation_button.dart';
 
 class JamieWalkerAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -20,7 +21,7 @@ class JamieWalkerAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     final layoutForMobile = context.layoutForMobile();
     return ColoredBox(
-      color: Colors.white,
+      color: CustomColors.primaryColor.d2,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 40),
         child: Column(
@@ -42,12 +43,12 @@ class JamieWalkerAppBar extends StatelessWidget implements PreferredSizeWidget {
   List<Widget> _desktopRowItems() {
     return List<Widget>.from(
           [
-            const Text(
+            Text(
               "Jamie Walker",
               style: TextStyle(
                 fontSize: 32,
                 fontWeight: FontWeight.bold,
-                color: Colors.black,
+                color: CustomColors.secondaryColor.l1,
               ),
             ),
             const Spacer(),
@@ -72,19 +73,22 @@ class JamieWalkerAppBar extends StatelessWidget implements PreferredSizeWidget {
   /// The list of items to be added in the main row when laying out for mobile
   List<Widget> _mobileRowItems() {
     return [
-      const Text(
+      Text(
         "Jamie Walker",
         style: TextStyle(
           fontSize: 32,
           fontWeight: FontWeight.bold,
-          color: Colors.black,
+          color: CustomColors.secondaryColor.l1,
         ),
       ),
       const Spacer(),
       IconButton(
         constraints: BoxConstraints.tight(const Size.square(50)),
         onPressed: () => onHamburgerPressed(),
-        icon: Image.asset('assets/icon_hamburger.png'),
+        icon: Image.asset(
+          'assets/icon_hamburger.png',
+          color: CustomColors.secondaryColor.l1,
+        ),
       ),
     ];
   }

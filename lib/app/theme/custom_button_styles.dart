@@ -9,10 +9,10 @@ extension CustomButtonStyles on ButtonStyle {
       ),
       foregroundColor: MaterialStateProperty.resolveWith(
         (states) {
-          if (states.contains(MaterialState.hovered)) {
-            return CustomColors.primaryColor;
+          if (isCurrentPage || states.contains(MaterialState.hovered)) {
+            return CustomColors.secondaryColor.l1;
           }
-          return Colors.black;
+          return Colors.white;
         },
       ),
       overlayColor: MaterialStateProperty.all(
@@ -33,7 +33,7 @@ extension CustomButtonStyles on ButtonStyle {
         CustomColors.secondaryColor.l1,
       ),
       foregroundColor: MaterialStateProperty.all(
-        Colors.black,
+        CustomColors.primaryColor.d2,
       ),
       padding: MaterialStateProperty.all(
         const EdgeInsets.symmetric(

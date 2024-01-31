@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jamie_walker_website/app/jamie_walker_router_config.dart';
+import 'package:jamie_walker_website/app/theme/custom_colors.dart';
 import 'package:jamie_walker_website/generic/view/navigation_button.dart';
 
 class JamieWalkerNavigationDrawer extends StatelessWidget {
@@ -13,7 +14,7 @@ class JamieWalkerNavigationDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      backgroundColor: Colors.white,
+      backgroundColor: CustomColors.primaryColor.d1,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 70, vertical: 25),
         child: Column(
