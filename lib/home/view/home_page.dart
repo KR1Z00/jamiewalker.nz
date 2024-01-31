@@ -23,8 +23,28 @@ class HomePage extends StatelessWidget {
           _scaffoldKey.currentState?.openEndDrawer();
         },
       ),
-      body: Container(
-        color: CustomColors.primaryColor.d2,
+      body: LayoutBuilder(
+        builder: (context, constraints) {
+          return SingleChildScrollView(
+            child: Scrollbar(
+              interactive: true,
+              child: Column(
+                mainAxisSize: MainAxisSize.max,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Container(
+                    constraints: constraints,
+                    color: CustomColors.primaryColor.d2,
+                  ),
+                  Container(
+                    constraints: constraints,
+                    color: CustomColors.primaryColor.l1,
+                  ),
+                ],
+              ),
+            ),
+          );
+        },
       ),
     );
   }
