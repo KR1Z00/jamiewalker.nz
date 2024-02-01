@@ -20,20 +20,27 @@ class JamieWalkerAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     final layoutForMobile = context.layoutAppBarForMobile();
-    return ColoredBox(
-      color: CustomColors.primaryColor.d2,
-      child: context.wrappedForHorizontalPosition(
-        child: Column(
-          children: [
-            Expanded(
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children:
-                    layoutForMobile ? _mobileRowItems() : _desktopRowItems(),
-              ),
+    return context.wrappedForHorizontalPosition(
+      child: Column(
+        children: [
+          Expanded(
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children:
+                  layoutForMobile ? _mobileRowItems() : _desktopRowItems(),
             ),
-          ],
-        ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _initialsIcon() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 20),
+      child: Image.asset(
+        'initials_icon.png',
+        color: CustomColors.secondaryColor.l1,
       ),
     );
   }
@@ -42,14 +49,7 @@ class JamieWalkerAppBar extends StatelessWidget implements PreferredSizeWidget {
   List<Widget> _desktopRowItems() {
     return List<Widget>.from(
           [
-            Text(
-              "Jamie Walker",
-              style: TextStyle(
-                fontSize: 32,
-                fontWeight: FontWeight.bold,
-                color: CustomColors.secondaryColor.l1,
-              ),
-            ),
+            _initialsIcon(),
             const Spacer(),
           ],
         ) +
@@ -72,14 +72,7 @@ class JamieWalkerAppBar extends StatelessWidget implements PreferredSizeWidget {
   /// The list of items to be added in the main row when laying out for mobile
   List<Widget> _mobileRowItems() {
     return [
-      Text(
-        "Jamie Walker",
-        style: TextStyle(
-          fontSize: 32,
-          fontWeight: FontWeight.bold,
-          color: CustomColors.secondaryColor.l1,
-        ),
-      ),
+      _initialsIcon(),
       const Spacer(),
       IconButton(
         constraints: BoxConstraints.tight(const Size.square(50)),
