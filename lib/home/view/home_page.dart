@@ -24,6 +24,7 @@ class HomePage extends StatelessWidget {
           _scaffoldKey.currentState?.openEndDrawer();
         },
       ),
+      backgroundColor: CustomColors.primaryColor.d2,
       body: LayoutBuilder(
         builder: (context, constraints) {
           return SingleChildScrollView(
@@ -34,13 +35,24 @@ class HomePage extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   Container(
-                    constraints: constraints,
+                    constraints: BoxConstraints(
+                      minHeight:
+                          constraints.maxHeight - ScreenSize.minimumPadding,
+                    ),
                     color: CustomColors.primaryColor.d2,
                     child: const _WelcomeSection(),
                   ),
+                  context.wrappedForHorizontalPosition(
+                    child: Container(
+                      color: CustomColors.secondaryColor.l1,
+                      height: 1,
+                    ),
+                  ),
                   Container(
-                    constraints: constraints,
-                    color: CustomColors.primaryColor.l1,
+                    constraints: BoxConstraints(
+                      minHeight: constraints.maxHeight,
+                    ),
+                    color: CustomColors.primaryColor.d2,
                   ),
                 ],
               ),
@@ -58,80 +70,111 @@ class _WelcomeSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return context.wrappedForHorizontalPosition(
-      child: Column(
-        mainAxisSize: MainAxisSize.max,
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [
-          Row(
-            mainAxisSize: MainAxisSize.max,
-            children: [
-              Expanded(
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "Hey there!",
-                      style: TextStyle(
-                        fontSize: 64,
-                        color: CustomColors.secondaryColor.l1,
-                        fontWeight: FontWeight.bold,
+      child: Padding(
+        padding: EdgeInsets.symmetric(
+          vertical: ScreenSize.minimumPadding.toDouble(),
+        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            Row(
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                Expanded(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Hey there!",
+                        style: TextStyle(
+                          fontSize: 64,
+                          color: CustomColors.secondaryColor.l1,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
-                    ),
-                    Row(
-                      children: [
-                        const Text(
-                          "My name is ",
+                      Row(
+                        children: [
+                          const Text(
+                            "My name is ",
+                            style: TextStyle(
+                              fontSize: 24,
+                              color: Colors.white,
+                            ),
+                          ),
+                          Text(
+                            "Jamie Walker",
+                            style: TextStyle(
+                              fontSize: 24,
+                              color: CustomColors.secondaryColor.l1,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ],
+                      ),
+                      const Padding(
+                        padding: EdgeInsets.only(top: 30),
+                        child: Text(
+                          "I build cutting-edge mobile apps, producing highly satisfactory results for my valued clients to help their businesses grow.",
                           style: TextStyle(
-                            fontSize: 24,
+                            fontSize: 20,
                             color: Colors.white,
                           ),
                         ),
-                        Text(
-                          "Jamie Walker",
-                          style: TextStyle(
-                            fontSize: 24,
-                            color: CustomColors.secondaryColor.l1,
-                            fontWeight: FontWeight.bold,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 80),
+                        child: SizedBox(
+                          height: 60,
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            children: [
+                              TextButton(
+                                style: CustomButtonStyles.primaryActionButton(),
+                                onPressed: () {},
+                                child: const Text("Hire Me"),
+                              ),
+                              const SizedBox(
+                                width: 20,
+                              ),
+                              IconButton(
+                                onPressed: () {},
+                                icon: Image.asset('linkedin.png'),
+                                padding: EdgeInsets.zero,
+                                style: CustomButtonStyles.secondaryIconButton(),
+                              ),
+                              const SizedBox(
+                                width: 20,
+                              ),
+                              IconButton(
+                                onPressed: () {},
+                                icon: Image.asset('github.png'),
+                                padding: EdgeInsets.zero,
+                                style: CustomButtonStyles.secondaryIconButton(),
+                              ),
+                            ],
                           ),
                         ),
-                      ],
-                    ),
-                    const Padding(
-                      padding: EdgeInsets.only(top: 30),
-                      child: Text(
-                        "I build cutting-edge mobile apps, producing highly satisfactory results for my valued clients to help their businesses grow.",
-                        style: TextStyle(
-                          fontSize: 20,
-                          color: Colors.white,
-                        ),
                       ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 80),
-                      child: TextButton(
-                        style: CustomButtonStyles.primaryActionButton(),
-                        onPressed: () {},
-                        child: const Text("Hire Me"),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              const SizedBox(
-                width: 20,
-              ),
-              Expanded(
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(20),
-                  child: Image.asset(
-                    'profile_picture_square.jpg',
+                    ],
                   ),
                 ),
-              ),
-            ],
-          ),
-        ],
+                const SizedBox(
+                  width: 40,
+                ),
+                Expanded(
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(10),
+                    child: Image.asset(
+                      'profile_picture_square.jpg',
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }

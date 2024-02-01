@@ -52,4 +52,21 @@ extension CustomButtonStyles on ButtonStyle {
       ),
     );
   }
+
+  static ButtonStyle secondaryIconButton() {
+    return ButtonStyle(
+      backgroundColor: MaterialStateProperty.all(
+        Colors.transparent,
+      ),
+      foregroundColor: MaterialStateProperty.all(
+        Colors.white,
+      ),
+      padding: MaterialStateProperty.all(
+        const EdgeInsets.all(0),
+      ),
+      overlayColor: MaterialStateProperty.all(
+        CustomColors.secondaryColor.l1.withOpacity(0.5),
+      ),
+    );
+  }
 }
