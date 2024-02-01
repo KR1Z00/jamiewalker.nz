@@ -1,15 +1,22 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:jamie_walker_website/app/extensions/screen_size.dart';
 import 'package:jamie_walker_website/app/jamie_walker_router_config.dart';
 import 'package:jamie_walker_website/app/theme/custom_button_styles.dart';
 import 'package:jamie_walker_website/app/theme/custom_colors.dart';
+import 'package:jamie_walker_website/app/theme/custom_text_styles.dart';
 import 'package:jamie_walker_website/generic/view/jamie_walker_app_bar.dart';
 import 'package:jamie_walker_website/generic/view/jamie_walker_navigation_drawer.dart';
 
-class HomePage extends StatelessWidget {
+part '../services/services_section.dart';
+part '../services/service_card.dart';
+
+class LandingPage extends StatelessWidget {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
 
-  HomePage({super.key});
+  LandingPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -36,8 +43,10 @@ class HomePage extends StatelessWidget {
                 children: [
                   Container(
                     constraints: BoxConstraints(
-                      minHeight:
-                          constraints.maxHeight - ScreenSize.minimumPadding,
+                      minHeight: min(
+                        constraints.maxHeight - ScreenSize.minimumPadding,
+                        _WelcomeSection.maxHeight,
+                      ),
                     ),
                     color: CustomColors.primaryColor.d2,
                     child: const _WelcomeSection(),
@@ -48,12 +57,7 @@ class HomePage extends StatelessWidget {
                       height: 1,
                     ),
                   ),
-                  Container(
-                    constraints: BoxConstraints(
-                      minHeight: constraints.maxHeight,
-                    ),
-                    color: CustomColors.primaryColor.d2,
-                  ),
+                  const _ServicesSection(),
                 ],
               ),
             ),
@@ -65,6 +69,8 @@ class HomePage extends StatelessWidget {
 }
 
 class _WelcomeSection extends StatelessWidget {
+  static const double maxHeight = 1200;
+
   const _WelcomeSection();
 
   @override
@@ -75,7 +81,6 @@ class _WelcomeSection extends StatelessWidget {
           vertical: ScreenSize.minimumPadding.toDouble(),
         ),
         child: Column(
-          mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             Row(
