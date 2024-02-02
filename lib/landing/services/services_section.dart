@@ -35,15 +35,8 @@ class _ServicesSection extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Text(
-                      "My Services",
-                      style: CustomTextStyles.header1(),
-                    ),
-                    const Text(
-                      "What I can do for you",
-                      style: TextStyle(
-                        fontSize: 24,
-                        color: Colors.white,
-                      ),
+                      "I can help you with",
+                      style: CustomTextStyles.header2(),
                     ),
                     const SizedBox(
                       height: cardSpacing,
@@ -53,29 +46,16 @@ class _ServicesSection extends StatelessWidget {
                       crossAxisAlignment: WrapCrossAlignment.center,
                       spacing: cardSpacing,
                       runSpacing: cardSpacing,
-                      children: [
-                        ConstrainedBox(
-                          constraints: BoxConstraints(
-                            maxWidth: itemWidth,
-                            maxHeight: 300,
-                          ),
-                          child: _ServiceCard(),
-                        ),
-                        ConstrainedBox(
-                          constraints: BoxConstraints(
-                            maxWidth: itemWidth,
-                            maxHeight: 300,
-                          ),
-                          child: _ServiceCard(),
-                        ),
-                        ConstrainedBox(
-                          constraints: BoxConstraints(
-                            maxWidth: itemWidth,
-                            maxHeight: 300,
-                          ),
-                          child: _ServiceCard(),
-                        ),
-                      ],
+                      children: JWService.values
+                          .map(
+                            (service) => ConstrainedBox(
+                              constraints: BoxConstraints(
+                                maxWidth: itemWidth,
+                              ),
+                              child: _ServiceCard(service: service),
+                            ),
+                          )
+                          .toList(),
                     ),
                   ],
                 ),

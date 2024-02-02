@@ -9,6 +9,7 @@ import 'package:jamie_walker_website/app/theme/custom_colors.dart';
 import 'package:jamie_walker_website/app/theme/custom_text_styles.dart';
 import 'package:jamie_walker_website/generic/view/jamie_walker_app_bar.dart';
 import 'package:jamie_walker_website/generic/view/jamie_walker_navigation_drawer.dart';
+import 'package:jamie_walker_website/landing/services/jw_service.dart';
 
 part '../services/services_section.dart';
 part '../services/service_card.dart';
@@ -87,82 +88,104 @@ class _WelcomeSection extends StatelessWidget {
               mainAxisSize: MainAxisSize.max,
               children: [
                 Expanded(
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "Hey there!",
-                        style: CustomTextStyles.header1(),
-                      ),
-                      Row(
-                        children: [
-                          const Text(
-                            "My name is ",
-                            style: TextStyle(
-                              fontSize: 24,
-                              color: Colors.white,
+                  child: SelectionArea(
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "Jamie Walker",
+                          style: CustomTextStyles.header1(),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 5),
+                          child: Text.rich(
+                            TextSpan(
+                              text: "Mobile app developer ",
+                              style: CustomTextStyles.paragraph1(
+                                color: CustomColors.secondaryColor.l1,
+                              ),
+                              children: [
+                                TextSpan(
+                                  text: "based in ",
+                                  style: CustomTextStyles.paragraph1(),
+                                ),
+                                TextSpan(
+                                  text: "Auckland, New Zealand",
+                                  style: CustomTextStyles.paragraph1(
+                                    color: CustomColors.secondaryColor.l1,
+                                  ),
+                                ),
+                                TextSpan(
+                                  text: ".",
+                                  style: CustomTextStyles.paragraph1(),
+                                ),
+                              ],
                             ),
-                          ),
-                          Text(
-                            "Jamie Walker",
-                            style: TextStyle(
-                              fontSize: 24,
-                              color: CustomColors.secondaryColor.l1,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ],
-                      ),
-                      const Padding(
-                        padding: EdgeInsets.only(top: 30),
-                        child: Text(
-                          "I build cutting-edge mobile apps, producing highly satisfactory results for my valued clients to help their businesses grow.",
-                          style: TextStyle(
-                            fontSize: 20,
-                            color: Colors.white,
+                            textAlign: TextAlign.justify,
                           ),
                         ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 80),
-                        child: SizedBox(
-                          height: 60,
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.stretch,
-                            children: [
-                              TextButton(
-                                style: CustomButtonStyles.primaryActionButton(),
-                                onPressed: () {},
-                                child: const Text("Hire Me"),
-                              ),
-                              const SizedBox(
-                                width: 20,
-                              ),
-                              IconButton(
-                                onPressed: () {},
-                                icon: Image.asset('linkedin.png'),
-                                padding: EdgeInsets.zero,
-                                style: CustomButtonStyles.secondaryIconButton(),
-                              ),
-                              const SizedBox(
-                                width: 20,
-                              ),
-                              IconButton(
-                                onPressed: () {},
-                                icon: Image.asset('github.png'),
-                                padding: EdgeInsets.zero,
-                                style: CustomButtonStyles.secondaryIconButton(),
-                              ),
-                            ],
+                        Padding(
+                          padding: const EdgeInsets.only(top: 30),
+                          child: Text(
+                            "Are you looking to craft a standout mobile app that not only enhances the efficiency of your business but also captivates your customers?",
+                            style: CustomTextStyles.paragraph2(),
+                            textAlign: TextAlign.justify,
                           ),
                         ),
-                      ),
-                    ],
+                        Padding(
+                          padding: const EdgeInsets.only(top: 20),
+                          child: Text.rich(
+                            TextSpan(
+                              text:
+                                  "I specialise in developing cutting-edge mobile applications, delivering top-notch solutions that not only meet but exceed client expectations, driving tangible business success.",
+                              style: CustomTextStyles.paragraph2(),
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 80),
+                          child: SizedBox(
+                            height: 60,
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.stretch,
+                              children: [
+                                TextButton(
+                                  style:
+                                      CustomButtonStyles.primaryActionButton(),
+                                  onPressed: () {},
+                                  child: const Text("Hire Me"),
+                                ),
+                                const SizedBox(
+                                  width: 20,
+                                ),
+                                IconButton(
+                                  onPressed: () {},
+                                  icon: Image.asset('linkedin.png'),
+                                  padding: EdgeInsets.zero,
+                                  style:
+                                      CustomButtonStyles.secondaryIconButton(),
+                                ),
+                                const SizedBox(
+                                  width: 20,
+                                ),
+                                IconButton(
+                                  onPressed: () {},
+                                  icon: Image.asset('github.png'),
+                                  padding: EdgeInsets.zero,
+                                  style:
+                                      CustomButtonStyles.secondaryIconButton(),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
                 const SizedBox(
-                  width: 40,
+                  width: 80,
                 ),
                 Expanded(
                   child: ClipRRect(
