@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:jamie_walker_website/app/extensions/mobile_size.dart';
+import 'package:jamie_walker_website/app/extensions/screen_size.dart';
 import 'package:jamie_walker_website/app/jamie_walker_router_config.dart';
+import 'package:jamie_walker_website/app/theme/custom_colors.dart';
 import 'package:jamie_walker_website/generic/view/navigation_button.dart';
 
 class JamieWalkerAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -18,22 +19,28 @@ class JamieWalkerAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
-    final layoutForMobile = context.layoutForMobile();
-    return ColoredBox(
-      color: Colors.white,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 40),
-        child: Column(
-          children: [
-            Expanded(
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children:
-                    layoutForMobile ? _mobileRowItems() : _desktopRowItems(),
-              ),
+    final layoutForMobile = context.layoutAppBarForMobile();
+    return context.wrappedForHorizontalPosition(
+      child: Column(
+        children: [
+          Expanded(
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children:
+                  layoutForMobile ? _mobileRowItems() : _desktopRowItems(),
             ),
-          ],
-        ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _initialsIcon() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 20),
+      child: Image.asset(
+        'initials_icon.png',
+        color: CustomColors.secondaryColor.l1,
       ),
     );
   }
@@ -42,14 +49,7 @@ class JamieWalkerAppBar extends StatelessWidget implements PreferredSizeWidget {
   List<Widget> _desktopRowItems() {
     return List<Widget>.from(
           [
-            const Text(
-              "Jamie Walker",
-              style: TextStyle(
-                fontSize: 32,
-                fontWeight: FontWeight.bold,
-                color: Colors.black,
-              ),
-            ),
+            _initialsIcon(),
             const Spacer(),
           ],
         ) +
@@ -72,19 +72,15 @@ class JamieWalkerAppBar extends StatelessWidget implements PreferredSizeWidget {
   /// The list of items to be added in the main row when laying out for mobile
   List<Widget> _mobileRowItems() {
     return [
-      const Text(
-        "Jamie Walker",
-        style: TextStyle(
-          fontSize: 32,
-          fontWeight: FontWeight.bold,
-          color: Colors.black,
-        ),
-      ),
+      _initialsIcon(),
       const Spacer(),
       IconButton(
         constraints: BoxConstraints.tight(const Size.square(50)),
         onPressed: () => onHamburgerPressed(),
-        icon: Image.asset('assets/icon_hamburger.png'),
+        icon: Image.asset(
+          'assets/icon_hamburger.png',
+          color: CustomColors.secondaryColor.l1,
+        ),
       ),
     ];
   }

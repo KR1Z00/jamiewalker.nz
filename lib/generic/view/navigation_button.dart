@@ -59,7 +59,7 @@ class _NavigationButtonState extends State<NavigationButton> {
                 AnimatedContainer(
                   duration: const Duration(milliseconds: 150),
                   constraints: BoxConstraints.tightFor(height: underlineSize),
-                  color: CustomColors.primaryColor,
+                  color: CustomColors.secondaryColor.l1,
                 ),
               ],
             ),

@@ -9,10 +9,10 @@ extension CustomButtonStyles on ButtonStyle {
       ),
       foregroundColor: MaterialStateProperty.resolveWith(
         (states) {
-          if (states.contains(MaterialState.hovered)) {
-            return CustomColors.primaryColor;
+          if (isCurrentPage || states.contains(MaterialState.hovered)) {
+            return CustomColors.secondaryColor.l1;
           }
-          return Colors.black;
+          return Colors.white;
         },
       ),
       overlayColor: MaterialStateProperty.all(
@@ -23,6 +23,49 @@ extension CustomButtonStyles on ButtonStyle {
           fontSize: 20,
           fontWeight: isCurrentPage ? FontWeight.w600 : FontWeight.w500,
         ),
+      ),
+    );
+  }
+
+  static ButtonStyle primaryActionButton() {
+    return ButtonStyle(
+      backgroundColor: MaterialStateProperty.all(
+        CustomColors.secondaryColor.l1,
+      ),
+      foregroundColor: MaterialStateProperty.all(
+        CustomColors.primaryColor.d2,
+      ),
+      padding: MaterialStateProperty.all(
+        const EdgeInsets.symmetric(
+          vertical: 20,
+          horizontal: 30,
+        ),
+      ),
+      overlayColor: MaterialStateProperty.all(
+        Colors.white.withOpacity(0.5),
+      ),
+      textStyle: MaterialStateProperty.all(
+        const TextStyle(
+          fontSize: 28,
+          fontWeight: FontWeight.w600,
+        ),
+      ),
+    );
+  }
+
+  static ButtonStyle secondaryIconButton() {
+    return ButtonStyle(
+      backgroundColor: MaterialStateProperty.all(
+        Colors.transparent,
+      ),
+      foregroundColor: MaterialStateProperty.all(
+        Colors.white,
+      ),
+      padding: MaterialStateProperty.all(
+        const EdgeInsets.all(0),
+      ),
+      overlayColor: MaterialStateProperty.all(
+        CustomColors.secondaryColor.l1.withOpacity(0.5),
       ),
     );
   }
