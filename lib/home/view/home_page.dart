@@ -88,11 +88,7 @@ class _WelcomeSection extends StatelessWidget {
                     children: [
                       Text(
                         "Hey there!",
-                        style: TextStyle(
-                          fontSize: 64,
-                          color: CustomColors.secondaryColor.l1,
-                          fontWeight: FontWeight.bold,
-                        ),
+                        style: CustomTextStyles.header1(),
                       ),
                       Row(
                         children: [
