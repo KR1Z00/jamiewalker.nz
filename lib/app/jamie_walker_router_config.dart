@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:jamie_walker_website/home/view/home_page.dart';
+import 'package:jamie_walker_website/landing/view/landing_page.dart';
 
 enum JamieWalkerRoute {
   home('/', 'Home'),
@@ -26,7 +26,7 @@ final jamieWalkerRouterConfig = GoRouter(
     GoRoute(
       path: JamieWalkerRoute.home.routePath,
       builder: (context, state) {
-        return HomePage();
+        return LandingPage();
       },
     ),
   ],
