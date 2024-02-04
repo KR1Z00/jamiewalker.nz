@@ -1,43 +1,55 @@
 import 'package:flutter/material.dart';
 import 'package:jamie_walker_website/app/theme/custom_colors.dart';
 
+typedef CustomTextStyle = TextStyle Function({
+  Color? color,
+  FontStyle? fontStyle,
+});
+
 extension CustomTextStyles on TextStyle {
-  static TextStyle header1({Color? color}) => TextStyle(
+  static CustomTextStyle header1 = ({color, fontStyle}) => TextStyle(
         fontSize: 64,
         color: color ?? CustomColors.secondaryColor.l1,
         fontWeight: FontWeight.bold,
+        fontStyle: fontStyle,
       );
 
-  static TextStyle header2({Color? color}) => TextStyle(
+  static CustomTextStyle header2 = ({color, fontStyle}) => TextStyle(
         fontSize: 48,
         color: color ?? CustomColors.secondaryColor.l1,
         fontWeight: FontWeight.bold,
+        fontStyle: fontStyle,
       );
 
-  static TextStyle header3({Color? color}) => TextStyle(
+  static CustomTextStyle header3 = ({color, fontStyle}) => TextStyle(
         fontSize: 24,
         color: color ?? CustomColors.secondaryColor.l1,
         fontWeight: FontWeight.bold,
+        fontStyle: fontStyle,
       );
 
-  static TextStyle header4({Color? color}) => TextStyle(
+  static CustomTextStyle header4 = ({color, fontStyle}) => TextStyle(
         fontSize: 18,
         color: color ?? CustomColors.secondaryColor.l1,
         fontWeight: FontWeight.bold,
+        fontStyle: fontStyle,
       );
 
-  static TextStyle paragraph1({Color? color}) => TextStyle(
+  static CustomTextStyle paragraph1 = ({color, fontStyle}) => TextStyle(
         fontSize: 24,
         color: color ?? Colors.white,
+        fontStyle: fontStyle,
       );
 
-  static TextStyle paragraph2({Color? color}) => TextStyle(
+  static CustomTextStyle paragraph2 = ({color, fontStyle}) => TextStyle(
         fontSize: 18,
         color: color ?? Colors.white,
+        fontStyle: fontStyle,
       );
 
-  static TextStyle paragraph3({Color? color}) => TextStyle(
+  static CustomTextStyle paragraph3 = ({color, fontStyle}) => TextStyle(
         fontSize: 14,
         color: color ?? Colors.white,
+        fontStyle: fontStyle,
       );
 }
