@@ -35,7 +35,7 @@ class _ServicesSection extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Text(
-                      "I can help you with",
+                      tr(LocaleKeys.servicesSectionTitleAlt),
                       style: CustomTextStyles.header2(),
                     ),
                     const SizedBox(
