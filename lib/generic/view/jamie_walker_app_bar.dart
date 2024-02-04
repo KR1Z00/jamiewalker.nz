@@ -78,7 +78,7 @@ class JamieWalkerAppBar extends StatelessWidget implements PreferredSizeWidget {
         constraints: BoxConstraints.tight(const Size.square(50)),
         onPressed: () => onHamburgerPressed(),
         icon: Image.asset(
-          'assets/icon_hamburger.png',
+          'icon_hamburger.png',
           color: CustomColors.secondaryColor.l1,
         ),
       ),
