@@ -1,16 +1,18 @@
 # jamie_walker_website
 
-A new Flutter project.
+A Flutter web app to serve as Jamie Walker's personal portfolio website.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+### 1. Run the code generator
 
-A few resources to get you started if this is your first Flutter project:
+```zsh
+dart run build_runner build --delete-conflicting-outputs
+```
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+### 2. Generating the Dart localization key constants
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+```zsh
+dart run easy_localization:generate -S assets/translations -f json -O lib/app/localization/generated -o locale_json.g.dart
+dart run easy_localization:generate -S assets/translations -f keys -O lib/app/localization/generated -o locale_keys.g.dart
+```
