@@ -1,5 +1,5 @@
 enum JWService {
   ios,
   flutter,
-  firebase,
+  backends,
 }

@@ -1,9 +1,12 @@
 import 'dart:math';
 
+import 'package:collection/collection.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:jamie_walker_website/app/extensions/screen_size.dart';
 import 'package:jamie_walker_website/app/jamie_walker_router_config.dart';
+import 'package:jamie_walker_website/app/localization/generated/locale_keys.g.dart';
+import 'package:jamie_walker_website/app/localization/json_list_translation.dart';
 import 'package:jamie_walker_website/app/theme/custom_button_styles.dart';
 import 'package:jamie_walker_website/app/theme/custom_colors.dart';
 import 'package:jamie_walker_website/app/theme/custom_text_styles.dart';
@@ -94,53 +97,46 @@ class _WelcomeSection extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "Jamie Walker",
+                          tr(LocaleKeys.fullName),
                           style: CustomTextStyles.header1(),
                         ),
                         Padding(
                           padding: const EdgeInsets.only(top: 5),
                           child: Text.rich(
                             TextSpan(
-                              text: "Mobile app developer ",
+                              text: tr(
+                                LocaleKeys.profession,
+                              ),
                               style: CustomTextStyles.paragraph1(
                                 color: CustomColors.secondaryColor.l1,
                               ),
                               children: [
                                 TextSpan(
-                                  text: "based in ",
+                                  text: " | ",
                                   style: CustomTextStyles.paragraph1(),
                                 ),
                                 TextSpan(
-                                  text: "Auckland, New Zealand",
+                                  text: tr(LocaleKeys.location),
                                   style: CustomTextStyles.paragraph1(
                                     color: CustomColors.secondaryColor.l1,
                                   ),
                                 ),
-                                TextSpan(
-                                  text: ".",
-                                  style: CustomTextStyles.paragraph1(),
-                                ),
                               ],
                             ),
-                            textAlign: TextAlign.justify,
                           ),
                         ),
                         Padding(
                           padding: const EdgeInsets.only(top: 30),
                           child: Text(
-                            "Are you looking to craft a standout mobile app that not only enhances the efficiency of your business but also captivates your customers?",
+                            tr(LocaleKeys.introductionQuestion),
                             style: CustomTextStyles.paragraph2(),
-                            textAlign: TextAlign.justify,
                           ),
                         ),
                         Padding(
                           padding: const EdgeInsets.only(top: 20),
-                          child: Text.rich(
-                            TextSpan(
-                              text:
-                                  "I specialise in developing cutting-edge mobile applications, delivering top-notch solutions that not only meet but exceed client expectations, driving tangible business success.",
-                              style: CustomTextStyles.paragraph2(),
-                            ),
+                          child: Text(
+                            tr(LocaleKeys.introducion),
+                            style: CustomTextStyles.paragraph2(),
                           ),
                         ),
                         Padding(
@@ -154,7 +150,7 @@ class _WelcomeSection extends StatelessWidget {
                                   style:
                                       CustomButtonStyles.primaryActionButton(),
                                   onPressed: () {},
-                                  child: const Text("Hire Me"),
+                                  child: Text(tr(LocaleKeys.hireMe)),
                                 ),
                                 const SizedBox(
                                   width: 20,

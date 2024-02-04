@@ -12,6 +12,8 @@ dependencies:
     sdk: flutter
   cupertino_icons: ^1.0.2
   go_router: ^13.0.1
+  easy_localization: ^3.0.3
+  collection: ^1.18.0
 
 dev_dependencies:
   flutter_test:
@@ -23,6 +25,7 @@ flutter:
 
   assets:
     - assets/
+    - assets/translations/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
