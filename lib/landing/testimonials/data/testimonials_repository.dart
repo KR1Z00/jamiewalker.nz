@@ -6,6 +6,10 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'testimonials_repository.g.dart';
 
+/// A repository that provides the list of available [TestimonialModel]s
+///
+/// It gets these models from the localization key-values, in which each
+/// available testimonial has a JSON item
 @riverpod
 class TestimonialsRepository extends _$TestimonialsRepository {
   @override

@@ -8,6 +8,10 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 part 'testimonials_section_view_model.g.dart';
 part 'testimonials_section_view_model.freezed.dart';
 
+/// A state for the section for viewing testimonials one at a time
+///
+/// Contains a current testimonial, the total number of testimonials, and the
+/// index of the testimonial currently being reported
 @freezed
 class TestimonialsSectionState with _$TestimonialsSectionState {
   const factory TestimonialsSectionState({
@@ -17,6 +21,11 @@ class TestimonialsSectionState with _$TestimonialsSectionState {
   }) = _TestimonialsSectionState;
 }
 
+/// A ViewModel that manages the [TestimonialsSectionState]
+///
+/// It listens to the [TestimonialsRepository], and allows the cycling through
+/// the [TestimonialModel]s reported by it. It will automatically cycle, but
+/// also allows the user to cycle manually.
 @riverpod
 class TestimonialsSectionViewModel extends _$TestimonialsSectionViewModel {
   static const Duration _autoCycleDuration = Duration(seconds: 7);
@@ -44,6 +53,8 @@ class TestimonialsSectionViewModel extends _$TestimonialsSectionViewModel {
     );
   }
 
+  /// Updates the [state] to report the next [TestimonialModel] in the list of
+  /// available ones
   void selectNextTestimonial() {
     final nextIndex = _currentTestimonialIndex + 1;
     _currentTestimonialIndex =
@@ -52,6 +63,8 @@ class TestimonialsSectionViewModel extends _$TestimonialsSectionViewModel {
     _restartAutoCycleTimer();
   }
 
+  /// Updates the [state] to report the previous [TestimonialModel] in the list
+  /// of available ones
   void selectPreviousTestimonial() {
     final nextIndex = _currentTestimonialIndex - 1;
     _currentTestimonialIndex =

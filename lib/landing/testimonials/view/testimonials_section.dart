@@ -14,6 +14,15 @@ class __TestimonialsSectionState extends ConsumerState<_TestimonialsSection> {
 
   @override
   Widget build(BuildContext context) {
+    // Instead of using ref.watch, we use a StatefulWidget plus a combination
+    // of ref.read and ref.listen.
+    //
+    // This is so we can do a fade in and out animation while we change the
+    // state to the next testimonial.
+    //
+    // If we were just to use ref.watch, the state change would occur before
+    // the fade out, making it jump instead of smoothly fade, rendering the
+    // animation pointless.
     _state = ref.read(testimonialsSectionViewModelProvider);
     final testimonial = _state.currentTestimonial;
     final animationController = useAnimationController(
