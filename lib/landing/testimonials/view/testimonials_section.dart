@@ -1,14 +1,25 @@
-part of '../../view/landing_page.dart';
+import 'package:auto_size_text/auto_size_text.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:jamie_walker_website/app/extensions/screen_size.dart';
+import 'package:jamie_walker_website/app/localization/generated/locale_keys.g.dart';
+import 'package:jamie_walker_website/app/theme/custom_colors.dart';
+import 'package:jamie_walker_website/app/theme/custom_text_styles.dart';
+import 'package:jamie_walker_website/landing/testimonials/domain/testimonials_section_view_model.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
-class _TestimonialsSection extends StatefulHookConsumerWidget {
-  const _TestimonialsSection();
+class TestimonialsSection extends StatefulHookConsumerWidget {
+  const TestimonialsSection({super.key});
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() =>
-      __TestimonialsSectionState();
+      _TestimonialsSectionState();
 }
 
-class __TestimonialsSectionState extends ConsumerState<_TestimonialsSection> {
+class _TestimonialsSectionState extends ConsumerState<TestimonialsSection> {
   final _changeAnimationDuration = const Duration(milliseconds: 200);
   late TestimonialsSectionState _state;
 
