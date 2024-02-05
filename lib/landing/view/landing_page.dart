@@ -13,6 +13,7 @@ import 'package:jamie_walker_website/app/theme/custom_text_styles.dart';
 import 'package:jamie_walker_website/generic/view/jamie_walker_app_bar.dart';
 import 'package:jamie_walker_website/generic/view/jamie_walker_navigation_drawer.dart';
 import 'package:jamie_walker_website/landing/services/jw_service.dart';
+import 'package:jamie_walker_website/landing/testimonials/view/testimonials_section.dart';
 
 part '../services/services_section.dart';
 part '../services/service_card.dart';
@@ -55,6 +56,13 @@ class LandingPage extends StatelessWidget {
                     color: CustomColors.primaryColor.d2,
                     child: const _WelcomeSection(),
                   ),
+                  context.wrappedForHorizontalPosition(
+                    child: Container(
+                      color: CustomColors.secondaryColor.l1,
+                      height: 1,
+                    ),
+                  ),
+                  const TestimonialsSection(),
                   context.wrappedForHorizontalPosition(
                     child: Container(
                       color: CustomColors.secondaryColor.l1,
