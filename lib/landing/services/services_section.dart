@@ -2,9 +2,8 @@ part of '../view/landing_page.dart';
 
 class _ServicesSection extends StatelessWidget {
   static const double cardSpacing = 40;
-
-  static const minimumWidthForThreeItemsPerRow = 1100;
-  static const minimumWidthForTwoItemsPerRow = 700;
+  static const double minimumCardWidth = 340;
+  static const int maximumCardsPerRow = 3;
 
   const _ServicesSection();
 
@@ -13,23 +12,13 @@ class _ServicesSection extends StatelessWidget {
     return context.wrappedForHorizontalPosition(
       child: LayoutBuilder(
         builder: (context, constraints) {
-          int itemsPerRow = 1;
-          if (constraints.maxWidth > minimumWidthForThreeItemsPerRow) {
-            itemsPerRow = 3;
-          } else if (constraints.maxWidth > minimumWidthForTwoItemsPerRow) {
-            itemsPerRow = 2;
-          }
-
-          final numberOfSpacings = itemsPerRow - 1;
-          final totalSpacing = numberOfSpacings * cardSpacing;
-          final itemWidth = (constraints.maxWidth - totalSpacing) / itemsPerRow;
-
           return Padding(
             padding: EdgeInsets.symmetric(
               vertical: ScreenSize.minimumPadding.toDouble(),
             ),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 Column(
                   mainAxisSize: MainAxisSize.min,
@@ -41,20 +30,12 @@ class _ServicesSection extends StatelessWidget {
                     const SizedBox(
                       height: cardSpacing,
                     ),
-                    Wrap(
-                      alignment: WrapAlignment.center,
-                      crossAxisAlignment: WrapCrossAlignment.center,
-                      spacing: cardSpacing,
-                      runSpacing: cardSpacing,
+                    WrappingCardsSection(
+                      cardSpacing: cardSpacing,
+                      minimumCardWidth: minimumCardWidth,
+                      maximumCardsPerRow: maximumCardsPerRow,
                       children: JWService.values
-                          .map(
-                            (service) => ConstrainedBox(
-                              constraints: BoxConstraints(
-                                maxWidth: itemWidth,
-                              ),
-                              child: _ServiceCard(service: service),
-                            ),
-                          )
+                          .map((service) => _ServiceCard(service: service))
                           .toList(),
                     ),
                   ],
