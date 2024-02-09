@@ -1,12 +1,14 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:jamie_walker_website/app/extensions/screen_size.dart';
 import 'package:jamie_walker_website/app/localization/generated/locale_keys.g.dart';
 import 'package:jamie_walker_website/app/theme/custom_text_styles.dart';
 import 'package:jamie_walker_website/generic/view/wrapping_cards_section.dart';
+import 'package:jamie_walker_website/landing/portfolio/data/portfolio_repository.dart';
 import 'package:jamie_walker_website/landing/portfolio/view/portfolio_item_card.dart';
 
-class PortfolioSection extends StatelessWidget {
+class PortfolioSection extends ConsumerWidget {
   static const double cardSpacing = 40;
   static const double minimumCardWidth = 400;
   static const int maximumCardsPerRow = 2;
@@ -14,7 +16,8 @@ class PortfolioSection extends StatelessWidget {
   const PortfolioSection({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final portfolioItems = ref.read(portfolioRepositoryProvider);
     return context.wrappedForHorizontalPosition(
       child: LayoutBuilder(
         builder: (context, constraints) {
