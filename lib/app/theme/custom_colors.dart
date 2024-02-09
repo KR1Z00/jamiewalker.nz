@@ -4,8 +4,8 @@ extension CustomColors on MaterialColor {
   static const MaterialColor primaryColor = MaterialColor(
     0xFF3572AC,
     {
-      50: Color(0xFFDBDDE0),
-      100: Color(0xFFDBDDE0),
+      50: Color(0xFFEFF5FF),
+      100: Color(0xFFEFF5FF),
       200: Color(0xFFDBDDE0),
       300: Color(0xFF88A8C6),
       400: Color(0xFF88A8C6),
