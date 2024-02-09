@@ -29,15 +29,15 @@ class WrappingCardsSection extends StatelessWidget {
         final itemWidth = calculateItemWidthGiven(currentWidth: currentWidth);
 
         return Wrap(
-          alignment: WrapAlignment.spaceBetween,
+          alignment: WrapAlignment.center,
           crossAxisAlignment: WrapCrossAlignment.center,
           spacing: cardSpacing,
           runSpacing: cardSpacing,
           children: children
               .map(
                 (child) => ConstrainedBox(
-                  constraints: BoxConstraints(
-                    maxWidth: itemWidth,
+                  constraints: BoxConstraints.tightFor(
+                    width: itemWidth,
                   ),
                   child: child,
                 ),
@@ -52,18 +52,33 @@ class WrappingCardsSection extends StatelessWidget {
   /// they evenly distribute across the [currentWidth] of [this] widget
   @visibleForTesting
   double calculateItemWidthGiven({required double currentWidth}) {
-    return 100;
+    final itemsPerRow = calculateItemsPerRowGiven(currentWidth: currentWidth);
+    final spacingsPerRow = itemsPerRow - 1;
+    final widthWithoutSpacings = currentWidth - (spacingsPerRow * cardSpacing);
+    return widthWithoutSpacings / itemsPerRow;
   }
 
   /// Returns the number of items to be placed horizontally given the
   /// [currentWidth]
   @visibleForTesting
   int calculateItemsPerRowGiven({required double currentWidth}) {
-    return 0;
+    int toReturn = 1;
+
+    final widthThresholds = calculateWidthThresholdsForRowCounts().indexed;
+    for (final (index, minimumWidth) in widthThresholds) {
+      if (currentWidth >= minimumWidth) {
+        /// The width thresholds list contains the minimum width for each number
+        /// of row items, starting from 2
+        final rowsPerItem = index + 2;
+        toReturn = rowsPerItem;
+      }
+    }
+
+    return toReturn;
   }
 
-  /// Calculates the minimum width [this] widget should be, for each number of
-  /// cards per row in the [Wrap], from 2 up to the [maximumCardsPerRow].
+  /// Calculates the minimum width [this] widget should be, for each possible
+  /// number of cards per row in the [Wrap], from 2 up to the [maximumCardsPerRow].
   ///
   /// For example:
   ///   - if [cardSpacing] == 40
@@ -83,6 +98,16 @@ class WrappingCardsSection extends StatelessWidget {
   ///   separated by 40dp.
   @visibleForTesting
   List<double> calculateWidthThresholdsForRowCounts() {
-    return [];
+    final possibleRowCounts = List<int>.generate(
+      maximumCardsPerRow,
+      (i) => i + 1,
+    ).skip(1);
+
+    return possibleRowCounts.map<double>((possibleRowCount) {
+      final numberOfSpacings = possibleRowCount - 1;
+      final sumOfCardWidths = possibleRowCount * minimumCardWidth;
+      final sumOfSpacingWidths = numberOfSpacings * cardSpacing;
+      return sumOfCardWidths + sumOfSpacingWidths;
+    }).toList();
   }
 }
