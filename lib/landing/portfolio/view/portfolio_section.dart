@@ -17,7 +17,7 @@ class PortfolioSection extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final portfolioItems = ref.read(portfolioRepositoryProvider);
+    final portfolioItems = ref.watch(portfolioRepositoryProvider);
     return context.wrappedForHorizontalPosition(
       child: LayoutBuilder(
         builder: (context, constraints) {
@@ -36,14 +36,27 @@ class PortfolioSection extends ConsumerWidget {
                 const SizedBox(
                   height: cardSpacing,
                 ),
-                WrappingCardsSection(
-                  cardSpacing: cardSpacing,
-                  maximumCardsPerRow: maximumCardsPerRow,
-                  minimumCardWidth: minimumCardWidth,
-                  children: List.generate(
-                    3,
-                    (index) => const PortfolioItemCard(),
+                portfolioItems.when(
+                  loading: () => const Center(
+                    child: CircularProgressIndicator(),
                   ),
+                  error: (error, stackTrace) => const Center(
+                    child: CircularProgressIndicator(),
+                  ),
+                  data: (data) => WrappingCardsSection(
+                    cardSpacing: cardSpacing,
+                    maximumCardsPerRow: maximumCardsPerRow,
+                    minimumCardWidth: minimumCardWidth,
+                    children: data
+                        .map(
+                          (portfolioItemModel) => PortfolioItemCard(
+                            model: portfolioItemModel,
+                            onTap: () {},
+                          ),
+                        )
+                        .toList(),
+                  ),
+                  skipError: true,
                 )
               ],
             ),
