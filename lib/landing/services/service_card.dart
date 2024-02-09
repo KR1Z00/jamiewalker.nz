@@ -1,4 +1,4 @@
-part of '../view/landing_page.dart';
+part of 'services_section.dart';
 
 class _ServiceCard extends StatelessWidget {
   final JWService service;
