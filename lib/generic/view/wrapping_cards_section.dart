@@ -74,6 +74,10 @@ class WrappingCardsSection extends StatelessWidget {
       }
     }
 
+    if (children.length < toReturn) {
+      toReturn = children.length;
+    }
+
     return toReturn;
   }
 
