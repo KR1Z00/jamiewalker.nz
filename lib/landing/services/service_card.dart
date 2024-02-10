@@ -61,22 +61,6 @@ class _ServiceCard extends StatelessWidget {
                   height: 5,
                 ),
                 Text(
-                  description,
-                  style: CustomTextStyles.paragraph2(),
-                  textAlign: TextAlign.center,
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                Text(
-                  tr(LocaleKeys.applicableSkills),
-                  style: CustomTextStyles.header4(),
-                  textAlign: TextAlign.center,
-                ),
-                const SizedBox(
-                  height: 5,
-                ),
-                Text(
                   skills,
                   style: CustomTextStyles.paragraph3(),
                   textAlign: TextAlign.center,
