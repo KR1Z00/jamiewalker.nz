@@ -59,6 +59,13 @@ class LandingPage extends StatelessWidget {
                       height: 1,
                     ),
                   ),
+                  const ServicesSection(),
+                  context.wrappedForHorizontalPosition(
+                    child: Container(
+                      color: CustomColors.secondaryColor.l1,
+                      height: 1,
+                    ),
+                  ),
                   const TestimonialsSection(),
                   context.wrappedForHorizontalPosition(
                     child: Container(
@@ -67,13 +74,6 @@ class LandingPage extends StatelessWidget {
                     ),
                   ),
                   const PortfolioSection(),
-                  context.wrappedForHorizontalPosition(
-                    child: Container(
-                      color: CustomColors.secondaryColor.l1,
-                      height: 1,
-                    ),
-                  ),
-                  const ServicesSection(),
                 ],
               ),
             ),
