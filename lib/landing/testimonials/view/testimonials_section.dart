@@ -5,6 +5,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:jamie_walker_website/app/extensions/screen_size.dart';
+import 'package:jamie_walker_website/app/extensions/standard_box_shadow.dart';
 import 'package:jamie_walker_website/app/localization/generated/locale_keys.g.dart';
 import 'package:jamie_walker_website/app/theme/custom_colors.dart';
 import 'package:jamie_walker_website/app/theme/custom_text_styles.dart';
@@ -106,10 +107,8 @@ class _TestimonialsSectionState extends ConsumerState<TestimonialsSection> {
                                       opacity: animationController.value,
                                       child: Container(
                                         decoration: BoxDecoration(
-                                          boxShadow: const [
-                                            BoxShadow(
-                                              blurRadius: 10,
-                                            ),
+                                          boxShadow: [
+                                            StandardBoxShadows.regular(),
                                           ],
                                           border: Border.all(
                                             color:
