@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jamie_walker_website/app/extensions/standard_box_shadow.dart';
 import 'package:jamie_walker_website/app/theme/custom_colors.dart';
 
 extension CustomButtonStyles on ButtonStyle {
@@ -21,7 +22,10 @@ extension CustomButtonStyles on ButtonStyle {
       textStyle: MaterialStateProperty.all(
         TextStyle(
           fontSize: 20,
-          fontWeight: isCurrentPage ? FontWeight.w600 : FontWeight.w500,
+          fontWeight: isCurrentPage ? FontWeight.w600 : FontWeight.w300,
+          shadows: [
+            StandardBoxShadows.light(),
+          ],
         ),
       ),
     );
