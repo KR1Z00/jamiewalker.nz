@@ -1,5 +1,8 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:jamie_walker_website/app/extensions/screen_size.dart';
+import 'package:jamie_walker_website/app/extensions/standard_box_shadow.dart';
 import 'package:jamie_walker_website/app/jamie_walker_router_config.dart';
 import 'package:jamie_walker_website/app/theme/custom_colors.dart';
 import 'package:jamie_walker_website/generic/view/navigation_button.dart';
@@ -20,24 +23,25 @@ class JamieWalkerAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     final layoutForMobile = context.layoutAppBarForMobile();
-    return context.wrappedForHorizontalPosition(
-      child: Column(
-        children: [
-          Expanded(
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children:
-                  layoutForMobile ? _mobileRowItems() : _desktopRowItems(),
-            ),
+    return ClipRRect(
+      child: BackdropFilter(
+        filter: ImageFilter.blur(
+          sigmaX: 20,
+          sigmaY: 20,
+        ),
+        child: context.wrappedForHorizontalPosition(
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: layoutForMobile ? _mobileRowItems() : _desktopRowItems(),
           ),
-        ],
+        ),
       ),
     );
   }
 
   Widget _initialsIcon() {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 20),
+      padding: const EdgeInsets.symmetric(vertical: 25),
       child: Image.asset(
         'assets/images/initials_icon.png',
         color: CustomColors.secondaryColor.l1,
