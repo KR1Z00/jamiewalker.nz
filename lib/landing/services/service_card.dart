@@ -29,6 +29,9 @@ class _ServiceCard extends StatelessWidget {
       decoration: BoxDecoration(
         color: CustomColors.primaryColor.d1,
         borderRadius: BorderRadius.circular(10),
+        boxShadow: [
+          StandardBoxShadows.regular(),
+        ],
       ),
       child: Padding(
         padding: const EdgeInsets.all(20),
@@ -52,22 +55,6 @@ class _ServiceCard extends StatelessWidget {
                 Text(
                   title,
                   style: CustomTextStyles.header3(),
-                  textAlign: TextAlign.center,
-                ),
-                const SizedBox(
-                  height: 5,
-                ),
-                Text(
-                  description,
-                  style: CustomTextStyles.paragraph2(),
-                  textAlign: TextAlign.center,
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                Text(
-                  tr(LocaleKeys.applicableSkills),
-                  style: CustomTextStyles.header4(),
                   textAlign: TextAlign.center,
                 ),
                 const SizedBox(
