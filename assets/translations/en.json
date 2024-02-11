@@ -51,6 +51,69 @@
     ],
     "portfolioSectionTitle": "Portfolio",
     "portfolioSectionTitleAlt": "View my past work",
+    "portfolioItems": [
+        {
+            "itemId": "joby_one",
+            "name": "JOBY One",
+            "previewImageAsset": "assets/images/portfolio/joby_one/joby_one_preview.png",
+            "infoPages": [
+                {
+                    "contentType": "image",
+                    "imageAsset": "assets/images/portfolio/joby_one/pages/page_1_general.jpg",
+                    "description": "I was responsible for building the JOBY One app during my time as an employee at Syrp Lab. This app is Copyright © Videndum Media Solutions. Integrating with various JOBY motion control, microphone, and light devices over Bluetooth LE, users can enhance their smartphone videography to produce breathtaking content.\n\nCollaborating with designers and stakeholders, I developed this app for native iOS using Swift. Following the release of the iOS app, I was then tasked with rebuildinng the app using Flutter, to provide support on both iOS and Android."
+                },
+                {
+                    "contentType": "image",
+                    "imageAsset": "assets/images/portfolio/joby_one/pages/page_2_capture.jpg",
+                    "description": "Users can capture stunning moving videos and awe-inspiring moving timelapses using their JOBY motion control devices. The app provides a seamless experience for users to also further enhance their scene with their JOBY light and microphone devices."
+                },
+                {
+                    "contentType": "image",
+                    "imageAsset": "assets/images/portfolio/joby_one/pages/page_3_control.jpg",
+                    "description": "The app integrates with the JOBY Spin and Swing motion control devices to move the user's mobile phone during a capture. It provides advanced control functionality for the JOBY Wavo PRO Bluetooth microphone, to allow users to capture crisp audio. Finally, the JOBY Beamo light devices can be controlled with the app to spectacularly illuminate the user's scene."
+                }
+            ]
+        },
+        {
+            "itemId": "joby_motion",
+            "name": "JOBY Motion",
+            "previewImageAsset": "assets/images/portfolio/joby_motion/joby_motion_preview.png",
+            "infoPages": [
+                {
+                    "contentType": "video",
+                    "youtubeVideoId": "sGue7i7geuI",
+                    "description": "I was responsible for building the JOBY Motion app during my time as an employee at Syrp Lab. This app is Copyright © Videndum Media Solutions. Integrating with the JOBY Spin and Swing motion control devices over Bluetooth LE, users can capture amazing motion videos and timelapses.\n\nCollaborating with designers and stakeholders, I developed this app for native iOS using Swift. This app was eventually superseded by the JOBY One app, which integrates with even more JOBY devices."
+                },
+                {
+                    "contentType": "image",
+                    "imageAsset": "assets/images/portfolio/joby_motion/pages/page_2_spin.jpg",
+                    "description": "The JOBY Spin is a device that rotates the user's phone. Depending on the orientation of the Spin, the phone can be made to rotate either horizontally or vertically. Users can also combine two of the devices using a pan-tilt bracket, to rotate the phone along both the horizontal and vertical axes."
+                },
+                {
+                    "contentType": "image",
+                    "imageAsset": "assets/images/portfolio/joby_motion/pages/page_3_swing.jpg",
+                    "description": "The JOBY Swing is a device that moves the user's phone linearly. Users can make their videos move left-to-right, right-to-left, in and out, or any which way they may desire."
+                }
+            ]
+        },
+        {
+            "itemId": "my_flatmate",
+            "name": "MyFlatmate",
+            "previewImageAsset": "assets/images/portfolio/my_flatmate/my_flatmate_preview.png",
+            "infoPages": [
+                {
+                    "contentType": "video",
+                    "youtubeVideoId": "ZgEaVwbUGT4",
+                    "description": "MyFlatmate streamlines the process for people living in shared flats to organise their house sharing admin. Users can create a flat group in the app, invite their flatmates, and then organise their shared chores, payments, and shopping lists."
+                },
+                {
+                    "contentType": "image",
+                    "imageAsset": "assets/images/portfolio/my_flatmate/pages/page_2_screenshots.png",
+                    "description": "I developed the app for native iOS using Swift, integrating with Google Firebase as the backend to manage the authentication, database, and push notifications."
+                }
+            ]
+        }
+    ],
     "blogSectionTitle": "Blog",
     "contactSectionTitle": "Contact"
 }
