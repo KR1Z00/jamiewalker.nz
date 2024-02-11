@@ -43,6 +43,13 @@ flutter:
   assets:
     - assets/
     - assets/translations/
+    - assets/images/
+    - assets/images/portfolio/joby_one/
+    - assets/images/portfolio/joby_one/pages/
+    - assets/images/portfolio/joby_motion/
+    - assets/images/portfolio/joby_motion/pages/
+    - assets/images/portfolio/my_flatmate/
+    - assets/images/portfolio/my_flatmate/pages/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
