@@ -1,3 +1,4 @@
+import 'package:cloud_functions/cloud_functions.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'contact_view_model.g.dart';
@@ -23,9 +24,16 @@ class ContactViewModel extends _$ContactViewModel {
   }) async {
     state = ContactViewModelState.sending;
 
-    await Future.delayed(const Duration(seconds: 1));
-
-    state = ContactViewModelState.successfullySent;
+    try {
+      await FirebaseFunctions.instance.httpsCallable("sendMessage").call({
+        "name": name,
+        "email": email,
+        "message": message,
+      });
+      state = ContactViewModelState.successfullySent;
+    } catch (exception) {
+      state = ContactViewModelState.error;
+    }
   }
 
   void dismissResult() {
