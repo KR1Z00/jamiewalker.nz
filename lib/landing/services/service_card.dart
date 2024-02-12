@@ -75,9 +75,9 @@ class _ServiceCard extends StatelessWidget {
 
   String _imageAssetForService(JWService service) {
     return switch (service) {
-      JWService.ios => "ios.png",
-      JWService.flutter => "flutter.png",
-      JWService.backends => "firebase.png",
+      JWService.ios => "assets/images/ios.png",
+      JWService.flutter => "assets/images/flutter.png",
+      JWService.backends => "assets/images/firebase.png",
     };
   }
 }

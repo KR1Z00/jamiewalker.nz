@@ -169,7 +169,9 @@ class _WelcomeSection extends StatelessWidget {
                                 ),
                                 IconButton(
                                   onPressed: () {},
-                                  icon: Image.asset('linkedin.png'),
+                                  icon: Image.asset(
+                                    'assets/images/linkedin.png',
+                                  ),
                                   padding: EdgeInsets.zero,
                                   style:
                                       CustomButtonStyles.secondaryIconButton(),
@@ -179,7 +181,9 @@ class _WelcomeSection extends StatelessWidget {
                                 ),
                                 IconButton(
                                   onPressed: () {},
-                                  icon: Image.asset('github.png'),
+                                  icon: Image.asset(
+                                    'assets/images/github.png',
+                                  ),
                                   padding: EdgeInsets.zero,
                                   style:
                                       CustomButtonStyles.secondaryIconButton(),
@@ -205,7 +209,7 @@ class _WelcomeSection extends StatelessWidget {
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(10),
                       child: Image.asset(
-                        'profile_picture_square.jpg',
+                        'assets/images/profile_picture_square.jpg',
                       ),
                     ),
                   ),

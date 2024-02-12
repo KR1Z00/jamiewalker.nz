@@ -39,7 +39,7 @@ class JamieWalkerAppBar extends StatelessWidget implements PreferredSizeWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 20),
       child: Image.asset(
-        'initials_icon.png',
+        'assets/images/initials_icon.png',
         color: CustomColors.secondaryColor.l1,
       ),
     );
@@ -78,7 +78,7 @@ class JamieWalkerAppBar extends StatelessWidget implements PreferredSizeWidget {
         constraints: BoxConstraints.tight(const Size.square(50)),
         onPressed: () => onHamburgerPressed(),
         icon: Image.asset(
-          'icon_hamburger.png',
+          'assets/images/icon_hamburger.png',
           color: CustomColors.secondaryColor.l1,
         ),
       ),
