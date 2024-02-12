@@ -22,6 +22,9 @@ class PortfolioInfoDialog extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(portfolioItemInfoViewModelProvider(model));
     final currentPage = state.pages[state.currentPageIndex];
+    final descriptionTextStyle = context.layoutForMobile()
+        ? CustomTextStyles.paragraph3
+        : CustomTextStyles.paragraph2;
 
     return Scaffold(
       backgroundColor: Colors.black.withOpacity(0.1),
@@ -65,7 +68,7 @@ class PortfolioInfoDialog extends ConsumerWidget {
                       ),
                       Padding(
                         padding: const EdgeInsets.symmetric(
-                          vertical: 40,
+                          vertical: 20,
                         ),
                         child: ConstrainedBox(
                           constraints: BoxConstraints(
@@ -86,27 +89,27 @@ class PortfolioInfoDialog extends ConsumerWidget {
                           ),
                         ),
                         child: Flexible(
-                          child: Padding(
-                            padding: const EdgeInsets.only(
-                              bottom: 20,
-                            ),
-                            child: SingleChildScrollView(
-                              child: Scrollbar(
-                                thumbVisibility: true,
-                                thickness: 3,
-                                child: Padding(
-                                  padding: const EdgeInsets.only(right: 6),
-                                  child: Text(
-                                    currentPage.description,
-                                    style: CustomTextStyles.paragraph2(
-                                      color: Colors.black,
-                                    ),
+                          child: SingleChildScrollView(
+                            child: Scrollbar(
+                              thumbVisibility: true,
+                              thickness: 3,
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 6,
+                                ),
+                                child: Text(
+                                  currentPage.description,
+                                  style: descriptionTextStyle(
+                                    color: Colors.black,
                                   ),
                                 ),
                               ),
                             ),
                           ),
                         ),
+                      ),
+                      const SizedBox(
+                        height: 20,
                       ),
                       Row(
                         children: [
