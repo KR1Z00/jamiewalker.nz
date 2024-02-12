@@ -43,16 +43,7 @@ class LandingPage extends StatelessWidget {
                 mainAxisSize: MainAxisSize.max,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  Container(
-                    constraints: BoxConstraints(
-                      minHeight: min(
-                        constraints.maxHeight - ScreenSize.minimumPadding,
-                        _WelcomeSection.maxHeight,
-                      ),
-                    ),
-                    color: CustomColors.primaryColor.d2,
-                    child: const _WelcomeSection(),
-                  ),
+                  const _WelcomeSection(),
                   context.wrappedForHorizontalPosition(
                     child: Container(
                       color: CustomColors.secondaryColor.l1,
@@ -85,7 +76,7 @@ class LandingPage extends StatelessWidget {
 }
 
 class _WelcomeSection extends StatelessWidget {
-  static const double maxHeight = 1200;
+  // static const double maxHeight = 1200;
 
   const _WelcomeSection();
 
