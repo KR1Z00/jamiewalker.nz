@@ -5,7 +5,6 @@
     "shortBio": "{} based in {}.",
     "introductionQuestion": "Are you looking to craft a standout mobile app that not only enhances the efficiency of your business but also captivates your customers?",
     "introducion": "I specialise in developing cutting-edge mobile applications, delivering top-notch solutions that not only meet but exceed client expectations, driving tangible business success.",
-    "hireMe": "Hire Me",
     "homeSectionTitle": "Home",
     "servicesSectionTitle": "Services",
     "servicesSectionTitleAlt": "I can help you with",
@@ -110,6 +109,7 @@
         }
     ],
     "blogSectionTitle": "Blog",
+    "contactMe": "Contact Me",
     "contactSectionTitle": "Contact",
     "contactSectionTitleAlt": "Get in Contact"
 }

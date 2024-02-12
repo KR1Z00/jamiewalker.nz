@@ -145,7 +145,7 @@ class _WelcomeSectionDesktop extends StatelessWidget {
                             TextButton(
                               style: CustomButtonStyles.primaryActionButton(),
                               onPressed: () {},
-                              child: Text(tr(LocaleKeys.hireMe)),
+                              child: Text(tr(LocaleKeys.contactMe)),
                             ),
                             const SizedBox(
                               width: 20,
@@ -251,7 +251,7 @@ class _WelcomeSectionMobile extends StatelessWidget {
                     TextButton(
                       style: CustomButtonStyles.primaryActionButton(),
                       onPressed: () {},
-                      child: Text(tr(LocaleKeys.hireMe)),
+                      child: Text(tr(LocaleKeys.contactMe)),
                     ),
                     const SizedBox(
                       width: 20,
