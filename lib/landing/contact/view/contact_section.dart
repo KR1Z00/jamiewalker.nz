@@ -1,10 +1,10 @@
-import 'dart:html';
 import 'dart:math';
 
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:jamie_walker_website/app/constants/launchable_urls.dart';
 import 'package:jamie_walker_website/app/extensions/screen_size.dart';
 import 'package:jamie_walker_website/app/localization/generated/locale_keys.g.dart';
 import 'package:jamie_walker_website/app/theme/custom_colors.dart';
@@ -13,8 +13,7 @@ import 'package:jamie_walker_website/generic/view/primary_text_button.dart';
 import 'package:jamie_walker_website/landing/contact/domain/contact_view_model.dart';
 
 class ContactSection extends ConsumerWidget {
-  static const double minHeight = 760;
-  static const double maxHeight = 1000;
+  static const double minHeight = 800;
 
   final TextEditingController nameTextEditingController;
   final TextEditingController emailTextEditingController;
@@ -30,7 +29,7 @@ class ContactSection extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final screenHeight = MediaQuery.of(context).size.height;
-    final height = max(minHeight, min(screenHeight * 0.6, maxHeight));
+    final height = max(minHeight, screenHeight * 0.8);
 
     ref.listen(
       contactViewModelProvider,
@@ -77,7 +76,6 @@ class ContactSection extends ConsumerWidget {
                 child: Text(
                   "Ready to bring your mobile app needs to life? Get in contact below to get the ball rolling. I look forward to delivering a solution for you.",
                   style: CustomTextStyles.paragraph2(),
-                  // textAlign: TextAlign.center,
                 ),
               ),
               Column(
@@ -161,6 +159,31 @@ class ContactSection extends ConsumerWidget {
                     },
                     title: "Send",
                   ),
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.only(
+                  bottom: ScreenSize.minimumPadding.toDouble(),
+                ),
+                child: Wrap(
+                  alignment: WrapAlignment.center,
+                  crossAxisAlignment: WrapCrossAlignment.center,
+                  children: [
+                    Text(
+                      "Alternatively, email me directly at",
+                      style: CustomTextStyles.paragraph2(),
+                      textAlign: TextAlign.center,
+                    ),
+                    TextButton(
+                      onPressed: () => LaunchableUrls.emailMe.launch(),
+                      child: Text(
+                        "jamie@jamiewalker.nz",
+                        style: CustomTextStyles.paragraph2(
+                          color: CustomColors.secondaryColor.l2,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ],
