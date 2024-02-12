@@ -22,7 +22,7 @@ class JamieWalkerAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
-    final layoutForMobile = context.layoutAppBarForMobile();
+    final layoutForMobile = context.layoutForMobile();
     return ClipRRect(
       child: BackdropFilter(
         filter: ImageFilter.blur(

@@ -1,19 +1,13 @@
 import 'package:flutter/material.dart';
 
 extension ScreenSize on BuildContext {
-  static const mobileWidth = 700;
-  static const mobileAppBarWidth = 850;
+  static const mobileWidth = 950;
   static const minimumPadding = 40;
   static const maximumContentSize = 1300;
 
   bool layoutForMobile() {
     final screenSize = MediaQuery.of(this).size;
     return screenSize.width < mobileWidth;
-  }
-
-  bool layoutAppBarForMobile() {
-    final screenSize = MediaQuery.of(this).size;
-    return screenSize.width < mobileAppBarWidth;
   }
 
   bool usePaddingForContentHorizontalPosition() {
