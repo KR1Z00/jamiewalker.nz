@@ -29,6 +29,7 @@ dependencies:
   firebase_analytics: ^10.8.4
   cloud_firestore: ^4.15.4
   youtube_player_iframe: ^4.0.4
+  scroll_to_index: ^3.0.1
 
 dev_dependencies:
   flutter_test:

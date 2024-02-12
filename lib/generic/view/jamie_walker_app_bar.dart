@@ -1,9 +1,8 @@
 import 'dart:ui';
 
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:jamie_walker_website/app/extensions/screen_size.dart';
-import 'package:jamie_walker_website/app/extensions/standard_box_shadow.dart';
-import 'package:jamie_walker_website/app/jamie_walker_router_config.dart';
 import 'package:jamie_walker_website/app/theme/custom_colors.dart';
 import 'package:jamie_walker_website/generic/view/navigation_button.dart';
 
@@ -11,13 +10,17 @@ class JamieWalkerAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Size get preferredSize => const Size.fromHeight(100);
 
-  final JamieWalkerRoute currentRoute;
   final void Function() onHamburgerPressed;
+  final List<String> navigationItemTitles;
+  final int currentNavigationItemIndex;
+  final void Function(int index) onNavigationItemIndexPressed;
 
   const JamieWalkerAppBar({
     super.key,
-    required this.currentRoute,
     required this.onHamburgerPressed,
+    required this.navigationItemTitles,
+    required this.currentNavigationItemIndex,
+    required this.onNavigationItemIndexPressed,
   });
 
   @override
@@ -58,14 +61,17 @@ class JamieWalkerAppBar extends StatelessWidget implements PreferredSizeWidget {
           ],
         ) +
         List<Widget>.from(
-          JamieWalkerRoute.values.map(
-            (route) {
+          navigationItemTitles.mapIndexed(
+            (index, title) {
               return Padding(
                 padding: const EdgeInsets.only(left: 20),
                 child: NavigationButton(
-                  route: route,
-                  isCurrentPage: route == currentRoute,
+                  title: title,
+                  isCurrentItem: index == currentNavigationItemIndex,
                   layoutAxis: Axis.horizontal,
+                  onPressed: () => onNavigationItemIndexPressed(
+                    index,
+                  ),
                 ),
               );
             },

@@ -3,20 +3,13 @@ import 'package:go_router/go_router.dart';
 import 'package:jamie_walker_website/landing/view/landing_page.dart';
 
 enum JamieWalkerRoute {
-  home('/', 'Home'),
-  services('/services', 'Services'),
-  testimonials('/testimonials', 'Testimonials'),
-  portfolio('/portfolio', 'Portfolio'),
-  blog('/blog', 'Blog'),
-  contact('/contact', 'Contact'),
+  home('/'),
   ;
 
   final String routePath;
-  final String title;
 
   const JamieWalkerRoute(
     this.routePath,
-    this.title,
   );
 }
 
