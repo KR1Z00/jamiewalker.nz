@@ -109,19 +109,12 @@ class _LandingPageState extends State<LandingPage> {
                     LandingPageSection.testimonials => TestimonialsSection(
                         key: _sectionKeys[LandingPageSection.testimonials],
                       ),
-                    LandingPageSection.contact => ConstrainedBox(
-                        constraints: BoxConstraints(
-                          minHeight: constraints.maxHeight * 0.6,
-                          maxHeight: constraints.maxHeight,
-                        ),
-                        child: ContactSection(
-                          key: _sectionKeys[LandingPageSection.contact],
-                          emailTextEditingController:
-                              _emailTextEditingController,
-                          messageTextEditingController:
-                              _messageTextEditingController,
-                          nameTextEditingController: _nameTextEditingController,
-                        ),
+                    LandingPageSection.contact => ContactSection(
+                        key: _sectionKeys[LandingPageSection.contact],
+                        emailTextEditingController: _emailTextEditingController,
+                        messageTextEditingController:
+                            _messageTextEditingController,
+                        nameTextEditingController: _nameTextEditingController,
                       ),
                   },
                 );

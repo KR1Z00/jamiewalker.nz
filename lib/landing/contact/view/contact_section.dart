@@ -1,3 +1,6 @@
+import 'dart:html';
+import 'dart:math';
+
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -10,6 +13,9 @@ import 'package:jamie_walker_website/generic/view/primary_text_button.dart';
 import 'package:jamie_walker_website/landing/contact/domain/contact_view_model.dart';
 
 class ContactSection extends ConsumerWidget {
+  static const double minHeight = 760;
+  static const double maxHeight = 1000;
+
   final TextEditingController nameTextEditingController;
   final TextEditingController emailTextEditingController;
   final TextEditingController messageTextEditingController;
@@ -23,6 +29,9 @@ class ContactSection extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final screenHeight = MediaQuery.of(context).size.height;
+    final height = max(minHeight, min(screenHeight * 0.6, maxHeight));
+
     ref.listen(
       contactViewModelProvider,
       (previous, next) {
@@ -41,62 +50,78 @@ class ContactSection extends ConsumerWidget {
     );
 
     return context.wrappedForHorizontalPosition(
-      child: Padding(
-        padding: EdgeInsets.symmetric(
-          vertical: ScreenSize.minimumPadding.toDouble(),
-        ),
-        child: Center(
-          child: ConstrainedBox(
-            constraints: const BoxConstraints(maxWidth: 700),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                Text(
+      child: Center(
+        child: ConstrainedBox(
+          constraints: BoxConstraints(
+            maxWidth: 700,
+            maxHeight: height,
+          ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Padding(
+                padding: EdgeInsets.symmetric(
+                  vertical: ScreenSize.minimumPadding.toDouble(),
+                ),
+                child: Text(
                   tr(LocaleKeys.contactSectionTitleAlt),
                   style: CustomTextStyles.header2(),
                   textAlign: TextAlign.center,
                 ),
-                Text(
+              ),
+              Padding(
+                padding: EdgeInsets.only(
+                  bottom: ScreenSize.minimumPadding.toDouble(),
+                ),
+                child: Text(
                   "Ready to bring your mobile app needs to life? Get in contact below to get the ball rolling. I look forward to delivering a solution for you.",
                   style: CustomTextStyles.paragraph2(),
                   // textAlign: TextAlign.center,
                 ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "Name",
-                      style: CustomTextStyles.paragraph2(
-                        fontStyle: FontStyle.italic,
-                      ),
+              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "Name",
+                    style: CustomTextStyles.paragraph2(
+                      fontStyle: FontStyle.italic,
                     ),
-                    const SizedBox(
-                      height: 10,
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  TextField(
+                    controller: nameTextEditingController,
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: ScreenSize.minimumPadding.toDouble(),
+              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "Email",
+                    style: CustomTextStyles.paragraph2(
+                      fontStyle: FontStyle.italic,
                     ),
-                    TextField(
-                      controller: nameTextEditingController,
-                    ),
-                  ],
-                ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "Email",
-                      style: CustomTextStyles.paragraph2(
-                        fontStyle: FontStyle.italic,
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    TextField(
-                      controller: emailTextEditingController,
-                    ),
-                  ],
-                ),
-                Column(
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  TextField(
+                    controller: emailTextEditingController,
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: ScreenSize.minimumPadding.toDouble(),
+              ),
+              Expanded(
+                child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
@@ -108,13 +133,20 @@ class ContactSection extends ConsumerWidget {
                     const SizedBox(
                       height: 10,
                     ),
-                    TextField(
-                      controller: messageTextEditingController,
-                      maxLines: 7,
+                    Expanded(
+                      child: TextField(
+                        controller: messageTextEditingController,
+                        maxLines: null,
+                      ),
                     ),
                   ],
                 ),
-                Center(
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(
+                  vertical: ScreenSize.minimumPadding.toDouble(),
+                ),
+                child: Center(
                   child: PrimaryTextButton(
                     onPressed: () {
                       ref
@@ -130,8 +162,8 @@ class ContactSection extends ConsumerWidget {
                     title: "Send",
                   ),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),
