@@ -51,6 +51,7 @@ flutter:
     - assets/images/portfolio/joby_motion/pages/
     - assets/images/portfolio/my_flatmate/
     - assets/images/portfolio/my_flatmate/pages/
+    - assets/images/services/
     - assets/images/testimonials/
 
   # An image asset can refer to one or more resolution-specific "variants", see
