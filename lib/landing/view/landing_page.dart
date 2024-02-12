@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:collection/collection.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:jamie_walker_website/app/constants/launchable_urls.dart';
 import 'package:jamie_walker_website/app/extensions/functional_extensions.dart';
 import 'package:jamie_walker_website/app/extensions/screen_size.dart';
 import 'package:jamie_walker_website/app/extensions/standard_box_shadow.dart';
@@ -184,9 +185,25 @@ class _WelcomeSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return context.wrappedForHorizontalPosition(
       child: context.layoutForMobile()
-          ? _WelcomeSectionMobile(onContactMePressed: onContactMePressed)
-          : _WelcomeSectionDesktop(onContactMePressed: onContactMePressed),
+          ? _WelcomeSectionMobile(
+              onContactMePressed: onContactMePressed,
+              onGithubPressed: _onGithubPressed,
+              onLinkedInPressed: _onLinkedInPressed,
+            )
+          : _WelcomeSectionDesktop(
+              onContactMePressed: onContactMePressed,
+              onGithubPressed: _onGithubPressed,
+              onLinkedInPressed: _onLinkedInPressed,
+            ),
     );
+  }
+
+  void _onGithubPressed() {
+    LaunchableUrls.github.launch();
+  }
+
+  void _onLinkedInPressed() {
+    LaunchableUrls.linkedIn.launch();
   }
 }
 
@@ -195,9 +212,13 @@ class _WelcomeSectionDesktop extends StatelessWidget {
   static const double maxHeight = 1000;
 
   final void Function() onContactMePressed;
+  final void Function() onGithubPressed;
+  final void Function() onLinkedInPressed;
 
   const _WelcomeSectionDesktop({
     required this.onContactMePressed,
+    required this.onGithubPressed,
+    required this.onLinkedInPressed,
   });
 
   @override
@@ -257,7 +278,7 @@ class _WelcomeSectionDesktop extends StatelessWidget {
                               width: 20,
                             ),
                             IconButton(
-                              onPressed: () {},
+                              onPressed: onLinkedInPressed,
                               icon: Image.asset(
                                 'assets/images/linkedin.png',
                               ),
@@ -268,7 +289,7 @@ class _WelcomeSectionDesktop extends StatelessWidget {
                               width: 20,
                             ),
                             IconButton(
-                              onPressed: () {},
+                              onPressed: onGithubPressed,
                               icon: Image.asset(
                                 'assets/images/github.png',
                               ),
@@ -310,9 +331,13 @@ class _WelcomeSectionDesktop extends StatelessWidget {
 
 class _WelcomeSectionMobile extends StatelessWidget {
   final void Function() onContactMePressed;
+  final void Function() onGithubPressed;
+  final void Function() onLinkedInPressed;
 
   const _WelcomeSectionMobile({
     required this.onContactMePressed,
+    required this.onGithubPressed,
+    required this.onLinkedInPressed,
   });
 
   @override
@@ -371,7 +396,7 @@ class _WelcomeSectionMobile extends StatelessWidget {
                     SizedBox(
                       height: 40,
                       child: IconButton(
-                        onPressed: () {},
+                        onPressed: onLinkedInPressed,
                         icon: Image.asset(
                           'assets/images/linkedin.png',
                         ),
@@ -385,7 +410,7 @@ class _WelcomeSectionMobile extends StatelessWidget {
                     SizedBox(
                       height: 40,
                       child: IconButton(
-                        onPressed: () {},
+                        onPressed: onGithubPressed,
                         icon: Image.asset(
                           'assets/images/github.png',
                         ),
