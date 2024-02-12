@@ -28,9 +28,7 @@ class LandingPage extends StatefulWidget {
 class _LandingPageState extends State<LandingPage> {
   final _scrollController = AutoScrollController();
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
-  final _mainColumnKey = GlobalKey();
   late Map<LandingPageSection, GlobalKey> _sectionKeys;
-  late Map<LandingPageSection, double?> _sectionColumnOffsets;
   int _currentLandingPageSectionIndex = 0;
 
   @override
@@ -51,9 +49,6 @@ class _LandingPageState extends State<LandingPage> {
 
   @override
   Widget build(BuildContext context) {
-    WidgetsBinding.instance.addPostFrameCallback(
-      (timeStamp) => _calculateSectionOffsets(),
-    );
     return Scaffold(
       key: _scaffoldKey,
       endDrawer: JamieWalkerNavigationDrawer(
@@ -74,79 +69,50 @@ class _LandingPageState extends State<LandingPage> {
       backgroundColor: CustomColors.primaryColor.d2,
       body: LayoutBuilder(
         builder: (context, constraints) {
-          return SingleChildScrollView(
-            controller: _scrollController,
-            child: Scrollbar(
+          return ConstrainedBox(
+            constraints: constraints,
+            child: ListView.separated(
               controller: _scrollController,
-              interactive: true,
-              child: Column(
-                key: _mainColumnKey,
-                mainAxisSize: MainAxisSize.max,
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  AutoScrollTag(
-                    key: const ValueKey(LandingPageSection.home),
-                    controller: _scrollController,
-                    index: LandingPageSection.values.indexOf(
-                      LandingPageSection.home,
-                    ),
-                    child: _WelcomeSection(
-                      key: _sectionKeys[LandingPageSection.home],
-                      onContactMePressed: () => _scrollToSection(
-                        LandingPageSection.contact,
-                      ),
-                    ),
-                  ),
+              itemCount: LandingPageSection.values.length,
+              separatorBuilder: (context, index) =>
                   context.wrappedForHorizontalPosition(
-                    child: Container(
-                      color: CustomColors.secondaryColor.l1,
-                      height: 1,
-                    ),
-                  ),
-                  AutoScrollTag(
-                    key: const ValueKey(LandingPageSection.services),
-                    controller: _scrollController,
-                    index: LandingPageSection.values.indexOf(
-                      LandingPageSection.services,
-                    ),
-                    child: ServicesSection(
-                      key: _sectionKeys[LandingPageSection.services],
-                    ),
-                  ),
-                  context.wrappedForHorizontalPosition(
-                    child: Container(
-                      color: CustomColors.secondaryColor.l1,
-                      height: 1,
-                    ),
-                  ),
-                  AutoScrollTag(
-                    key: const ValueKey(LandingPageSection.testimonials),
-                    controller: _scrollController,
-                    index: LandingPageSection.values.indexOf(
-                      LandingPageSection.testimonials,
-                    ),
-                    child: TestimonialsSection(
-                      key: _sectionKeys[LandingPageSection.testimonials],
-                    ),
-                  ),
-                  context.wrappedForHorizontalPosition(
-                    child: Container(
-                      color: CustomColors.secondaryColor.l1,
-                      height: 1,
-                    ),
-                  ),
-                  AutoScrollTag(
-                    key: const ValueKey(LandingPageSection.portfolio),
-                    controller: _scrollController,
-                    index: LandingPageSection.values.indexOf(
-                      LandingPageSection.portfolio,
-                    ),
-                    child: PortfolioSection(
-                      key: _sectionKeys[LandingPageSection.portfolio],
-                    ),
-                  ),
-                ],
+                child: Container(
+                  height: 1,
+                  color: CustomColors.secondaryColor.l1,
+                ),
               ),
+              itemBuilder: (context, index) {
+                final section = LandingPageSection.values[index];
+                return AutoScrollTag(
+                  controller: _scrollController,
+                  index: index,
+                  key: ValueKey(section),
+                  child: switch (section) {
+                    LandingPageSection.home => _WelcomeSection(
+                        key: _sectionKeys[LandingPageSection.home],
+                        onContactMePressed: () => _scrollToSection(
+                          LandingPageSection.contact,
+                        ),
+                      ),
+                    LandingPageSection.services => ServicesSection(
+                        key: _sectionKeys[LandingPageSection.services],
+                      ),
+                    LandingPageSection.portfolio => PortfolioSection(
+                        key: _sectionKeys[LandingPageSection.portfolio],
+                      ),
+                    LandingPageSection.testimonials => TestimonialsSection(
+                        key: _sectionKeys[LandingPageSection.testimonials],
+                      ),
+                    LandingPageSection.contact => ConstrainedBox(
+                        constraints: BoxConstraints(
+                          minHeight: constraints.maxHeight * 0.6,
+                          maxHeight: constraints.maxHeight,
+                        ),
+                        child: Container(),
+                      ),
+                  },
+                );
+              },
             ),
           );
         },
@@ -168,45 +134,34 @@ class _LandingPageState extends State<LandingPage> {
     );
   }
 
-  void _calculateSectionOffsets() {
-    final mainColumnRenderBox =
-        _mainColumnKey.currentContext?.findRenderObject() as RenderBox;
-    _sectionColumnOffsets = {
-      for (var section in LandingPageSection.values)
-        section: () {
-          final sectionKey = _sectionKeys[section];
-          final renderBox = sectionKey?.currentContext
-              ?.findRenderObject()
-              ?.castOrNull<RenderBox>();
-          if (renderBox == null) return null;
-          final globalOffset = renderBox.localToGlobal(Offset.zero);
-          return mainColumnRenderBox.globalToLocal(globalOffset).dy;
-        }(),
-    };
-  }
-
   void _handleScrollCallback() {
-    final currentOffset = _scrollController.offset;
-    final sectionOffsetDifferences = _sectionColumnOffsets.map(
-      (section, columnOffset) => MapEntry(
-        section,
-        columnOffset == null ? null : (columnOffset - currentOffset).abs(),
-      ),
+    final Map<LandingPageSection, double?> sectionYOffsets = _sectionKeys.map(
+      (key, value) {
+        final renderBox =
+            value.currentContext?.findRenderObject()?.castOrNull<RenderBox>();
+        if (renderBox == null) {
+          return MapEntry(key, null);
+        }
+        final yLocation = renderBox.localToGlobal(Offset.zero).dy.abs();
+        return MapEntry(key, yLocation);
+      },
     );
 
-    final double minSectionOffsetDifference =
-        sectionOffsetDifferences.values.whereType<double>().min;
-    final sectionOfMinOffset = sectionOffsetDifferences.entries
-        .firstWhere(
-          (element) => element.value == minSectionOffsetDifference,
-        )
-        .key;
+    final double minYLocation =
+        sectionYOffsets.values.whereType<double>().map((e) => e.abs()).min;
 
-    setState(() {
-      _currentLandingPageSectionIndex = LandingPageSection.values.indexOf(
-        sectionOfMinOffset,
-      );
-    });
+    final LandingPageSection? sectionOfMinYOffset =
+        sectionYOffsets.keys.firstWhereOrNull(
+      (element) => sectionYOffsets[element] == minYLocation,
+    );
+
+    if (sectionOfMinYOffset != null) {
+      setState(() {
+        _currentLandingPageSectionIndex = LandingPageSection.values.indexOf(
+          sectionOfMinYOffset,
+        );
+      });
+    }
   }
 }
 
