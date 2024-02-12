@@ -10,8 +10,8 @@ part 'testimonial_model.g.dart';
 @freezed
 class TestimonialModel with _$TestimonialModel {
   factory TestimonialModel({
-    required String refereeName,
-    required String refereeImageUri,
+    required String name,
+    required String imageAsset,
     required String comment,
   }) = _TestimonialModel;
 

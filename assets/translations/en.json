@@ -34,19 +34,14 @@
     "testimonialsSectionTitleAlt": "What others have said",
     "testimonials": [
         {
-            "refereeName": "Chris T.",
-            "refereeImageUri": "https://media.licdn.com/dms/image/D5603AQFR-YssHXfX-g/profile-displayphoto-shrink_800_800/0/1696802488151?e=1712793600&v=beta&t=rfjKLR0ylqvyNfwEPPCRaK6uuQ4PCFgJvqeS6xdBQAc",
-            "comment": "Professional"
+            "name": "Kerri M., My Better Breathing Ltd",
+            "imageAsset": "assets/images/testimonials/kerri.jpeg",
+            "comment": "We have been fortunate enough to be able to engage Jamie to develop software for a mobile app  which supports a hardware product. Jamie has been efficient in scoping the project, defining the variables to achieve optimum functionality, sizing and estimating time required and knowledgeable in guiding some of the decisions needing to be made around scope and function of the project. It has been a very smooth, professional process with Jamie. He has been very easy to deal with. I would highly recommend Jamie and we will be using his services and skills again. Thanks Jamie!"
         },
         {
-            "refereeName": "Bob M.",
-            "refereeImageUri": "https://www.usatoday.com/gcdn/presto/2021/05/11/USAT/16ac69bc-d100-480a-822a-749bb971e326-001_GettyImages-78683778.jpg",
-            "comment": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam laoreet rutrum pulvinar. Pellentesque tempor lobortis nibh, eu tempus ligula consectetur id. Vestibulum at convallis sem, ut lobortis sapien. Aenean vel erat ex. Nam sit amet accumsan nunc, non tincidunt justo. Maecenas vitae diam quis justo gravida posuere eu quis ex. In sed felis euismod, sodales ligula vel, faucibus sapien. Morbi ullamcorper, nisi quis posuere aliquam, risus nibh interdum urna, quis ultrices libero quam et est. Cras imperdiet magna et dui vestibulum, a sollicitudin ex imperdiet."
-        },
-        {
-            "refereeName": "Thueno D.",
-            "refereeImageUri": "https://media.licdn.com/dms/image/C4D03AQH3HzRDytmp5g/profile-displayphoto-shrink_800_800/0/1658486700496?e=1712793600&v=beta&t=8KafB4gMaW7wKxo5SAcyDZHO-YdBnOfLUfzQh-HnLgY",
-            "comment": "Jamie was an absolute pleasure to work with. I can definitely recommend him. I will most definitely be using him again in the future"
+            "name": "Thueno D.",
+            "imageAsset": "assets/images/testimonials/theuno.jpeg",
+            "comment": "Jamie was an absolute pleasure to work with. I can definitely recommend him. I will most definitely be using him again in the future."
         }
     ],
     "portfolioSectionTitle": "Portfolio",
@@ -115,5 +110,6 @@
         }
     ],
     "blogSectionTitle": "Blog",
-    "contactSectionTitle": "Contact"
+    "contactSectionTitle": "Contact",
+    "contactSectionTitleAlt": "Get in Contact"
 }

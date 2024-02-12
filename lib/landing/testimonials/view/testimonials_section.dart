@@ -121,8 +121,8 @@ class _TestimonialsSectionState extends ConsumerState<TestimonialsSection> {
                                         child: ClipRRect(
                                           borderRadius:
                                               BorderRadius.circular(150),
-                                          child: Image.network(
-                                            testimonial.refereeImageUri,
+                                          child: Image.asset(
+                                            testimonial.imageAsset,
                                             fit: BoxFit.cover,
                                           ),
                                         ),
@@ -154,7 +154,7 @@ class _TestimonialsSectionState extends ConsumerState<TestimonialsSection> {
                           child: Opacity(
                             opacity: animationController.value,
                             child: Text(
-                              testimonial.refereeName,
+                              testimonial.name,
                               style: CustomTextStyles.paragraph1(),
                             ),
                           ),
