@@ -6,9 +6,9 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:jamie_walker_website/app/extensions/screen_size.dart';
 import 'package:jamie_walker_website/app/extensions/standard_box_shadow.dart';
+import 'package:jamie_walker_website/app/extensions/theme_extensions.dart';
 import 'package:jamie_walker_website/app/localization/generated/locale_keys.g.dart';
 import 'package:jamie_walker_website/app/theme/custom_colors.dart';
-import 'package:jamie_walker_website/app/theme/custom_text_styles.dart';
 import 'package:jamie_walker_website/landing/testimonials/domain/testimonials_section_view_model.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -72,7 +72,7 @@ class _TestimonialsSectionState extends ConsumerState<TestimonialsSection> {
                       children: [
                         AutoSizeText(
                           tr(LocaleKeys.testimonialsSectionTitleAlt),
-                          style: CustomTextStyles.header2(),
+                          style: context.themeData().textTheme.displayMedium,
                           maxLines: 1,
                           minFontSize: 30,
                         ),
@@ -93,7 +93,8 @@ class _TestimonialsSectionState extends ConsumerState<TestimonialsSection> {
                                       .selectPreviousTestimonial,
                                   icon: FaIcon(
                                     FontAwesomeIcons.chevronLeft,
-                                    color: CustomColors.secondaryColor.l1,
+                                    color:
+                                        context.themeData().colorScheme.primary,
                                   ),
                                 ),
                               ),
@@ -107,12 +108,11 @@ class _TestimonialsSectionState extends ConsumerState<TestimonialsSection> {
                                       opacity: animationController.value,
                                       child: Container(
                                         decoration: BoxDecoration(
-                                          boxShadow: [
-                                            StandardBoxShadows.regular(),
-                                          ],
                                           border: Border.all(
-                                            color:
-                                                CustomColors.secondaryColor.l1,
+                                            color: context
+                                                .themeData()
+                                                .colorScheme
+                                                .primary,
                                             width: 2,
                                           ),
                                           borderRadius:
@@ -142,7 +142,8 @@ class _TestimonialsSectionState extends ConsumerState<TestimonialsSection> {
                                       .selectNextTestimonial,
                                   icon: FaIcon(
                                     FontAwesomeIcons.chevronRight,
-                                    color: CustomColors.secondaryColor.l1,
+                                    color:
+                                        context.themeData().colorScheme.primary,
                                   ),
                                 ),
                               ),
@@ -155,7 +156,7 @@ class _TestimonialsSectionState extends ConsumerState<TestimonialsSection> {
                             opacity: animationController.value,
                             child: Text(
                               testimonial.name,
-                              style: CustomTextStyles.paragraph1(),
+                              style: context.themeData().textTheme.bodyMedium,
                             ),
                           ),
                         ),
@@ -166,9 +167,13 @@ class _TestimonialsSectionState extends ConsumerState<TestimonialsSection> {
                             opacity: animationController.value,
                             child: AutoSizeText(
                               "\"${testimonial.comment}\"",
-                              style: CustomTextStyles.paragraph2(
-                                fontStyle: FontStyle.italic,
-                              ),
+                              style: context
+                                  .themeData()
+                                  .textTheme
+                                  .bodyMedium!
+                                  .copyWith(
+                                    fontStyle: FontStyle.italic,
+                                  ),
                               textAlign: TextAlign.center,
                               minFontSize: 14,
                               maxLines: 5,
@@ -184,9 +189,13 @@ class _TestimonialsSectionState extends ConsumerState<TestimonialsSection> {
                             effect: WormEffect(
                               dotWidth: 8,
                               dotHeight: 8,
-                              dotColor: CustomColors.secondaryColor.l1
+                              dotColor: context
+                                  .themeData()
+                                  .colorScheme
+                                  .primary
                                   .withOpacity(0.3),
-                              activeDotColor: CustomColors.secondaryColor.l1,
+                              activeDotColor:
+                                  context.themeData().colorScheme.primary,
                             ),
                           ),
                         ),

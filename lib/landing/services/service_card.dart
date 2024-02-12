@@ -17,7 +17,7 @@ class _ServiceCard extends StatelessWidget {
     if (serviceStrings == null) {
       return Text(
         "ERROR",
-        style: CustomTextStyles.header2(),
+        style: context.themeData().textTheme.displayMedium,
       );
     }
 
@@ -25,14 +25,11 @@ class _ServiceCard extends StatelessWidget {
     final description = serviceStrings["serviceDescription"];
     final skills = serviceStrings["serviceSkills"];
 
-    return Container(
-      decoration: BoxDecoration(
-        color: CustomColors.primaryColor.d1,
-        borderRadius: BorderRadius.circular(10),
-        boxShadow: [
-          StandardBoxShadows.regular(),
-        ],
-      ),
+    return Card(
+      // decoration: BoxDecoration(
+      //   color: CustomColors.primaryColor.d1,
+      //   borderRadius: BorderRadius.circular(10),
+      // ),
       child: Padding(
         padding: const EdgeInsets.all(20),
         child: Center(
@@ -46,7 +43,6 @@ class _ServiceCard extends StatelessWidget {
                     _imageAssetForService(
                       service,
                     ),
-                    color: CustomColors.primaryColor.l2,
                   ),
                 ),
                 const SizedBox(
@@ -54,7 +50,7 @@ class _ServiceCard extends StatelessWidget {
                 ),
                 Text(
                   title,
-                  style: CustomTextStyles.header3(),
+                  style: context.themeData().textTheme.displaySmall,
                   textAlign: TextAlign.center,
                 ),
                 const SizedBox(
@@ -62,8 +58,7 @@ class _ServiceCard extends StatelessWidget {
                 ),
                 Text(
                   skills,
-                  style: CustomTextStyles.paragraph3(),
-                  textAlign: TextAlign.center,
+                  style: context.themeData().textTheme.bodySmall,
                 ),
               ],
             ),

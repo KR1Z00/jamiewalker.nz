@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:jamie_walker_website/app/extensions/standard_box_shadow.dart';
+import 'package:jamie_walker_website/app/extensions/theme_extensions.dart';
 import 'package:jamie_walker_website/app/theme/custom_colors.dart';
 
 extension CustomButtonStyles on ButtonStyle {
-  static ButtonStyle navigationButton({required bool isCurrentPage}) {
+  static ButtonStyle navigationButton(
+    BuildContext context, {
+    required bool isCurrentPage,
+  }) {
     return ButtonStyle(
       backgroundColor: MaterialStateProperty.all(
         Colors.transparent,
@@ -11,9 +14,9 @@ extension CustomButtonStyles on ButtonStyle {
       foregroundColor: MaterialStateProperty.resolveWith(
         (states) {
           if (isCurrentPage || states.contains(MaterialState.hovered)) {
-            return CustomColors.secondaryColor.l1;
+            return CustomColors.primaryColor;
           }
-          return Colors.white;
+          return CustomColors.black;
         },
       ),
       overlayColor: MaterialStateProperty.all(
@@ -23,21 +26,18 @@ extension CustomButtonStyles on ButtonStyle {
         TextStyle(
           fontSize: 20,
           fontWeight: isCurrentPage ? FontWeight.w600 : FontWeight.w300,
-          shadows: [
-            StandardBoxShadows.light(),
-          ],
         ),
       ),
     );
   }
 
-  static ButtonStyle primaryActionButton() {
+  static ButtonStyle primaryActionButton(BuildContext context) {
     return ButtonStyle(
       backgroundColor: MaterialStateProperty.all(
-        CustomColors.secondaryColor.l1,
+        context.themeData().colorScheme.primary,
       ),
       foregroundColor: MaterialStateProperty.all(
-        CustomColors.primaryColor.d2,
+        context.themeData().colorScheme.onPrimary,
       ),
       padding: MaterialStateProperty.all(
         const EdgeInsets.symmetric(
@@ -46,30 +46,27 @@ extension CustomButtonStyles on ButtonStyle {
         ),
       ),
       overlayColor: MaterialStateProperty.all(
-        Colors.white.withOpacity(0.5),
+        Colors.white.withOpacity(0.2),
       ),
       textStyle: MaterialStateProperty.all(
-        const TextStyle(
-          fontSize: 28,
-          fontWeight: FontWeight.w600,
-        ),
+        context.themeData().textTheme.displaySmall,
       ),
     );
   }
 
-  static ButtonStyle secondaryIconButton() {
+  static ButtonStyle secondaryIconButton(BuildContext context) {
     return ButtonStyle(
       backgroundColor: MaterialStateProperty.all(
         Colors.transparent,
       ),
       foregroundColor: MaterialStateProperty.all(
-        Colors.white,
+        context.themeData().colorScheme.primary,
       ),
       padding: MaterialStateProperty.all(
         const EdgeInsets.all(0),
       ),
       overlayColor: MaterialStateProperty.all(
-        CustomColors.secondaryColor.l1.withOpacity(0.5),
+        context.themeData().colorScheme.primary.withOpacity(0.3),
       ),
     );
   }

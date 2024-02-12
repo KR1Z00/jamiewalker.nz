@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:jamie_walker_website/app/extensions/screen_size.dart';
+import 'package:jamie_walker_website/app/extensions/theme_extensions.dart';
 import 'package:jamie_walker_website/app/theme/custom_colors.dart';
-import 'package:jamie_walker_website/app/theme/custom_text_styles.dart';
 import 'package:jamie_walker_website/generic/view/blurred_fitted_image.dart';
 import 'package:jamie_walker_website/landing/portfolio/data/portfolio_item_model.dart';
 import 'package:jamie_walker_website/landing/portfolio/domain/portfolio_item_info_view_model.dart';
@@ -36,7 +36,7 @@ class PortfolioInfoDialog extends ConsumerWidget {
                 duration: const Duration(milliseconds: 200),
                 constraints: const BoxConstraints(maxWidth: 1700),
                 decoration: BoxDecoration(
-                  color: CustomColors.primaryColor.l2,
+                  color: context.themeData().colorScheme.primary,
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: Padding(
@@ -49,9 +49,7 @@ class PortfolioInfoDialog extends ConsumerWidget {
                         children: [
                           Text(
                             model.name,
-                            style: CustomTextStyles.header3(
-                              color: Colors.black,
-                            ),
+                            style: context.themeData().textTheme.displaySmall,
                           ),
                           const Spacer(),
                           IconButton(
@@ -98,9 +96,10 @@ class PortfolioInfoDialog extends ConsumerWidget {
                                   padding: const EdgeInsets.only(right: 6),
                                   child: Text(
                                     currentPage.description,
-                                    style: CustomTextStyles.paragraph2(
-                                      color: Colors.black,
-                                    ),
+                                    style: context
+                                        .themeData()
+                                        .textTheme
+                                        .bodyMedium,
                                   ),
                                 ),
                               ),
@@ -128,9 +127,13 @@ class PortfolioInfoDialog extends ConsumerWidget {
                                 effect: WormEffect(
                                   dotWidth: 8,
                                   dotHeight: 8,
-                                  dotColor: CustomColors.primaryColor
+                                  dotColor: context
+                                      .themeData()
+                                      .colorScheme
+                                      .primary
                                       .withOpacity(0.3),
-                                  activeDotColor: CustomColors.primaryColor,
+                                  activeDotColor:
+                                      context.themeData().colorScheme.primary,
                                 ),
                               ),
                             ),

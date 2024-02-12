@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jamie_walker_website/app/extensions/theme_extensions.dart';
 import 'package:jamie_walker_website/app/jamie_walker_router_config.dart';
 import 'package:jamie_walker_website/app/theme/custom_button_styles.dart';
 import 'package:jamie_walker_website/app/theme/custom_colors.dart';
@@ -48,6 +49,7 @@ class _NavigationButtonState extends State<NavigationButton> {
                   child: TextButton(
                     onPressed: () => context.goJWRoute(widget.route),
                     style: CustomButtonStyles.navigationButton(
+                      context,
                       isCurrentPage: widget.isCurrentPage,
                     ),
                     child: Text(
@@ -59,7 +61,7 @@ class _NavigationButtonState extends State<NavigationButton> {
                 AnimatedContainer(
                   duration: const Duration(milliseconds: 150),
                   constraints: BoxConstraints.tightFor(height: underlineSize),
-                  color: CustomColors.secondaryColor.l1,
+                  color: context.themeData().primaryColor,
                 ),
               ],
             ),

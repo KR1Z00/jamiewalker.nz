@@ -33,6 +33,41 @@ extension CustomColors on MaterialColor {
     },
   );
 
+  static const MaterialColor darkGrey = MaterialColor(
+    0xFFFFD147,
+    {
+      50: Color(0xFFFFF5D6),
+      100: Color(0xFFFFF5D6),
+      200: Color(0xFFFFF5D6),
+      300: Color(0xFFFFE38F),
+      400: Color(0xFFFFE38F),
+      500: Color(0xFFFFD147),
+      600: Color(0xFFF5B800),
+      700: Color(0xFFF5B800),
+      800: Color(0xFF291F00),
+      900: Color(0xFF291F00),
+    },
+  );
+
+  static const MaterialColor lightGrey = MaterialColor(
+    0xFFFFD147,
+    {
+      50: Color(0xFFFFF5D6),
+      100: Color(0xFFFFF5D6),
+      200: Color(0xFFFFF5D6),
+      300: Color(0xFFFFE38F),
+      400: Color(0xFFFFE38F),
+      500: Color(0xFFFFD147),
+      600: Color(0xFFF5B800),
+      700: Color(0xFFF5B800),
+      800: Color(0xFF291F00),
+      900: Color(0xFF291F00),
+    },
+  );
+
+  static const white = Color.fromARGB(255, 249, 249, 250);
+  static const black = Color(0xFF020202);
+
   Color get l2 => shade100;
   Color get l1 => shade300;
   Color get m => shade500;
