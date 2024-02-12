@@ -29,6 +29,7 @@ dependencies:
   firebase_analytics: ^10.8.4
   cloud_firestore: ^4.15.4
   youtube_player_iframe: ^4.0.4
+  scroll_to_index: ^3.0.1
 
 dev_dependencies:
   flutter_test:
@@ -51,6 +52,8 @@ flutter:
     - assets/images/portfolio/joby_motion/pages/
     - assets/images/portfolio/my_flatmate/
     - assets/images/portfolio/my_flatmate/pages/
+    - assets/images/services/
+    - assets/images/testimonials/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

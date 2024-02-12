@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:jamie_walker_website/app/extensions/screen_size.dart';
@@ -10,7 +11,7 @@ import 'package:jamie_walker_website/landing/portfolio/domain/portfolio_item_inf
 import 'package:jamie_walker_website/landing/portfolio/view/portfolio_youtube_player.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
-class PortfolioInfoDialog extends ConsumerWidget {
+class PortfolioInfoDialog extends HookConsumerWidget {
   final PortfolioItemModel model;
 
   const PortfolioInfoDialog({
@@ -22,6 +23,10 @@ class PortfolioInfoDialog extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(portfolioItemInfoViewModelProvider(model));
     final currentPage = state.pages[state.currentPageIndex];
+    final descriptionTextStyle = context.layoutForMobile()
+        ? CustomTextStyles.paragraph3
+        : CustomTextStyles.paragraph2;
+    final scrollController = useScrollController();
 
     return Scaffold(
       backgroundColor: Colors.black.withOpacity(0.1),
@@ -65,7 +70,7 @@ class PortfolioInfoDialog extends ConsumerWidget {
                       ),
                       Padding(
                         padding: const EdgeInsets.symmetric(
-                          vertical: 40,
+                          vertical: 20,
                         ),
                         child: ConstrainedBox(
                           constraints: BoxConstraints(
@@ -86,27 +91,29 @@ class PortfolioInfoDialog extends ConsumerWidget {
                           ),
                         ),
                         child: Flexible(
-                          child: Padding(
-                            padding: const EdgeInsets.only(
-                              bottom: 20,
-                            ),
-                            child: SingleChildScrollView(
-                              child: Scrollbar(
-                                thumbVisibility: true,
-                                thickness: 3,
-                                child: Padding(
-                                  padding: const EdgeInsets.only(right: 6),
-                                  child: Text(
-                                    currentPage.description,
-                                    style: CustomTextStyles.paragraph2(
-                                      color: Colors.black,
-                                    ),
+                          child: SingleChildScrollView(
+                            controller: scrollController,
+                            child: Scrollbar(
+                              controller: scrollController,
+                              thumbVisibility: true,
+                              thickness: 3,
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 6,
+                                ),
+                                child: Text(
+                                  currentPage.description,
+                                  style: descriptionTextStyle(
+                                    color: Colors.black,
                                   ),
                                 ),
                               ),
                             ),
                           ),
                         ),
+                      ),
+                      const SizedBox(
+                        height: 20,
                       ),
                       Row(
                         children: [

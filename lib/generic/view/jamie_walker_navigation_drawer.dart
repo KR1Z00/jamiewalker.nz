@@ -1,14 +1,18 @@
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
-import 'package:jamie_walker_website/app/jamie_walker_router_config.dart';
 import 'package:jamie_walker_website/app/theme/custom_colors.dart';
 import 'package:jamie_walker_website/generic/view/navigation_button.dart';
 
 class JamieWalkerNavigationDrawer extends StatelessWidget {
-  final JamieWalkerRoute currentRoute;
+  final List<String> navigationItemTitles;
+  final int currentNavigationItemIndex;
+  final void Function(int index) onNavigationItemIndexPressed;
 
   const JamieWalkerNavigationDrawer({
     super.key,
-    required this.currentRoute,
+    required this.navigationItemTitles,
+    required this.currentNavigationItemIndex,
+    required this.onNavigationItemIndexPressed,
   });
 
   @override
@@ -20,11 +24,14 @@ class JamieWalkerNavigationDrawer extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: List<Widget>.from(
-            JamieWalkerRoute.values.map(
-              (route) => NavigationButton(
-                route: route,
-                isCurrentPage: route == currentRoute,
+            navigationItemTitles.mapIndexed(
+              (index, title) => NavigationButton(
+                title: title,
+                isCurrentItem: index == currentNavigationItemIndex,
                 layoutAxis: Axis.vertical,
+                onPressed: () => onNavigationItemIndexPressed(
+                  index,
+                ),
               ),
             ),
           ),

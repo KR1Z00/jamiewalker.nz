@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:jamie_walker_website/app/jamie_walker_router_config.dart';
-import 'package:jamie_walker_website/app/theme/custom_button_styles.dart';
 import 'package:jamie_walker_website/app/theme/custom_colors.dart';
 
 class NavigationButton extends StatefulWidget {
   static const double underlineSize = 2;
 
-  final JamieWalkerRoute route;
-  final bool isCurrentPage;
+  final String title;
+  final bool isCurrentItem;
   final Axis layoutAxis;
+  final void Function() onPressed;
 
   const NavigationButton({
     super.key,
-    required this.route,
-    required this.isCurrentPage,
+    required this.title,
+    required this.isCurrentItem,
     required this.layoutAxis,
+    required this.onPressed,
   });
 
   @override
@@ -22,13 +22,22 @@ class NavigationButton extends StatefulWidget {
 }
 
 class _NavigationButtonState extends State<NavigationButton> {
+  static const animationDuration = Duration(milliseconds: 150);
   bool isHovered = false;
 
   @override
   Widget build(BuildContext context) {
     final double underlineSize = isHovered ? NavigationButton.underlineSize : 0;
+    final textStyle = TextStyle(
+      fontSize: 20,
+      fontWeight: FontWeight.w300,
+      color: isHovered || widget.isCurrentItem
+          ? CustomColors.secondaryColor.l1
+          : Colors.white,
+    );
 
     return MouseRegion(
+      cursor: SystemMouseCursors.click,
       onEnter: (event) => setState(() {
         isHovered = true;
       }),
@@ -45,19 +54,19 @@ class _NavigationButtonState extends State<NavigationButton> {
               children: [
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 8),
-                  child: TextButton(
-                    onPressed: () => context.goJWRoute(widget.route),
-                    style: CustomButtonStyles.navigationButton(
-                      isCurrentPage: widget.isCurrentPage,
-                    ),
-                    child: Text(
-                      widget.route.title,
-                      style: const TextStyle(fontSize: 20),
+                  child: GestureDetector(
+                    onTap: widget.onPressed,
+                    child: AnimatedDefaultTextStyle(
+                      style: textStyle,
+                      duration: animationDuration,
+                      child: Text(
+                        widget.title,
+                      ),
                     ),
                   ),
                 ),
                 AnimatedContainer(
-                  duration: const Duration(milliseconds: 150),
+                  duration: animationDuration,
                   constraints: BoxConstraints.tightFor(height: underlineSize),
                   color: CustomColors.secondaryColor.l1,
                 ),

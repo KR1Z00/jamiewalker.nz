@@ -1,34 +1,68 @@
 import 'dart:math';
 
+import 'package:collection/collection.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:jamie_walker_website/app/extensions/functional_extensions.dart';
 import 'package:jamie_walker_website/app/extensions/screen_size.dart';
 import 'package:jamie_walker_website/app/extensions/standard_box_shadow.dart';
-import 'package:jamie_walker_website/app/jamie_walker_router_config.dart';
 import 'package:jamie_walker_website/app/localization/generated/locale_keys.g.dart';
 import 'package:jamie_walker_website/app/theme/custom_button_styles.dart';
 import 'package:jamie_walker_website/app/theme/custom_colors.dart';
 import 'package:jamie_walker_website/app/theme/custom_text_styles.dart';
 import 'package:jamie_walker_website/generic/view/jamie_walker_app_bar.dart';
 import 'package:jamie_walker_website/generic/view/jamie_walker_navigation_drawer.dart';
+import 'package:jamie_walker_website/generic/view/primary_text_button.dart';
 import 'package:jamie_walker_website/landing/portfolio/view/portfolio_section.dart';
 import 'package:jamie_walker_website/landing/services/services_section.dart';
 import 'package:jamie_walker_website/landing/testimonials/view/testimonials_section.dart';
+import 'package:jamie_walker_website/landing/view/landing_page_sections.dart';
+import 'package:scroll_to_index/scroll_to_index.dart';
 
-class LandingPage extends StatelessWidget {
+class LandingPage extends StatefulWidget {
+  const LandingPage({super.key});
+
+  @override
+  State<LandingPage> createState() => _LandingPageState();
+}
+
+class _LandingPageState extends State<LandingPage> {
+  final _scrollController = AutoScrollController();
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
+  late Map<LandingPageSection, GlobalKey> _sectionKeys;
+  int _currentLandingPageSectionIndex = 0;
 
-  LandingPage({super.key});
+  @override
+  void initState() {
+    super.initState();
+    _scrollController.addListener(_handleScrollCallback);
+    _sectionKeys = {
+      for (var section in LandingPageSection.values) section: GlobalKey()
+    };
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    _scrollController.removeListener(_handleScrollCallback);
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       key: _scaffoldKey,
-      endDrawer: const JamieWalkerNavigationDrawer(
-        currentRoute: JamieWalkerRoute.home,
+      endDrawer: JamieWalkerNavigationDrawer(
+        navigationItemTitles:
+            LandingPageSection.values.map((section) => section.title).toList(),
+        currentNavigationItemIndex: _currentLandingPageSectionIndex,
+        onNavigationItemIndexPressed: _scrollToSectionWithIndex,
       ),
       appBar: JamieWalkerAppBar(
-        currentRoute: JamieWalkerRoute.home,
+        navigationItemTitles:
+            LandingPageSection.values.map((section) => section.title).toList(),
+        currentNavigationItemIndex: _currentLandingPageSectionIndex,
+        onNavigationItemIndexPressed: _scrollToSectionWithIndex,
         onHamburgerPressed: () {
           _scaffoldKey.currentState?.openEndDrawer();
         },
@@ -36,181 +70,338 @@ class LandingPage extends StatelessWidget {
       backgroundColor: CustomColors.primaryColor.d2,
       body: LayoutBuilder(
         builder: (context, constraints) {
-          return SingleChildScrollView(
-            child: Scrollbar(
-              interactive: true,
-              child: Column(
-                mainAxisSize: MainAxisSize.max,
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  Container(
-                    constraints: BoxConstraints(
-                      minHeight: min(
-                        constraints.maxHeight - ScreenSize.minimumPadding,
-                        _WelcomeSection.maxHeight,
-                      ),
-                    ),
-                    color: CustomColors.primaryColor.d2,
-                    child: const _WelcomeSection(),
-                  ),
+          return ConstrainedBox(
+            constraints: constraints,
+            child: ListView.separated(
+              controller: _scrollController,
+              itemCount: LandingPageSection.values.length,
+              separatorBuilder: (context, index) =>
                   context.wrappedForHorizontalPosition(
-                    child: Container(
-                      color: CustomColors.secondaryColor.l1,
-                      height: 1,
-                    ),
-                  ),
-                  const ServicesSection(),
-                  context.wrappedForHorizontalPosition(
-                    child: Container(
-                      color: CustomColors.secondaryColor.l1,
-                      height: 1,
-                    ),
-                  ),
-                  const TestimonialsSection(),
-                  context.wrappedForHorizontalPosition(
-                    child: Container(
-                      color: CustomColors.secondaryColor.l1,
-                      height: 1,
-                    ),
-                  ),
-                  const PortfolioSection(),
-                ],
+                child: Container(
+                  height: 1,
+                  color: CustomColors.secondaryColor.l1,
+                ),
               ),
+              itemBuilder: (context, index) {
+                final section = LandingPageSection.values[index];
+                return AutoScrollTag(
+                  controller: _scrollController,
+                  index: index,
+                  key: ValueKey(section),
+                  child: switch (section) {
+                    LandingPageSection.home => _WelcomeSection(
+                        key: _sectionKeys[LandingPageSection.home],
+                        onContactMePressed: () => _scrollToSection(
+                          LandingPageSection.contact,
+                        ),
+                      ),
+                    LandingPageSection.services => ServicesSection(
+                        key: _sectionKeys[LandingPageSection.services],
+                      ),
+                    LandingPageSection.portfolio => PortfolioSection(
+                        key: _sectionKeys[LandingPageSection.portfolio],
+                      ),
+                    LandingPageSection.testimonials => TestimonialsSection(
+                        key: _sectionKeys[LandingPageSection.testimonials],
+                      ),
+                    LandingPageSection.contact => ConstrainedBox(
+                        constraints: BoxConstraints(
+                          minHeight: constraints.maxHeight * 0.6,
+                          maxHeight: constraints.maxHeight,
+                        ),
+                        child: Container(),
+                      ),
+                  },
+                );
+              },
             ),
           );
         },
       ),
     );
   }
+
+  void _scrollToSectionWithIndex(int index) {
+    _scaffoldKey.currentState?.closeEndDrawer();
+    final section = LandingPageSection.values[index];
+    _scrollToSection(section);
+  }
+
+  void _scrollToSection(LandingPageSection section) {
+    _scrollController.scrollToIndex(
+      LandingPageSection.values.indexOf(section),
+      duration: const Duration(milliseconds: 500),
+      preferPosition: AutoScrollPosition.begin,
+    );
+  }
+
+  void _handleScrollCallback() {
+    final Map<LandingPageSection, double?> sectionYOffsets = _sectionKeys.map(
+      (key, value) {
+        final renderBox =
+            value.currentContext?.findRenderObject()?.castOrNull<RenderBox>();
+        if (renderBox == null) {
+          return MapEntry(key, null);
+        }
+        final yLocation = renderBox.localToGlobal(Offset.zero).dy.abs();
+        return MapEntry(key, yLocation);
+      },
+    );
+
+    final double minYLocation =
+        sectionYOffsets.values.whereType<double>().map((e) => e.abs()).min;
+
+    final LandingPageSection? sectionOfMinYOffset =
+        sectionYOffsets.keys.firstWhereOrNull(
+      (element) => sectionYOffsets[element] == minYLocation,
+    );
+
+    if (sectionOfMinYOffset != null) {
+      setState(() {
+        _currentLandingPageSectionIndex = LandingPageSection.values.indexOf(
+          sectionOfMinYOffset,
+        );
+      });
+    }
+  }
 }
 
 class _WelcomeSection extends StatelessWidget {
-  static const double maxHeight = 1200;
+  final void Function() onContactMePressed;
 
-  const _WelcomeSection();
+  const _WelcomeSection({
+    super.key,
+    required this.onContactMePressed,
+  });
 
   @override
   Widget build(BuildContext context) {
     return context.wrappedForHorizontalPosition(
-      child: Padding(
-        padding: EdgeInsets.symmetric(
-          vertical: ScreenSize.minimumPadding.toDouble(),
-        ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
+      child: context.layoutForMobile()
+          ? _WelcomeSectionMobile(onContactMePressed: onContactMePressed)
+          : _WelcomeSectionDesktop(onContactMePressed: onContactMePressed),
+    );
+  }
+}
+
+class _WelcomeSectionDesktop extends StatelessWidget {
+  static const double minHeight = 700;
+  static const double maxHeight = 1000;
+
+  final void Function() onContactMePressed;
+
+  const _WelcomeSectionDesktop({
+    required this.onContactMePressed,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final screenHeight = MediaQuery.of(context).size.height;
+    final sectionHeight = max(min(screenHeight - 300, maxHeight), minHeight);
+
+    return SizedBox(
+      height: sectionHeight,
+      child: Center(
+        child: Row(
+          mainAxisSize: MainAxisSize.max,
           children: [
-            Row(
-              mainAxisSize: MainAxisSize.max,
-              children: [
-                Expanded(
-                  child: SelectionArea(
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          tr(LocaleKeys.fullName),
-                          style: CustomTextStyles.header1(),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 5),
-                          child: Text.rich(
-                            TextSpan(
-                              text: tr(
-                                LocaleKeys.profession,
-                              ),
-                              style: CustomTextStyles.paragraph1(
-                                color: CustomColors.secondaryColor.l1,
-                              ),
-                              children: [
-                                TextSpan(
-                                  text: " | ",
-                                  style: CustomTextStyles.paragraph1(),
-                                ),
-                                TextSpan(
-                                  text: tr(LocaleKeys.location),
-                                  style: CustomTextStyles.paragraph1(
-                                    color: CustomColors.secondaryColor.l1,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 30),
-                          child: Text(
-                            tr(LocaleKeys.introductionQuestion),
-                            style: CustomTextStyles.paragraph2(),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 20),
-                          child: Text(
-                            tr(LocaleKeys.introducion),
-                            style: CustomTextStyles.paragraph2(),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 80),
-                          child: SizedBox(
-                            height: 60,
-                            child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.stretch,
-                              children: [
-                                TextButton(
-                                  style:
-                                      CustomButtonStyles.primaryActionButton(),
-                                  onPressed: () {},
-                                  child: Text(tr(LocaleKeys.hireMe)),
-                                ),
-                                const SizedBox(
-                                  width: 20,
-                                ),
-                                IconButton(
-                                  onPressed: () {},
-                                  icon: Image.asset('linkedin.png'),
-                                  padding: EdgeInsets.zero,
-                                  style:
-                                      CustomButtonStyles.secondaryIconButton(),
-                                ),
-                                const SizedBox(
-                                  width: 20,
-                                ),
-                                IconButton(
-                                  onPressed: () {},
-                                  icon: Image.asset('github.png'),
-                                  padding: EdgeInsets.zero,
-                                  style:
-                                      CustomButtonStyles.secondaryIconButton(),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ],
+            Expanded(
+              child: SelectionArea(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      tr(LocaleKeys.fullName),
+                      style: CustomTextStyles.header1(),
                     ),
-                  ),
-                ),
-                const SizedBox(
-                  width: 80,
-                ),
-                Expanded(
-                  child: DecoratedBox(
-                    decoration: BoxDecoration(
-                      boxShadow: [
-                        StandardBoxShadows.regular(),
-                      ],
-                    ),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(10),
-                      child: Image.asset(
-                        'profile_picture_square.jpg',
+                    Text(
+                      tr(LocaleKeys.profession),
+                      style: CustomTextStyles.paragraph1(
+                        color: CustomColors.secondaryColor.l1,
+                        fontStyle: FontStyle.italic,
                       ),
                     ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 30),
+                      child: Text(
+                        tr(LocaleKeys.introductionQuestion),
+                        style: CustomTextStyles.paragraph2(),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 20),
+                      child: Text(
+                        tr(LocaleKeys.introducion),
+                        style: CustomTextStyles.paragraph2(),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 80),
+                      child: SizedBox(
+                        height: 60,
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          children: [
+                            PrimaryTextButton(
+                              onPressed: onContactMePressed,
+                              title: tr(LocaleKeys.contactMe),
+                            ),
+                            const SizedBox(
+                              width: 20,
+                            ),
+                            IconButton(
+                              onPressed: () {},
+                              icon: Image.asset(
+                                'assets/images/linkedin.png',
+                              ),
+                              padding: EdgeInsets.zero,
+                              style: CustomButtonStyles.secondaryIconButton(),
+                            ),
+                            const SizedBox(
+                              width: 20,
+                            ),
+                            IconButton(
+                              onPressed: () {},
+                              icon: Image.asset(
+                                'assets/images/github.png',
+                              ),
+                              padding: EdgeInsets.zero,
+                              style: CustomButtonStyles.secondaryIconButton(),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            const SizedBox(
+              width: 80,
+            ),
+            Expanded(
+              child: DecoratedBox(
+                decoration: BoxDecoration(
+                  boxShadow: [
+                    StandardBoxShadows.regular(),
+                  ],
+                ),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(10),
+                  child: Image.asset(
+                    'assets/images/profile_picture_square.jpg',
                   ),
                 ),
-              ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _WelcomeSectionMobile extends StatelessWidget {
+  final void Function() onContactMePressed;
+
+  const _WelcomeSectionMobile({
+    required this.onContactMePressed,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.symmetric(
+        vertical: ScreenSize.minimumPadding.toDouble(),
+      ),
+      child: SelectionArea(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Center(
+              child: ConstrainedBox(
+                constraints: const BoxConstraints(maxWidth: 500),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(10),
+                  child: Image.asset(
+                    'assets/images/profile_picture_square.jpg',
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(
+              height: ScreenSize.minimumPadding.toDouble(),
+            ),
+            Text(
+              tr(LocaleKeys.fullName),
+              style: CustomTextStyles.header1(),
+              textAlign: TextAlign.center,
+            ),
+            Text(
+              tr(LocaleKeys.profession),
+              style: CustomTextStyles.paragraph1(
+                fontStyle: FontStyle.italic,
+                color: CustomColors.secondaryColor.l1,
+              ),
+              textAlign: TextAlign.center,
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 50),
+              child: SizedBox(
+                height: 60,
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    const Spacer(),
+                    PrimaryTextButton(
+                      onPressed: onContactMePressed,
+                      title: tr(LocaleKeys.contactMe),
+                    ),
+                    const SizedBox(
+                      width: 20,
+                    ),
+                    SizedBox(
+                      height: 40,
+                      child: IconButton(
+                        onPressed: () {},
+                        icon: Image.asset(
+                          'assets/images/linkedin.png',
+                        ),
+                        padding: EdgeInsets.zero,
+                        style: CustomButtonStyles.secondaryIconButton(),
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 20,
+                    ),
+                    SizedBox(
+                      height: 40,
+                      child: IconButton(
+                        onPressed: () {},
+                        icon: Image.asset(
+                          'assets/images/github.png',
+                        ),
+                        padding: EdgeInsets.zero,
+                        style: CustomButtonStyles.secondaryIconButton(),
+                      ),
+                    ),
+                    const Spacer(),
+                  ],
+                ),
+              ),
+            ),
+            Text(
+              tr(LocaleKeys.introductionQuestion),
+              style: CustomTextStyles.paragraph3(),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 20),
+              child: Text(
+                tr(LocaleKeys.introducion),
+                style: CustomTextStyles.paragraph3(),
+              ),
             ),
           ],
         ),
