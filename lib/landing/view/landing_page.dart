@@ -12,6 +12,7 @@ import 'package:jamie_walker_website/app/theme/custom_colors.dart';
 import 'package:jamie_walker_website/app/theme/custom_text_styles.dart';
 import 'package:jamie_walker_website/generic/view/jamie_walker_app_bar.dart';
 import 'package:jamie_walker_website/generic/view/jamie_walker_navigation_drawer.dart';
+import 'package:jamie_walker_website/generic/view/primary_text_button.dart';
 import 'package:jamie_walker_website/landing/portfolio/view/portfolio_section.dart';
 import 'package:jamie_walker_website/landing/services/services_section.dart';
 import 'package:jamie_walker_website/landing/testimonials/view/testimonials_section.dart';
@@ -242,10 +243,9 @@ class _WelcomeSectionDesktop extends StatelessWidget {
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.stretch,
                           children: [
-                            TextButton(
-                              style: CustomButtonStyles.primaryActionButton(),
+                            PrimaryTextButton(
                               onPressed: onContactMePressed,
-                              child: Text(tr(LocaleKeys.contactMe)),
+                              title: tr(LocaleKeys.contactMe),
                             ),
                             const SizedBox(
                               width: 20,
@@ -355,10 +355,9 @@ class _WelcomeSectionMobile extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     const Spacer(),
-                    TextButton(
-                      style: CustomButtonStyles.primaryActionButton(),
+                    PrimaryTextButton(
                       onPressed: onContactMePressed,
-                      child: Text(tr(LocaleKeys.contactMe)),
+                      title: tr(LocaleKeys.contactMe),
                     ),
                     const SizedBox(
                       width: 20,
