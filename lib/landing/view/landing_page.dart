@@ -13,6 +13,7 @@ import 'package:jamie_walker_website/app/theme/custom_text_styles.dart';
 import 'package:jamie_walker_website/generic/view/jamie_walker_app_bar.dart';
 import 'package:jamie_walker_website/generic/view/jamie_walker_navigation_drawer.dart';
 import 'package:jamie_walker_website/generic/view/primary_text_button.dart';
+import 'package:jamie_walker_website/landing/contact/view/contact_section.dart';
 import 'package:jamie_walker_website/landing/portfolio/view/portfolio_section.dart';
 import 'package:jamie_walker_website/landing/services/services_section.dart';
 import 'package:jamie_walker_website/landing/testimonials/view/testimonials_section.dart';
@@ -31,6 +32,10 @@ class _LandingPageState extends State<LandingPage> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
   late Map<LandingPageSection, GlobalKey> _sectionKeys;
   int _currentLandingPageSectionIndex = 0;
+
+  final _nameTextEditingController = TextEditingController();
+  final _emailTextEditingController = TextEditingController();
+  final _messageTextEditingController = TextEditingController();
 
   @override
   void initState() {
@@ -104,12 +109,12 @@ class _LandingPageState extends State<LandingPage> {
                     LandingPageSection.testimonials => TestimonialsSection(
                         key: _sectionKeys[LandingPageSection.testimonials],
                       ),
-                    LandingPageSection.contact => ConstrainedBox(
-                        constraints: BoxConstraints(
-                          minHeight: constraints.maxHeight * 0.6,
-                          maxHeight: constraints.maxHeight,
-                        ),
-                        child: Container(),
+                    LandingPageSection.contact => ContactSection(
+                        key: _sectionKeys[LandingPageSection.contact],
+                        emailTextEditingController: _emailTextEditingController,
+                        messageTextEditingController:
+                            _messageTextEditingController,
+                        nameTextEditingController: _nameTextEditingController,
                       ),
                   },
                 );
@@ -128,8 +133,9 @@ class _LandingPageState extends State<LandingPage> {
   }
 
   void _scrollToSection(LandingPageSection section) {
+    final index = LandingPageSection.values.indexOf(section);
     _scrollController.scrollToIndex(
-      LandingPageSection.values.indexOf(section),
+      index,
       duration: const Duration(milliseconds: 500),
       preferPosition: AutoScrollPosition.begin,
     );

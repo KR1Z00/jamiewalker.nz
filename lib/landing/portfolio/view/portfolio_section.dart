@@ -67,7 +67,7 @@ class PortfolioSection extends ConsumerWidget {
                         .toList(),
                   ),
                   skipError: true,
-                )
+                ),
               ],
             ),
           );
