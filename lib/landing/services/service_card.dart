@@ -25,7 +25,6 @@ class _ServiceCard extends StatelessWidget {
     }
 
     final title = serviceStrings["serviceName"];
-    final description = serviceStrings["serviceDescription"];
     final skills = serviceStrings["serviceSkills"];
 
     return Container(
