@@ -333,6 +333,9 @@ class _WelcomeSectionDesktop extends StatelessWidget {
 }
 
 class _WelcomeSectionMobile extends StatelessWidget {
+  static const double _maximumProfileImageWidth = 500;
+  static const double _maximumProfileImageHeightRelativeToScreen = 0.4;
+
   final void Function() onContactMePressed;
   final void Function() onGithubPressed;
   final void Function() onLinkedInPressed;
@@ -345,6 +348,11 @@ class _WelcomeSectionMobile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screenHeight = MediaQuery.of(context).size.height;
+    final profileImageWidth = min(
+      _maximumProfileImageWidth,
+      screenHeight * _maximumProfileImageHeightRelativeToScreen,
+    );
     return Padding(
       padding: EdgeInsets.symmetric(
         vertical: ScreenSize.minimumPadding.toDouble(),
@@ -355,7 +363,7 @@ class _WelcomeSectionMobile extends StatelessWidget {
         children: [
           Center(
             child: ConstrainedBox(
-              constraints: const BoxConstraints(maxWidth: 500),
+              constraints: BoxConstraints(maxWidth: profileImageWidth),
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(10),
                 child: Image.asset(
