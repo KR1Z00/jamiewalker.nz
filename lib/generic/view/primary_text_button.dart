@@ -15,7 +15,7 @@ class PrimaryTextButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextButton(
       onPressed: onPressed,
-      style: CustomButtonStyles.primaryActionButton(),
+      style: CustomButtonStyles.primaryActionButton(context),
       child: Text(title),
     );
   }
