@@ -12,7 +12,7 @@
     "services": [
         {
             "key": "ios",
-            "serviceName": "Native iOS Development",
+            "serviceName": "iOS Development",
             "serviceDescription": "Provide your customers with a refined user experience that integrates seamlessly across the Apple ecosystem of devices.\n\nCreate solutions that harness the powerful native frameworks of the iOS and macOS SDKs.",
             "serviceSkills": "Swift, SwiftUI, UIKit, Combine, Objective-C(++), AVFoundation, Bluetooth LE, Photos, Firebase, Alamofire, CoreData"
         },

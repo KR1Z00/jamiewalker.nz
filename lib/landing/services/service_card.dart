@@ -2,7 +2,7 @@ part of 'services_section.dart';
 
 class _ServiceCard extends StatelessWidget {
   static const double desktopHeight = 300;
-  static const double mobileHeight = 270;
+  static const double mobileHeight = 230;
 
   final JWService service;
 
@@ -27,6 +27,8 @@ class _ServiceCard extends StatelessWidget {
     final title = serviceStrings["serviceName"];
     final skills = serviceStrings["serviceSkills"];
 
+    final double imageSize = context.layoutForMobile() ? 80 : 120;
+
     return Container(
       decoration: BoxDecoration(
         color: CustomColors.primaryColor.d1,
@@ -44,7 +46,7 @@ class _ServiceCard extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: [
                 SizedBox(
-                  height: 120,
+                  height: imageSize,
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(10),
                     child: Image.asset(
