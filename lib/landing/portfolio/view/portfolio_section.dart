@@ -29,10 +29,14 @@ class PortfolioSection extends ConsumerWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                Text(
-                  tr(LocaleKeys.portfolioSectionTitleAlt),
-                  style: CustomTextStyles.header2(),
-                  textAlign: TextAlign.center,
+                FittedBox(
+                  fit: BoxFit.scaleDown,
+                  child: Text(
+                    tr(LocaleKeys.portfolioSectionTitleAlt),
+                    style: CustomTextStyles.header2(),
+                    textAlign: TextAlign.center,
+                    maxLines: 1,
+                  ),
                 ),
                 const SizedBox(
                   height: cardSpacing,

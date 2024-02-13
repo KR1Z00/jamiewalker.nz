@@ -69,10 +69,14 @@ class ContactSection extends ConsumerWidget {
                 padding: EdgeInsets.symmetric(
                   vertical: paddingBetweenElements,
                 ),
-                child: Text(
-                  tr(LocaleKeys.contactSectionTitleAlt),
-                  style: CustomTextStyles.header2(),
-                  textAlign: TextAlign.center,
+                child: FittedBox(
+                  fit: BoxFit.scaleDown,
+                  child: Text(
+                    tr(LocaleKeys.contactSectionTitleAlt),
+                    style: CustomTextStyles.header2(),
+                    textAlign: TextAlign.center,
+                    maxLines: 1,
+                  ),
                 ),
               ),
               Padding(

@@ -375,10 +375,14 @@ class _WelcomeSectionMobile extends StatelessWidget {
           SizedBox(
             height: ScreenSize.minimumPadding.toDouble(),
           ),
-          Text(
-            tr(LocaleKeys.fullName),
-            style: CustomTextStyles.header1(),
-            textAlign: TextAlign.center,
+          FittedBox(
+            fit: BoxFit.scaleDown,
+            child: Text(
+              tr(LocaleKeys.fullName),
+              style: CustomTextStyles.header1(),
+              textAlign: TextAlign.center,
+              maxLines: 1,
+            ),
           ),
           Text(
             tr(LocaleKeys.profession),

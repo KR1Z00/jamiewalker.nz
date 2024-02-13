@@ -77,11 +77,14 @@ class _TestimonialsSectionState extends ConsumerState<TestimonialsSection> {
                     Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        AutoSizeText(
-                          tr(LocaleKeys.testimonialsSectionTitleAlt),
-                          style: CustomTextStyles.header2(),
-                          maxLines: 1,
-                          minFontSize: 30,
+                        FittedBox(
+                          fit: BoxFit.scaleDown,
+                          child: Text(
+                            tr(LocaleKeys.testimonialsSectionTitleAlt),
+                            style: CustomTextStyles.header2(),
+                            textAlign: TextAlign.center,
+                            maxLines: 1,
+                          ),
                         ),
                         Padding(
                           padding: const EdgeInsets.only(top: 40),
@@ -163,9 +166,13 @@ class _TestimonialsSectionState extends ConsumerState<TestimonialsSection> {
                           padding: const EdgeInsets.only(top: 30, bottom: 10),
                           child: Opacity(
                             opacity: animationController.value,
-                            child: Text(
-                              testimonial.name,
-                              style: CustomTextStyles.paragraph1(),
+                            child: FittedBox(
+                              fit: BoxFit.scaleDown,
+                              child: Text(
+                                testimonial.name,
+                                style: CustomTextStyles.paragraph1(),
+                                maxLines: 1,
+                              ),
                             ),
                           ),
                         ),
