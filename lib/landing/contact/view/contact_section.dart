@@ -79,14 +79,9 @@ class ContactSection extends ConsumerWidget {
                   ),
                 ),
               ),
-              Padding(
-                padding: EdgeInsets.only(
-                  bottom: paddingBetweenElements,
-                ),
-                child: Text(
-                  tr(LocaleKeys.contactPrompt),
-                  style: guidanceTextStyle(),
-                ),
+              Text(
+                tr(LocaleKeys.contactPrompt),
+                style: guidanceTextStyle(),
               ),
               Padding(
                 padding: EdgeInsets.only(
