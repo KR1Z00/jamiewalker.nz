@@ -292,7 +292,7 @@ class __ContactSendingDialogState extends ConsumerState<_ContactSendingDialog> {
                               .dismissResult();
                         },
                         child: Text(
-                          LocaleKeys.contactSendingDismiss,
+                          tr(LocaleKeys.contactSendingDismiss),
                           style: CustomTextStyles.header4(
                             color: CustomColors.primaryColor.d1,
                           ),
