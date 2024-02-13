@@ -375,10 +375,14 @@ class _WelcomeSectionMobile extends StatelessWidget {
           SizedBox(
             height: ScreenSize.minimumPadding.toDouble(),
           ),
-          Text(
-            tr(LocaleKeys.fullName),
-            style: CustomTextStyles.header1(),
-            textAlign: TextAlign.center,
+          FittedBox(
+            fit: BoxFit.scaleDown,
+            child: Text(
+              tr(LocaleKeys.fullName),
+              style: CustomTextStyles.header1(),
+              textAlign: TextAlign.center,
+              maxLines: 1,
+            ),
           ),
           Text(
             tr(LocaleKeys.profession),
@@ -389,48 +393,48 @@ class _WelcomeSectionMobile extends StatelessWidget {
             textAlign: TextAlign.center,
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(vertical: 50),
-            child: SizedBox(
-              height: 60,
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  const Spacer(),
-                  PrimaryTextButton(
-                    onPressed: onContactMePressed,
-                    title: tr(LocaleKeys.contactMe),
-                  ),
-                  const SizedBox(
-                    width: 20,
-                  ),
-                  SizedBox(
-                    height: 40,
-                    child: IconButton(
-                      onPressed: onLinkedInPressed,
-                      icon: Image.asset(
-                        'assets/images/linkedin.png',
+            padding: const EdgeInsets.symmetric(vertical: 40),
+            child: Wrap(
+              alignment: WrapAlignment.center,
+              crossAxisAlignment: WrapCrossAlignment.center,
+              spacing: 20,
+              runSpacing: 10,
+              children: [
+                PrimaryTextButton(
+                  onPressed: onContactMePressed,
+                  title: tr(LocaleKeys.contactMe),
+                ),
+                Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    SizedBox(
+                      height: 40,
+                      child: IconButton(
+                        onPressed: onLinkedInPressed,
+                        icon: Image.asset(
+                          'assets/images/linkedin.png',
+                        ),
+                        padding: EdgeInsets.zero,
+                        style: CustomButtonStyles.secondaryIconButton(),
                       ),
-                      padding: EdgeInsets.zero,
-                      style: CustomButtonStyles.secondaryIconButton(),
                     ),
-                  ),
-                  const SizedBox(
-                    width: 20,
-                  ),
-                  SizedBox(
-                    height: 40,
-                    child: IconButton(
-                      onPressed: onGithubPressed,
-                      icon: Image.asset(
-                        'assets/images/github.png',
+                    const SizedBox(
+                      width: 20,
+                    ),
+                    SizedBox(
+                      height: 40,
+                      child: IconButton(
+                        onPressed: onGithubPressed,
+                        icon: Image.asset(
+                          'assets/images/github.png',
+                        ),
+                        padding: EdgeInsets.zero,
+                        style: CustomButtonStyles.secondaryIconButton(),
                       ),
-                      padding: EdgeInsets.zero,
-                      style: CustomButtonStyles.secondaryIconButton(),
                     ),
-                  ),
-                  const Spacer(),
-                ],
-              ),
+                  ],
+                )
+              ],
             ),
           ),
           Text(

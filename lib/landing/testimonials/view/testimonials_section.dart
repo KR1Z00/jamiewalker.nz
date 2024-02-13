@@ -60,7 +60,10 @@ class _TestimonialsSectionState extends ConsumerState<TestimonialsSection> {
           final commentTextStyle = context.layoutForMobile()
               ? CustomTextStyles.paragraph3
               : CustomTextStyles.paragraph2;
-          final int commentMaxLines = context.layoutForMobile() ? 8 : 5;
+          final int commentMaxLines = context.layoutForMobile() ? 12 : 5;
+          final double imageSize = context.layoutForMobile() ? 200 : 300;
+          final double commentHeight = context.layoutForMobile() ? 200 : 100;
+
           return Padding(
             padding: EdgeInsets.symmetric(
               vertical: ScreenSize.minimumPadding.toDouble(),
@@ -74,11 +77,14 @@ class _TestimonialsSectionState extends ConsumerState<TestimonialsSection> {
                     Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        AutoSizeText(
-                          tr(LocaleKeys.testimonialsSectionTitleAlt),
-                          style: CustomTextStyles.header2(),
-                          maxLines: 1,
-                          minFontSize: 30,
+                        FittedBox(
+                          fit: BoxFit.scaleDown,
+                          child: Text(
+                            tr(LocaleKeys.testimonialsSectionTitleAlt),
+                            style: CustomTextStyles.header2(),
+                            textAlign: TextAlign.center,
+                            maxLines: 1,
+                          ),
                         ),
                         Padding(
                           padding: const EdgeInsets.only(top: 40),
@@ -103,8 +109,9 @@ class _TestimonialsSectionState extends ConsumerState<TestimonialsSection> {
                               ),
                               Flexible(
                                 child: ConstrainedBox(
-                                  constraints:
-                                      const BoxConstraints(maxWidth: 300),
+                                  constraints: BoxConstraints(
+                                    maxWidth: imageSize,
+                                  ),
                                   child: AspectRatio(
                                     aspectRatio: 1,
                                     child: Opacity(
@@ -119,12 +126,14 @@ class _TestimonialsSectionState extends ConsumerState<TestimonialsSection> {
                                                 CustomColors.secondaryColor.l1,
                                             width: 2,
                                           ),
-                                          borderRadius:
-                                              BorderRadius.circular(150),
+                                          borderRadius: BorderRadius.circular(
+                                            imageSize / 2,
+                                          ),
                                         ),
                                         child: ClipRRect(
-                                          borderRadius:
-                                              BorderRadius.circular(150),
+                                          borderRadius: BorderRadius.circular(
+                                            imageSize,
+                                          ),
                                           child: Image.asset(
                                             testimonial.imageAsset,
                                             fit: BoxFit.cover,
@@ -157,15 +166,19 @@ class _TestimonialsSectionState extends ConsumerState<TestimonialsSection> {
                           padding: const EdgeInsets.only(top: 30, bottom: 10),
                           child: Opacity(
                             opacity: animationController.value,
-                            child: Text(
-                              testimonial.name,
-                              style: CustomTextStyles.paragraph1(),
+                            child: FittedBox(
+                              fit: BoxFit.scaleDown,
+                              child: Text(
+                                testimonial.name,
+                                style: CustomTextStyles.paragraph1(),
+                                maxLines: 1,
+                              ),
                             ),
                           ),
                         ),
                         ConstrainedBox(
                           constraints:
-                              const BoxConstraints.tightFor(height: 100),
+                              BoxConstraints.tightFor(height: commentHeight),
                           child: Opacity(
                             opacity: animationController.value,
                             child: AutoSizeText(

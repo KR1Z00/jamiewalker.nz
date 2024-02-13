@@ -20,7 +20,7 @@ class JamieWalkerNavigationDrawer extends StatelessWidget {
     return Drawer(
       backgroundColor: CustomColors.primaryColor.d2,
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 70, vertical: 25),
+        padding: const EdgeInsets.symmetric(horizontal: 70, vertical: 15),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: List<Widget>.from(

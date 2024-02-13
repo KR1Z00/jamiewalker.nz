@@ -69,51 +69,22 @@ class ContactSection extends ConsumerWidget {
                 padding: EdgeInsets.symmetric(
                   vertical: paddingBetweenElements,
                 ),
-                child: Text(
-                  tr(LocaleKeys.contactSectionTitleAlt),
-                  style: CustomTextStyles.header2(),
-                  textAlign: TextAlign.center,
+                child: FittedBox(
+                  fit: BoxFit.scaleDown,
+                  child: Text(
+                    tr(LocaleKeys.contactSectionTitleAlt),
+                    style: CustomTextStyles.header2(),
+                    textAlign: TextAlign.center,
+                    maxLines: 1,
+                  ),
                 ),
               ),
-              Padding(
-                padding: EdgeInsets.only(
-                  bottom: paddingBetweenElements,
-                ),
-                child: Text(
-                  tr(LocaleKeys.contactPrompt),
-                  style: guidanceTextStyle(),
-                ),
+              Text(
+                tr(LocaleKeys.contactPrompt),
+                style: guidanceTextStyle(),
               ),
-              Padding(
-                padding: EdgeInsets.only(
-                  bottom: paddingBetweenElements,
-                ),
-                child: Wrap(
-                  alignment: WrapAlignment.start,
-                  crossAxisAlignment: WrapCrossAlignment.center,
-                  children: [
-                    Text(
-                      tr(LocaleKeys.contactDirectEmailGuidance),
-                      style: guidanceTextStyle(),
-                      textAlign: TextAlign.center,
-                    ),
-                    const SizedBox(
-                      width: 7,
-                    ),
-                    TextButton(
-                      onPressed: () => LaunchableUrls.emailMe.launch(),
-                      style: ButtonStyle(
-                        padding: MaterialStateProperty.all(EdgeInsets.zero),
-                      ),
-                      child: Text(
-                        tr(LocaleKeys.contactEmail),
-                        style: guidanceTextStyle(
-                          color: CustomColors.secondaryColor.l2,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
+              SizedBox(
+                height: paddingBetweenElements,
               ),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -192,6 +163,37 @@ class ContactSection extends ConsumerWidget {
                     },
                     title: tr(LocaleKeys.contactSend),
                   ),
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.only(
+                  bottom: paddingBetweenElements,
+                ),
+                child: Wrap(
+                  alignment: WrapAlignment.center,
+                  crossAxisAlignment: WrapCrossAlignment.center,
+                  children: [
+                    Text(
+                      tr(LocaleKeys.contactDirectEmailGuidance),
+                      style: guidanceTextStyle(),
+                      textAlign: TextAlign.center,
+                    ),
+                    const SizedBox(
+                      width: 7,
+                    ),
+                    TextButton(
+                      onPressed: () => LaunchableUrls.emailMe.launch(),
+                      style: ButtonStyle(
+                        padding: MaterialStateProperty.all(EdgeInsets.zero),
+                      ),
+                      child: Text(
+                        tr(LocaleKeys.contactEmail),
+                        style: guidanceTextStyle(
+                          color: CustomColors.secondaryColor.l2,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ],
@@ -290,7 +292,7 @@ class __ContactSendingDialogState extends ConsumerState<_ContactSendingDialog> {
                               .dismissResult();
                         },
                         child: Text(
-                          LocaleKeys.contactSendingDismiss,
+                          tr(LocaleKeys.contactSendingDismiss),
                           style: CustomTextStyles.header4(
                             color: CustomColors.primaryColor.d1,
                           ),

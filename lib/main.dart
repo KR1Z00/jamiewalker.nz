@@ -34,7 +34,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return ProviderScope(
       child: MaterialApp.router(
-        title: 'Flutter Demo',
+        title: 'Jamie Walker | Mobile App Developer',
         theme: customThemeData,
         routerConfig: jamieWalkerRouterConfig,
         localizationsDelegates: context.localizationDelegates,

@@ -35,9 +35,14 @@ class ServicesSection extends StatelessWidget {
                 Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Text(
-                      tr(LocaleKeys.servicesSectionTitleAlt),
-                      style: CustomTextStyles.header2(),
+                    FittedBox(
+                      fit: BoxFit.scaleDown,
+                      child: Text(
+                        tr(LocaleKeys.servicesSectionTitleAlt),
+                        style: CustomTextStyles.header2(),
+                        textAlign: TextAlign.center,
+                        maxLines: 1,
+                      ),
                     ),
                     const SizedBox(
                       height: cardSpacing,
