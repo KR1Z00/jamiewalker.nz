@@ -31,130 +31,134 @@ class PortfolioInfoDialog extends HookConsumerWidget {
     return Scaffold(
       backgroundColor: Colors.black.withOpacity(0.1),
       body: context.wrappedForHorizontalPosition(
-        child: Padding(
-          padding: EdgeInsets.symmetric(
-            vertical: ScreenSize.minimumPadding.toDouble(),
-          ),
-          child: Center(
-            child: LayoutBuilder(
-              builder: (context, constraints) => AnimatedContainer(
-                duration: const Duration(milliseconds: 200),
-                constraints: const BoxConstraints(maxWidth: 1700),
-                decoration: BoxDecoration(
-                  color: CustomColors.primaryColor.l2,
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(20),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      Row(
-                        children: [
-                          Text(
-                            model.name,
-                            style: CustomTextStyles.header3(
-                              color: Colors.black,
+        child: SelectionArea(
+          child: Padding(
+            padding: EdgeInsets.symmetric(
+              vertical: ScreenSize.minimumPadding.toDouble(),
+            ),
+            child: Center(
+              child: LayoutBuilder(
+                builder: (context, constraints) => AnimatedContainer(
+                  duration: const Duration(milliseconds: 200),
+                  constraints: const BoxConstraints(maxWidth: 1700),
+                  decoration: BoxDecoration(
+                    color: CustomColors.primaryColor.l2,
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(20),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        Row(
+                          children: [
+                            Text(
+                              model.name,
+                              style: CustomTextStyles.header3(
+                                color: Colors.black,
+                              ),
                             ),
-                          ),
-                          const Spacer(),
-                          IconButton(
-                            onPressed: () => Navigator.of(context).pop(),
-                            icon: const FaIcon(
-                              FontAwesomeIcons.xmark,
-                              color: Colors.black,
+                            const Spacer(),
+                            IconButton(
+                              onPressed: () => Navigator.of(context).pop(),
+                              icon: const FaIcon(
+                                FontAwesomeIcons.xmark,
+                                color: Colors.black,
+                              ),
                             ),
-                          ),
-                        ],
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(
-                          vertical: 20,
+                          ],
                         ),
-                        child: ConstrainedBox(
-                          constraints: BoxConstraints(
-                            maxHeight: constraints.maxHeight * 0.5,
+                        Padding(
+                          padding: const EdgeInsets.symmetric(
+                            vertical: 20,
                           ),
-                          child: _buildPageVisualContent(currentPage),
-                        ),
-                      ),
-                      Theme(
-                        data: Theme.of(context).copyWith(
-                          scrollbarTheme: ScrollbarThemeData(
-                            thumbVisibility: MaterialStateProperty.all(
-                              true,
+                          child: ConstrainedBox(
+                            constraints: BoxConstraints(
+                              maxHeight: constraints.maxHeight * 0.5,
                             ),
-                            thumbColor: MaterialStateProperty.all(
-                              Colors.black.withOpacity(0.7),
-                            ),
+                            child: _buildPageVisualContent(currentPage),
                           ),
                         ),
-                        child: Flexible(
-                          child: SingleChildScrollView(
-                            controller: scrollController,
-                            child: Scrollbar(
+                        Theme(
+                          data: Theme.of(context).copyWith(
+                            scrollbarTheme: ScrollbarThemeData(
+                              thumbVisibility: MaterialStateProperty.all(
+                                true,
+                              ),
+                              thumbColor: MaterialStateProperty.all(
+                                Colors.black.withOpacity(0.7),
+                              ),
+                            ),
+                          ),
+                          child: Flexible(
+                            child: SingleChildScrollView(
                               controller: scrollController,
-                              thumbVisibility: true,
-                              thickness: 3,
-                              child: Padding(
-                                padding: const EdgeInsets.symmetric(
-                                  horizontal: 6,
-                                ),
-                                child: Text(
-                                  currentPage.description,
-                                  style: descriptionTextStyle(
-                                    color: Colors.black,
+                              child: Scrollbar(
+                                controller: scrollController,
+                                thumbVisibility: true,
+                                thickness: 3,
+                                child: Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: 6,
+                                  ),
+                                  child: Text(
+                                    currentPage.description,
+                                    style: descriptionTextStyle(
+                                      color: Colors.black,
+                                    ),
                                   ),
                                 ),
                               ),
                             ),
                           ),
                         ),
-                      ),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      Row(
-                        children: [
-                          IconButton(
-                            onPressed: ref
-                                .read(portfolioItemInfoViewModelProvider(model)
-                                    .notifier)
-                                .selectPreviousPage,
-                            icon: const FaIcon(
-                              FontAwesomeIcons.chevronLeft,
-                              color: Colors.black,
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        Row(
+                          children: [
+                            IconButton(
+                              onPressed: ref
+                                  .read(
+                                      portfolioItemInfoViewModelProvider(model)
+                                          .notifier)
+                                  .selectPreviousPage,
+                              icon: const FaIcon(
+                                FontAwesomeIcons.chevronLeft,
+                                color: Colors.black,
+                              ),
                             ),
-                          ),
-                          Expanded(
-                            child: Center(
-                              child: AnimatedSmoothIndicator(
-                                activeIndex: state.currentPageIndex,
-                                count: state.pages.length,
-                                effect: WormEffect(
-                                  dotWidth: 8,
-                                  dotHeight: 8,
-                                  dotColor: CustomColors.primaryColor
-                                      .withOpacity(0.3),
-                                  activeDotColor: CustomColors.primaryColor,
+                            Expanded(
+                              child: Center(
+                                child: AnimatedSmoothIndicator(
+                                  activeIndex: state.currentPageIndex,
+                                  count: state.pages.length,
+                                  effect: WormEffect(
+                                    dotWidth: 8,
+                                    dotHeight: 8,
+                                    dotColor: CustomColors.primaryColor
+                                        .withOpacity(0.3),
+                                    activeDotColor: CustomColors.primaryColor,
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
-                          IconButton(
-                            onPressed: ref
-                                .read(portfolioItemInfoViewModelProvider(model)
-                                    .notifier)
-                                .selectNextPage,
-                            icon: const FaIcon(
-                              FontAwesomeIcons.chevronRight,
-                              color: Colors.black,
+                            IconButton(
+                              onPressed: ref
+                                  .read(
+                                      portfolioItemInfoViewModelProvider(model)
+                                          .notifier)
+                                  .selectNextPage,
+                              icon: const FaIcon(
+                                FontAwesomeIcons.chevronRight,
+                                color: Colors.black,
+                              ),
                             ),
-                          ),
-                        ],
-                      ),
-                    ],
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
