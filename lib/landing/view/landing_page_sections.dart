@@ -1,8 +1,8 @@
 enum LandingPageSection {
   home('Home'),
   services('Services'),
-  testimonials('Testimonials'),
   portfolio('Portfolio'),
+  testimonials('Testimonials'),
   contact('Contact'),
   ;
 
