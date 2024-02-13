@@ -393,48 +393,45 @@ class _WelcomeSectionMobile extends StatelessWidget {
             textAlign: TextAlign.center,
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(vertical: 50),
-            child: SizedBox(
-              height: 60,
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  const Spacer(),
-                  PrimaryTextButton(
-                    onPressed: onContactMePressed,
-                    title: tr(LocaleKeys.contactMe),
-                  ),
-                  const SizedBox(
-                    width: 20,
-                  ),
-                  SizedBox(
-                    height: 40,
-                    child: IconButton(
-                      onPressed: onLinkedInPressed,
-                      icon: Image.asset(
-                        'assets/images/linkedin.png',
-                      ),
-                      padding: EdgeInsets.zero,
-                      style: CustomButtonStyles.secondaryIconButton(),
+            padding: const EdgeInsets.symmetric(vertical: 40),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                const Spacer(),
+                PrimaryTextButton(
+                  onPressed: onContactMePressed,
+                  title: tr(LocaleKeys.contactMe),
+                ),
+                const SizedBox(
+                  width: 20,
+                ),
+                SizedBox(
+                  height: 40,
+                  child: IconButton(
+                    onPressed: onLinkedInPressed,
+                    icon: Image.asset(
+                      'assets/images/linkedin.png',
                     ),
+                    padding: EdgeInsets.zero,
+                    style: CustomButtonStyles.secondaryIconButton(),
                   ),
-                  const SizedBox(
-                    width: 20,
-                  ),
-                  SizedBox(
-                    height: 40,
-                    child: IconButton(
-                      onPressed: onGithubPressed,
-                      icon: Image.asset(
-                        'assets/images/github.png',
-                      ),
-                      padding: EdgeInsets.zero,
-                      style: CustomButtonStyles.secondaryIconButton(),
+                ),
+                const SizedBox(
+                  width: 20,
+                ),
+                SizedBox(
+                  height: 40,
+                  child: IconButton(
+                    onPressed: onGithubPressed,
+                    icon: Image.asset(
+                      'assets/images/github.png',
                     ),
+                    padding: EdgeInsets.zero,
+                    style: CustomButtonStyles.secondaryIconButton(),
                   ),
-                  const Spacer(),
-                ],
-              ),
+                ),
+                const Spacer(),
+              ],
             ),
           ),
           Text(
