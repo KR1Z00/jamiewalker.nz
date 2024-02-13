@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:jamie_walker_website/app/extensions/screen_size.dart';
 import 'package:jamie_walker_website/app/extensions/standard_box_shadow.dart';
+import 'package:jamie_walker_website/app/theme/custom_colors.dart';
 import 'package:jamie_walker_website/app/theme/custom_text_styles.dart';
 import 'package:jamie_walker_website/landing/portfolio/data/portfolio_item_model.dart';
 
@@ -59,24 +60,30 @@ class _PortfolioItemCardState extends State<PortfolioItemCard> {
               child: Stack(
                 fit: StackFit.expand,
                 children: [
-                  FittedBox(
-                    fit: BoxFit.cover,
-                    clipBehavior: Clip.hardEdge,
-                    child: ImageFiltered(
-                      imageFilter: ImageFilter.blur(
-                        sigmaX: 100,
-                        sigmaY: 100,
-                      ),
-                      child: Image.asset(
-                        widget.model.previewImageAsset,
+                  if (!context.layoutForMobile())
+                    FittedBox(
+                      fit: BoxFit.cover,
+                      clipBehavior: Clip.hardEdge,
+                      child: ImageFiltered(
+                        imageFilter: ImageFilter.blur(
+                          sigmaX: 100,
+                          sigmaY: 100,
+                        ),
+                        child: Image.asset(
+                          widget.model.previewImageAsset,
+                        ),
                       ),
                     ),
-                  ),
-                  ColoredBox(
-                    color: Colors.white.withOpacity(
-                      0.3,
+                  if (context.layoutForMobile())
+                    const ColoredBox(
+                      color: CustomColors.primaryColor,
                     ),
-                  ),
+                  if (!context.layoutForMobile())
+                    ColoredBox(
+                      color: Colors.white.withOpacity(
+                        0.3,
+                      ),
+                    ),
                   Column(
                     mainAxisSize: MainAxisSize.max,
                     crossAxisAlignment: CrossAxisAlignment.stretch,
