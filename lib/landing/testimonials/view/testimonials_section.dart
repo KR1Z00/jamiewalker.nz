@@ -57,6 +57,10 @@ class _TestimonialsSectionState extends ConsumerState<TestimonialsSection> {
     return context.wrappedForHorizontalPosition(
       child: LayoutBuilder(
         builder: (context, constraints) {
+          final commentTextStyle = context.layoutForMobile()
+              ? CustomTextStyles.paragraph3
+              : CustomTextStyles.paragraph2;
+          final int commentMaxLines = context.layoutForMobile() ? 8 : 5;
           return Padding(
             padding: EdgeInsets.symmetric(
               vertical: ScreenSize.minimumPadding.toDouble(),
@@ -166,12 +170,12 @@ class _TestimonialsSectionState extends ConsumerState<TestimonialsSection> {
                             opacity: animationController.value,
                             child: AutoSizeText(
                               "\"${testimonial.comment}\"",
-                              style: CustomTextStyles.paragraph2(
+                              style: commentTextStyle(
                                 fontStyle: FontStyle.italic,
                               ),
                               textAlign: TextAlign.center,
-                              minFontSize: 14,
-                              maxLines: 5,
+                              minFontSize: 10,
+                              maxLines: commentMaxLines,
                               overflow: TextOverflow.ellipsis,
                             ),
                           ),
