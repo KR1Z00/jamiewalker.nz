@@ -111,5 +111,20 @@
     "blogSectionTitle": "Blog",
     "contactMe": "Contact Me",
     "contactSectionTitle": "Contact",
-    "contactSectionTitleAlt": "Get in Contact"
+    "contactSectionTitleAlt": "Get in Contact",
+    "contactPrompt": "Ready to bring your mobile app needs to life? Get in contact below to get the ball rolling. I look forward to delivering a solution for you.",
+    "contactFormName": "Name",
+    "contactFormEmail": "Email",
+    "contactFormMessage": "Message",
+    "contactSend": "Send",
+    "contactSending": "Sending",
+    "contactSentSuccessTitle": "Thanks!",
+    "contactSentSuccessDescription": "Your message has been sent. I'll get back to you within 2 business days.",
+    "contactSendingFailedTitle": "Oops!",
+    "contactSendingFailedDescription": "An error occurred trying to send your message, please try again.",
+    "contactSendingDismiss": "Done",
+    "contactDirectEmailGuidance": "Alternatively, email me directly at",
+    "contactEmail": "jamie@jamiewalker.nz",
+    "copyright": "Copyright © Jamie Walker 2024",
+    "viewSourceCode": "See the source code for this website!"
 }

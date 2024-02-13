@@ -74,7 +74,7 @@ class ContactSection extends ConsumerWidget {
                   bottom: ScreenSize.minimumPadding.toDouble(),
                 ),
                 child: Text(
-                  "Ready to bring your mobile app needs to life? Get in contact below to get the ball rolling. I look forward to delivering a solution for you.",
+                  tr(LocaleKeys.contactPrompt),
                   style: CustomTextStyles.paragraph2(),
                 ),
               ),
@@ -82,7 +82,7 @@ class ContactSection extends ConsumerWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "Name",
+                    tr(LocaleKeys.contactFormName),
                     style: CustomTextStyles.paragraph2(
                       fontStyle: FontStyle.italic,
                     ),
@@ -102,7 +102,7 @@ class ContactSection extends ConsumerWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "Email",
+                    tr(LocaleKeys.contactFormEmail),
                     style: CustomTextStyles.paragraph2(
                       fontStyle: FontStyle.italic,
                     ),
@@ -123,7 +123,7 @@ class ContactSection extends ConsumerWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "Message",
+                      tr(LocaleKeys.contactFormMessage),
                       style: CustomTextStyles.paragraph2(
                         fontStyle: FontStyle.italic,
                       ),
@@ -157,7 +157,7 @@ class ContactSection extends ConsumerWidget {
                             message: messageTextEditingController.text,
                           );
                     },
-                    title: "Send",
+                    title: tr(LocaleKeys.contactSend),
                   ),
                 ),
               ),
@@ -170,14 +170,14 @@ class ContactSection extends ConsumerWidget {
                   crossAxisAlignment: WrapCrossAlignment.center,
                   children: [
                     Text(
-                      "Alternatively, email me directly at",
+                      tr(LocaleKeys.contactDirectEmailGuidance),
                       style: CustomTextStyles.paragraph2(),
                       textAlign: TextAlign.center,
                     ),
                     TextButton(
                       onPressed: () => LaunchableUrls.emailMe.launch(),
                       child: Text(
-                        "jamie@jamiewalker.nz",
+                        tr(LocaleKeys.contactEmail),
                         style: CustomTextStyles.paragraph2(
                           color: CustomColors.secondaryColor.l2,
                         ),
@@ -282,7 +282,7 @@ class __ContactSendingDialogState extends ConsumerState<_ContactSendingDialog> {
                               .dismissResult();
                         },
                         child: Text(
-                          "Done",
+                          LocaleKeys.contactSendingDismiss,
                           style: CustomTextStyles.header4(
                             color: CustomColors.primaryColor.d1,
                           ),
@@ -301,9 +301,15 @@ class __ContactSendingDialogState extends ConsumerState<_ContactSendingDialog> {
   String? _titleForContactViewModelState(ContactViewModelState state) {
     return switch (state) {
       ContactViewModelState.idle => null,
-      ContactViewModelState.sending => "Sending",
-      ContactViewModelState.successfullySent => "Thanks!",
-      ContactViewModelState.error => "Oops!",
+      ContactViewModelState.sending => tr(
+          LocaleKeys.contactSending,
+        ),
+      ContactViewModelState.successfullySent => tr(
+          LocaleKeys.contactSentSuccessTitle,
+        ),
+      ContactViewModelState.error => tr(
+          LocaleKeys.contactSendingFailedTitle,
+        ),
     };
   }
 
@@ -311,10 +317,12 @@ class __ContactSendingDialogState extends ConsumerState<_ContactSendingDialog> {
     return switch (state) {
       ContactViewModelState.idle => null,
       ContactViewModelState.sending => null,
-      ContactViewModelState.successfullySent =>
-        "Your message has been sent. I'll get back to you within 2 business days.",
-      ContactViewModelState.error =>
-        "An error occurred trying to send your message, please try again.",
+      ContactViewModelState.successfullySent => tr(
+          LocaleKeys.contactSentSuccessDescription,
+        ),
+      ContactViewModelState.error => tr(
+          LocaleKeys.contactSendingFailedDescription,
+        ),
     };
   }
 }
