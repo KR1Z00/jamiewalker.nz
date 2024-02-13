@@ -29,7 +29,7 @@ class ContactSection extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final screenHeight = MediaQuery.of(context).size.height;
-    final height = max(minHeight, screenHeight * 0.8);
+    final height = max(minHeight, screenHeight * 0.65);
 
     ref.listen(
       contactViewModelProvider,
@@ -48,20 +48,26 @@ class ContactSection extends ConsumerWidget {
       },
     );
 
+    final guidanceTextStyle = context.layoutForMobile()
+        ? CustomTextStyles.paragraph3
+        : CustomTextStyles.paragraph2;
+    final double paddingBetweenElements =
+        context.layoutForMobile() ? 30 : ScreenSize.minimumPadding.toDouble();
+
     return context.wrappedForHorizontalPosition(
       child: Center(
         child: ConstrainedBox(
           constraints: BoxConstraints(
             maxWidth: 700,
-            maxHeight: height,
+            minHeight: height,
           ),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Padding(
                 padding: EdgeInsets.symmetric(
-                  vertical: ScreenSize.minimumPadding.toDouble(),
+                  vertical: paddingBetweenElements,
                 ),
                 child: Text(
                   tr(LocaleKeys.contactSectionTitleAlt),
@@ -71,11 +77,42 @@ class ContactSection extends ConsumerWidget {
               ),
               Padding(
                 padding: EdgeInsets.only(
-                  bottom: ScreenSize.minimumPadding.toDouble(),
+                  bottom: paddingBetweenElements,
                 ),
                 child: Text(
                   tr(LocaleKeys.contactPrompt),
-                  style: CustomTextStyles.paragraph2(),
+                  style: guidanceTextStyle(),
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.only(
+                  bottom: paddingBetweenElements,
+                ),
+                child: Wrap(
+                  alignment: WrapAlignment.start,
+                  crossAxisAlignment: WrapCrossAlignment.center,
+                  children: [
+                    Text(
+                      tr(LocaleKeys.contactDirectEmailGuidance),
+                      style: guidanceTextStyle(),
+                      textAlign: TextAlign.center,
+                    ),
+                    const SizedBox(
+                      width: 7,
+                    ),
+                    TextButton(
+                      onPressed: () => LaunchableUrls.emailMe.launch(),
+                      style: ButtonStyle(
+                        padding: MaterialStateProperty.all(EdgeInsets.zero),
+                      ),
+                      child: Text(
+                        tr(LocaleKeys.contactEmail),
+                        style: guidanceTextStyle(
+                          color: CustomColors.secondaryColor.l2,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
               Column(
@@ -83,7 +120,7 @@ class ContactSection extends ConsumerWidget {
                 children: [
                   Text(
                     tr(LocaleKeys.contactFormName),
-                    style: CustomTextStyles.paragraph2(
+                    style: guidanceTextStyle(
                       fontStyle: FontStyle.italic,
                     ),
                   ),
@@ -96,14 +133,14 @@ class ContactSection extends ConsumerWidget {
                 ],
               ),
               SizedBox(
-                height: ScreenSize.minimumPadding.toDouble(),
+                height: paddingBetweenElements,
               ),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
                     tr(LocaleKeys.contactFormEmail),
-                    style: CustomTextStyles.paragraph2(
+                    style: guidanceTextStyle(
                       fontStyle: FontStyle.italic,
                     ),
                   ),
@@ -116,33 +153,29 @@ class ContactSection extends ConsumerWidget {
                 ],
               ),
               SizedBox(
-                height: ScreenSize.minimumPadding.toDouble(),
+                height: paddingBetweenElements,
               ),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      tr(LocaleKeys.contactFormMessage),
-                      style: CustomTextStyles.paragraph2(
-                        fontStyle: FontStyle.italic,
-                      ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    tr(LocaleKeys.contactFormMessage),
+                    style: guidanceTextStyle(
+                      fontStyle: FontStyle.italic,
                     ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    Expanded(
-                      child: TextField(
-                        controller: messageTextEditingController,
-                        maxLines: null,
-                      ),
-                    ),
-                  ],
-                ),
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  TextField(
+                    controller: messageTextEditingController,
+                    maxLines: null,
+                  ),
+                ],
               ),
               Padding(
                 padding: EdgeInsets.symmetric(
-                  vertical: ScreenSize.minimumPadding.toDouble(),
+                  vertical: paddingBetweenElements,
                 ),
                 child: Center(
                   child: PrimaryTextButton(
@@ -159,31 +192,6 @@ class ContactSection extends ConsumerWidget {
                     },
                     title: tr(LocaleKeys.contactSend),
                   ),
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.only(
-                  bottom: ScreenSize.minimumPadding.toDouble(),
-                ),
-                child: Wrap(
-                  alignment: WrapAlignment.center,
-                  crossAxisAlignment: WrapCrossAlignment.center,
-                  children: [
-                    Text(
-                      tr(LocaleKeys.contactDirectEmailGuidance),
-                      style: CustomTextStyles.paragraph2(),
-                      textAlign: TextAlign.center,
-                    ),
-                    TextButton(
-                      onPressed: () => LaunchableUrls.emailMe.launch(),
-                      child: Text(
-                        tr(LocaleKeys.contactEmail),
-                        style: CustomTextStyles.paragraph2(
-                          color: CustomColors.secondaryColor.l2,
-                        ),
-                      ),
-                    ),
-                  ],
                 ),
               ),
             ],

@@ -16,13 +16,16 @@ class FooterSection extends StatelessWidget {
         padding: EdgeInsets.symmetric(
           vertical: ScreenSize.minimumPadding.toDouble(),
         ),
-        child: Row(
+        child: Wrap(
+          alignment: WrapAlignment.center,
+          crossAxisAlignment: WrapCrossAlignment.center,
+          spacing: 40,
+          runSpacing: 10,
           children: [
             Text(
               tr(LocaleKeys.copyright),
               style: CustomTextStyles.paragraph3(),
             ),
-            const Spacer(),
             TextButton(
               onPressed: () => LaunchableUrls.websiteRepository.launch(),
               child: Text(
