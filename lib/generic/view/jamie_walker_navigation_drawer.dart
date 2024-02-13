@@ -18,7 +18,7 @@ class JamieWalkerNavigationDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      backgroundColor: CustomColors.primaryColor.d1,
+      backgroundColor: CustomColors.primaryColor.d2,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 70, vertical: 25),
         child: Column(
