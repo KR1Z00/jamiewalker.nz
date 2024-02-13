@@ -83,36 +83,8 @@ class ContactSection extends ConsumerWidget {
                 tr(LocaleKeys.contactPrompt),
                 style: guidanceTextStyle(),
               ),
-              Padding(
-                padding: EdgeInsets.only(
-                  bottom: paddingBetweenElements,
-                ),
-                child: Wrap(
-                  alignment: WrapAlignment.start,
-                  crossAxisAlignment: WrapCrossAlignment.center,
-                  children: [
-                    Text(
-                      tr(LocaleKeys.contactDirectEmailGuidance),
-                      style: guidanceTextStyle(),
-                      textAlign: TextAlign.center,
-                    ),
-                    const SizedBox(
-                      width: 7,
-                    ),
-                    TextButton(
-                      onPressed: () => LaunchableUrls.emailMe.launch(),
-                      style: ButtonStyle(
-                        padding: MaterialStateProperty.all(EdgeInsets.zero),
-                      ),
-                      child: Text(
-                        tr(LocaleKeys.contactEmail),
-                        style: guidanceTextStyle(
-                          color: CustomColors.secondaryColor.l2,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
+              SizedBox(
+                height: paddingBetweenElements,
               ),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -191,6 +163,37 @@ class ContactSection extends ConsumerWidget {
                     },
                     title: tr(LocaleKeys.contactSend),
                   ),
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.only(
+                  bottom: paddingBetweenElements,
+                ),
+                child: Wrap(
+                  alignment: WrapAlignment.center,
+                  crossAxisAlignment: WrapCrossAlignment.center,
+                  children: [
+                    Text(
+                      tr(LocaleKeys.contactDirectEmailGuidance),
+                      style: guidanceTextStyle(),
+                      textAlign: TextAlign.center,
+                    ),
+                    const SizedBox(
+                      width: 7,
+                    ),
+                    TextButton(
+                      onPressed: () => LaunchableUrls.emailMe.launch(),
+                      style: ButtonStyle(
+                        padding: MaterialStateProperty.all(EdgeInsets.zero),
+                      ),
+                      child: Text(
+                        tr(LocaleKeys.contactEmail),
+                        style: guidanceTextStyle(
+                          color: CustomColors.secondaryColor.l2,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ],
