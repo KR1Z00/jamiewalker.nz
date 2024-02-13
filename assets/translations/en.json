@@ -1,0 +1,130 @@
+{
+    "fullName": "Jamie Walker",
+    "profession": "Mobile app developer",
+    "location": "Auckland, New Zealand",
+    "shortBio": "{} based in {}.",
+    "introductionQuestion": "Are you looking to craft a standout mobile app that not only enhances the efficiency of your business but also captivates your customers?",
+    "introducion": "I specialise in developing cutting-edge mobile applications, delivering top-notch solutions that not only meet but exceed client expectations, driving tangible business success.",
+    "homeSectionTitle": "Home",
+    "servicesSectionTitle": "Services",
+    "servicesSectionTitleAlt": "I can help you with",
+    "applicableSkills": "Applicable Skills",
+    "services": [
+        {
+            "key": "ios",
+            "serviceName": "iOS Development",
+            "serviceDescription": "Provide your customers with a refined user experience that integrates seamlessly across the Apple ecosystem of devices.\n\nCreate solutions that harness the powerful native frameworks of the iOS and macOS SDKs.",
+            "serviceSkills": "Swift, SwiftUI, UIKit, Combine, Objective-C(++), AVFoundation, Bluetooth LE, Photos, Firebase, Alamofire, CoreData"
+        },
+        {
+            "key": "flutter",
+            "serviceName": "Flutter Development",
+            "serviceDescription": "Build amazing apps that can easily be deployed on multiple platforms including iOS, Android, Mac, Windows, and Web.\n\nEnable rapid development and efficient maintenance to ensure that your users are provided with an excellent experience, no matter what type of device they use.",
+            "serviceSkills": "Dart, BLoC, Riverpod, Method Channels, Firebase, http, dio, ffi"
+        },
+        {
+            "key": "backends",
+            "serviceName": "Cloud Backends",
+            "serviceDescription": "Harnessing the power of Google Firebase, serve your mobile apps with the internet capabilities they require with ease.\n\nCreate backend functionality that works for all platforms, provides a high degree of security, and easily scales to suit the size of your user base.",
+            "serviceSkills": "Firestore, Cloud Functions, Cloud Messaging, Analytics, Cloud Storage"
+        }
+    ],
+    "testimonialsSectionTitle": "Testimonials",
+    "testimonialsSectionTitleAlt": "What others have said",
+    "testimonials": [
+        {
+            "name": "Kerri M., My Better Breathing Ltd",
+            "imageAsset": "assets/images/testimonials/kerri.jpeg",
+            "comment": "We have been fortunate enough to be able to engage Jamie to develop software for a mobile app  which supports a hardware product. Jamie has been efficient in scoping the project, defining the variables to achieve optimum functionality, sizing and estimating time required and knowledgeable in guiding some of the decisions needing to be made around scope and function of the project. It has been a very smooth, professional process with Jamie. He has been very easy to deal with. I would highly recommend Jamie and we will be using his services and skills again. Thanks Jamie!"
+        },
+        {
+            "name": "Thueno D.",
+            "imageAsset": "assets/images/testimonials/theuno.jpeg",
+            "comment": "Jamie was an absolute pleasure to work with. I can definitely recommend him. I will most definitely be using him again in the future."
+        }
+    ],
+    "portfolioSectionTitle": "Portfolio",
+    "portfolioSectionTitleAlt": "View my past work",
+    "portfolioItems": [
+        {
+            "itemId": "joby_one",
+            "name": "JOBY One",
+            "previewImageAsset": "assets/images/portfolio/joby_one/joby_one_preview.png",
+            "infoPages": [
+                {
+                    "contentType": "image",
+                    "imageAsset": "assets/images/portfolio/joby_one/pages/page_1_general.jpg",
+                    "description": "I was responsible for building the JOBY One app during my time as an employee at Syrp Lab. This app is Copyright © Videndum Media Solutions. Integrating with various JOBY motion control, microphone, and light devices over Bluetooth LE, users can enhance their smartphone videography to produce breathtaking content.\n\nCollaborating with designers and stakeholders, I developed this app for native iOS using Swift. Following the release of the iOS app, I was then tasked with rebuildinng the app using Flutter, to provide support on both iOS and Android."
+                },
+                {
+                    "contentType": "image",
+                    "imageAsset": "assets/images/portfolio/joby_one/pages/page_2_capture.jpg",
+                    "description": "Users can capture stunning moving videos and awe-inspiring moving timelapses using their JOBY motion control devices. The app provides a seamless experience for users to also further enhance their scene with their JOBY light and microphone devices."
+                },
+                {
+                    "contentType": "image",
+                    "imageAsset": "assets/images/portfolio/joby_one/pages/page_3_control.jpg",
+                    "description": "The app integrates with the JOBY Spin and Swing motion control devices to move the user's mobile phone during a capture. It provides advanced control functionality for the JOBY Wavo PRO Bluetooth microphone, to allow users to capture crisp audio. Finally, the JOBY Beamo light devices can be controlled with the app to spectacularly illuminate the user's scene."
+                }
+            ]
+        },
+        {
+            "itemId": "joby_motion",
+            "name": "JOBY Motion",
+            "previewImageAsset": "assets/images/portfolio/joby_motion/joby_motion_preview.png",
+            "infoPages": [
+                {
+                    "contentType": "video",
+                    "youtubeVideoId": "sGue7i7geuI",
+                    "description": "I was responsible for building the JOBY Motion app during my time as an employee at Syrp Lab. This app is Copyright © Videndum Media Solutions. Integrating with the JOBY Spin and Swing motion control devices over Bluetooth LE, users can capture amazing motion videos and timelapses.\n\nCollaborating with designers and stakeholders, I developed this app for native iOS using Swift. This app was eventually superseded by the JOBY One app, which integrates with even more JOBY devices."
+                },
+                {
+                    "contentType": "image",
+                    "imageAsset": "assets/images/portfolio/joby_motion/pages/page_2_spin.jpg",
+                    "description": "The JOBY Spin is a device that rotates the user's phone. Depending on the orientation of the Spin, the phone can be made to rotate either horizontally or vertically. Users can also combine two of the devices using a pan-tilt bracket, to rotate the phone along both the horizontal and vertical axes."
+                },
+                {
+                    "contentType": "image",
+                    "imageAsset": "assets/images/portfolio/joby_motion/pages/page_3_swing.jpg",
+                    "description": "The JOBY Swing is a device that moves the user's phone linearly. Users can make their videos move left-to-right, right-to-left, in and out, or any which way they may desire."
+                }
+            ]
+        },
+        {
+            "itemId": "my_flatmate",
+            "name": "MyFlatmate",
+            "previewImageAsset": "assets/images/portfolio/my_flatmate/my_flatmate_preview.png",
+            "infoPages": [
+                {
+                    "contentType": "video",
+                    "youtubeVideoId": "ZgEaVwbUGT4",
+                    "description": "MyFlatmate streamlines the process for people living in shared flats to organise their house sharing admin. Users can create a flat group in the app, invite their flatmates, and then organise their shared chores, payments, and shopping lists."
+                },
+                {
+                    "contentType": "image",
+                    "imageAsset": "assets/images/portfolio/my_flatmate/pages/page_2_screenshots.png",
+                    "description": "I developed the app for native iOS using Swift, integrating with Google Firebase as the backend to manage the authentication, database, and push notifications."
+                }
+            ]
+        }
+    ],
+    "blogSectionTitle": "Blog",
+    "contactMe": "Contact Me",
+    "contactSectionTitle": "Contact",
+    "contactSectionTitleAlt": "Get in Contact",
+    "contactPrompt": "Ready to bring your mobile app needs to life? Get in contact below to get the ball rolling. I look forward to delivering a solution for you.",
+    "contactFormName": "Name",
+    "contactFormEmail": "Email",
+    "contactFormMessage": "Message",
+    "contactSend": "Send",
+    "contactSending": "Sending",
+    "contactSentSuccessTitle": "Thanks!",
+    "contactSentSuccessDescription": "Your message has been sent. I'll get back to you within 2 business days.",
+    "contactSendingFailedTitle": "Oops!",
+    "contactSendingFailedDescription": "An error occurred trying to send your message, please try again.",
+    "contactSendingDismiss": "Done",
+    "contactDirectEmailGuidance": "Alternatively, email me directly at",
+    "contactEmail": "jamie@jamiewalker.nz",
+    "copyright": "Copyright © Jamie Walker 2024",
+    "viewSourceCode": "See the source code for this website!"
+}
