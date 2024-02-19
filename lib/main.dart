@@ -35,7 +35,7 @@ class MyApp extends StatelessWidget {
     return ProviderScope(
       child: MaterialApp.router(
         title: 'Jamie Walker | Mobile App Developer',
-        theme: customThemeData,
+        theme: customThemeData(context),
         routerConfig: jamieWalkerRouterConfig,
         localizationsDelegates: context.localizationDelegates,
         supportedLocales: context.supportedLocales,

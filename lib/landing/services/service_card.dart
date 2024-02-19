@@ -20,7 +20,7 @@ class _ServiceCard extends StatelessWidget {
     if (serviceStrings == null) {
       return Text(
         "ERROR",
-        style: CustomTextStyles.header2(),
+        style: context.appTextStyles().sectionHeaderTextStyle(context),
       );
     }
 
@@ -61,7 +61,9 @@ class _ServiceCard extends StatelessWidget {
                 ),
                 Text(
                   title,
-                  style: CustomTextStyles.header3(),
+                  style: context.textTheme().headlineMedium?.copyWith(
+                        color: CustomColors.secondaryColor.l1,
+                      ),
                   textAlign: TextAlign.center,
                 ),
                 const SizedBox(
@@ -69,7 +71,7 @@ class _ServiceCard extends StatelessWidget {
                 ),
                 Text(
                   skills,
-                  style: CustomTextStyles.paragraph3(),
+                  style: context.textTheme().bodyMedium,
                   textAlign: TextAlign.center,
                 ),
               ],

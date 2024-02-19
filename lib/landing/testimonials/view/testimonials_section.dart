@@ -8,7 +8,7 @@ import 'package:jamie_walker_website/app/extensions/screen_size.dart';
 import 'package:jamie_walker_website/app/extensions/standard_box_shadow.dart';
 import 'package:jamie_walker_website/app/localization/generated/locale_keys.g.dart';
 import 'package:jamie_walker_website/app/theme/custom_colors.dart';
-import 'package:jamie_walker_website/app/theme/custom_text_styles.dart';
+import 'package:jamie_walker_website/app/theme/text_theme.dart';
 import 'package:jamie_walker_website/landing/testimonials/domain/testimonials_section_view_model.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -57,9 +57,6 @@ class _TestimonialsSectionState extends ConsumerState<TestimonialsSection> {
     return context.wrappedForHorizontalPosition(
       child: LayoutBuilder(
         builder: (context, constraints) {
-          final commentTextStyle = context.layoutForMobile()
-              ? CustomTextStyles.paragraph3
-              : CustomTextStyles.paragraph2;
           final int commentMaxLines = context.layoutForMobile() ? 12 : 5;
           final double imageSize = context.layoutForMobile() ? 200 : 300;
           final double commentHeight = context.layoutForMobile() ? 200 : 100;
@@ -81,7 +78,9 @@ class _TestimonialsSectionState extends ConsumerState<TestimonialsSection> {
                           fit: BoxFit.scaleDown,
                           child: Text(
                             tr(LocaleKeys.testimonialsSectionTitleAlt),
-                            style: CustomTextStyles.header2(),
+                            style: context
+                                .appTextStyles()
+                                .sectionHeaderTextStyle(context),
                             textAlign: TextAlign.center,
                             maxLines: 1,
                           ),
@@ -170,7 +169,9 @@ class _TestimonialsSectionState extends ConsumerState<TestimonialsSection> {
                               fit: BoxFit.scaleDown,
                               child: Text(
                                 testimonial.name,
-                                style: CustomTextStyles.paragraph1(),
+                                style: context
+                                    .appTextStyles()
+                                    .bodyTextStyle(context),
                                 maxLines: 1,
                               ),
                             ),
@@ -183,9 +184,9 @@ class _TestimonialsSectionState extends ConsumerState<TestimonialsSection> {
                             opacity: animationController.value,
                             child: AutoSizeText(
                               "\"${testimonial.comment}\"",
-                              style: commentTextStyle(
-                                fontStyle: FontStyle.italic,
-                              ),
+                              style: context
+                                  .appTextStyles()
+                                  .bodyTextStyle(context),
                               textAlign: TextAlign.center,
                               minFontSize: 10,
                               maxLines: commentMaxLines,

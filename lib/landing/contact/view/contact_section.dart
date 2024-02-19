@@ -8,7 +8,7 @@ import 'package:jamie_walker_website/app/constants/launchable_urls.dart';
 import 'package:jamie_walker_website/app/extensions/screen_size.dart';
 import 'package:jamie_walker_website/app/localization/generated/locale_keys.g.dart';
 import 'package:jamie_walker_website/app/theme/custom_colors.dart';
-import 'package:jamie_walker_website/app/theme/custom_text_styles.dart';
+import 'package:jamie_walker_website/app/theme/text_theme.dart';
 import 'package:jamie_walker_website/generic/view/primary_text_button.dart';
 import 'package:jamie_walker_website/landing/contact/domain/contact_view_model.dart';
 
@@ -48,9 +48,6 @@ class ContactSection extends ConsumerWidget {
       },
     );
 
-    final guidanceTextStyle = context.layoutForMobile()
-        ? CustomTextStyles.paragraph3
-        : CustomTextStyles.paragraph2;
     final double paddingBetweenElements =
         context.layoutForMobile() ? 30 : ScreenSize.minimumPadding.toDouble();
 
@@ -73,7 +70,8 @@ class ContactSection extends ConsumerWidget {
                   fit: BoxFit.scaleDown,
                   child: Text(
                     tr(LocaleKeys.contactSectionTitleAlt),
-                    style: CustomTextStyles.header2(),
+                    style:
+                        context.appTextStyles().sectionHeaderTextStyle(context),
                     textAlign: TextAlign.center,
                     maxLines: 1,
                   ),
@@ -81,7 +79,7 @@ class ContactSection extends ConsumerWidget {
               ),
               Text(
                 tr(LocaleKeys.contactPrompt),
-                style: guidanceTextStyle(),
+                style: context.appTextStyles().bodyTextStyle(context),
               ),
               SizedBox(
                 height: paddingBetweenElements,
@@ -91,9 +89,7 @@ class ContactSection extends ConsumerWidget {
                 children: [
                   Text(
                     tr(LocaleKeys.contactFormName),
-                    style: guidanceTextStyle(
-                      fontStyle: FontStyle.italic,
-                    ),
+                    style: context.textTheme().labelMedium,
                   ),
                   const SizedBox(
                     height: 10,
@@ -111,9 +107,7 @@ class ContactSection extends ConsumerWidget {
                 children: [
                   Text(
                     tr(LocaleKeys.contactFormEmail),
-                    style: guidanceTextStyle(
-                      fontStyle: FontStyle.italic,
-                    ),
+                    style: context.textTheme().labelMedium,
                   ),
                   const SizedBox(
                     height: 10,
@@ -131,9 +125,7 @@ class ContactSection extends ConsumerWidget {
                 children: [
                   Text(
                     tr(LocaleKeys.contactFormMessage),
-                    style: guidanceTextStyle(
-                      fontStyle: FontStyle.italic,
-                    ),
+                    style: context.textTheme().labelMedium,
                   ),
                   const SizedBox(
                     height: 10,
@@ -175,7 +167,7 @@ class ContactSection extends ConsumerWidget {
                   children: [
                     Text(
                       tr(LocaleKeys.contactDirectEmailGuidance),
-                      style: guidanceTextStyle(),
+                      style: context.appTextStyles().bodyTextStyle(context),
                       textAlign: TextAlign.center,
                     ),
                     const SizedBox(
@@ -188,9 +180,7 @@ class ContactSection extends ConsumerWidget {
                       ),
                       child: Text(
                         tr(LocaleKeys.contactEmail),
-                        style: guidanceTextStyle(
-                          color: CustomColors.secondaryColor.l2,
-                        ),
+                        style: context.appTextStyles().bodyTextStyle(context),
                       ),
                     ),
                   ],
@@ -248,7 +238,7 @@ class __ContactSendingDialogState extends ConsumerState<_ContactSendingDialog> {
           widthFactor: context.layoutForMobile() ? 0.8 : 0.5,
           child: DecoratedBox(
             decoration: BoxDecoration(
-              color: CustomColors.primaryColor.l2,
+              color: CustomColors.primaryColor.d2,
               borderRadius: BorderRadius.circular(10),
             ),
             child: Padding(
@@ -261,9 +251,9 @@ class __ContactSendingDialogState extends ConsumerState<_ContactSendingDialog> {
                   if (title != null)
                     Text(
                       title,
-                      style: CustomTextStyles.header3(
-                        color: CustomColors.primaryColor.d1,
-                      ),
+                      style: context.textTheme().displaySmall?.copyWith(
+                            color: CustomColors.secondaryColor.l1,
+                          ),
                       textAlign: TextAlign.center,
                     ),
                   if (description != null)
@@ -271,9 +261,7 @@ class __ContactSendingDialogState extends ConsumerState<_ContactSendingDialog> {
                       padding: const EdgeInsets.only(top: 20),
                       child: Text(
                         description,
-                        style: CustomTextStyles.paragraph2(
-                          color: Colors.black,
-                        ),
+                        style: context.textTheme().bodySmall,
                         textAlign: TextAlign.center,
                       ),
                     ),
@@ -293,9 +281,7 @@ class __ContactSendingDialogState extends ConsumerState<_ContactSendingDialog> {
                         },
                         child: Text(
                           tr(LocaleKeys.contactSendingDismiss),
-                          style: CustomTextStyles.header4(
-                            color: CustomColors.primaryColor.d1,
-                          ),
+                          style: context.textTheme().labelMedium,
                         ),
                       ),
                     ),
