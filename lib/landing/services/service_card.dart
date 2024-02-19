@@ -74,6 +74,7 @@ class _ServiceCard extends StatelessWidget {
                   style: context.textTheme().bodyMedium,
                   textAlign: TextAlign.center,
                 ),
+                Spacer(),
               ],
             ),
           ),
