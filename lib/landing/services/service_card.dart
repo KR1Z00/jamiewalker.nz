@@ -31,7 +31,7 @@ class _ServiceCard extends StatelessWidget {
 
     return Container(
       decoration: BoxDecoration(
-        color: CustomColors.primaryColor.d1,
+        color: context.colorScheme().surface,
         borderRadius: BorderRadius.circular(10),
         boxShadow: [
           StandardBoxShadows.regular(),
@@ -62,7 +62,7 @@ class _ServiceCard extends StatelessWidget {
                 Text(
                   title,
                   style: context.textTheme().headlineMedium?.copyWith(
-                        color: CustomColors.secondaryColor.l1,
+                        color: context.colorScheme().secondary,
                       ),
                   textAlign: TextAlign.center,
                 ),
@@ -71,7 +71,9 @@ class _ServiceCard extends StatelessWidget {
                 ),
                 Text(
                   skills,
-                  style: context.textTheme().bodyMedium,
+                  style: context.textTheme().bodyMedium?.copyWith(
+                        color: context.colorScheme().onBackground,
+                      ),
                   textAlign: TextAlign.center,
                 ),
                 Spacer(),

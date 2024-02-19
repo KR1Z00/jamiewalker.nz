@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:jamie_walker_website/app/extensions/screen_size.dart';
-import 'package:jamie_walker_website/app/theme/custom_colors.dart';
+import 'package:jamie_walker_website/app/theme/custom_theme.dart';
 
 TextStyle _titleFontFamily = GoogleFonts.nunito();
 TextStyle _bodyFontFamily = GoogleFonts.openSans();
@@ -75,7 +75,7 @@ class AppTextStyles {
 
   TextStyle sectionHeaderTextStyle(BuildContext context) {
     return _textTheme.displayMedium!.copyWith(
-      color: CustomColors.secondaryColor.l1,
+      color: context.colorScheme().secondary,
     );
   }
 
@@ -84,7 +84,7 @@ class AppTextStyles {
             ? _textTheme.bodySmall
             : _textTheme.bodyLarge)!
         .copyWith(
-      color: Colors.white,
+      color: context.colorScheme().onBackground,
     );
   }
 }

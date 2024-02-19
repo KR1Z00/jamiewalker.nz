@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jamie_walker_website/app/extensions/standard_box_shadow.dart';
-import 'package:jamie_walker_website/app/theme/custom_colors.dart';
+import 'package:jamie_walker_website/app/theme/custom_theme.dart';
 import 'package:jamie_walker_website/app/theme/text_theme.dart';
 import 'package:jamie_walker_website/landing/portfolio/data/portfolio_item_model.dart';
 
@@ -78,7 +78,7 @@ class _PortfolioItemCardState extends State<PortfolioItemCard> {
               child: Text(
                 widget.model.name,
                 style: context.textTheme().headlineMedium?.copyWith(
-                      color: CustomColors.secondaryColor.l1,
+                      color: context.colorScheme().secondary,
                     ),
               ),
             ),

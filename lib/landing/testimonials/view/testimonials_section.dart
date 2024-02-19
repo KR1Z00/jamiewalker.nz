@@ -7,7 +7,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:jamie_walker_website/app/extensions/screen_size.dart';
 import 'package:jamie_walker_website/app/extensions/standard_box_shadow.dart';
 import 'package:jamie_walker_website/app/localization/generated/locale_keys.g.dart';
-import 'package:jamie_walker_website/app/theme/custom_colors.dart';
+import 'package:jamie_walker_website/app/theme/custom_theme.dart';
 import 'package:jamie_walker_website/app/theme/text_theme.dart';
 import 'package:jamie_walker_website/landing/testimonials/domain/testimonials_section_view_model.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -102,7 +102,7 @@ class _TestimonialsSectionState extends ConsumerState<TestimonialsSection> {
                                       .selectPreviousTestimonial,
                                   icon: FaIcon(
                                     FontAwesomeIcons.chevronLeft,
-                                    color: CustomColors.secondaryColor.l1,
+                                    color: context.colorScheme().secondary,
                                   ),
                                 ),
                               ),
@@ -122,7 +122,7 @@ class _TestimonialsSectionState extends ConsumerState<TestimonialsSection> {
                                           ],
                                           border: Border.all(
                                             color:
-                                                CustomColors.secondaryColor.l1,
+                                                context.colorScheme().secondary,
                                             width: 2,
                                           ),
                                           borderRadius: BorderRadius.circular(
@@ -152,10 +152,8 @@ class _TestimonialsSectionState extends ConsumerState<TestimonialsSection> {
                                       .read(testimonialsSectionViewModelProvider
                                           .notifier)
                                       .selectNextTestimonial,
-                                  icon: FaIcon(
-                                    FontAwesomeIcons.chevronRight,
-                                    color: CustomColors.secondaryColor.l1,
-                                  ),
+                                  icon: FaIcon(FontAwesomeIcons.chevronRight,
+                                      color: context.colorScheme().secondary),
                                 ),
                               ),
                             ],
@@ -202,9 +200,11 @@ class _TestimonialsSectionState extends ConsumerState<TestimonialsSection> {
                             effect: WormEffect(
                               dotWidth: 8,
                               dotHeight: 8,
-                              dotColor: CustomColors.secondaryColor.l1
+                              dotColor: context
+                                  .colorScheme()
+                                  .secondary
                                   .withOpacity(0.3),
-                              activeDotColor: CustomColors.secondaryColor.l1,
+                              activeDotColor: context.colorScheme().secondary,
                             ),
                           ),
                         ),

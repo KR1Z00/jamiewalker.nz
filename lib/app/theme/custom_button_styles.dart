@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jamie_walker_website/app/extensions/screen_size.dart';
-import 'package:jamie_walker_website/app/theme/custom_colors.dart';
+import 'package:jamie_walker_website/app/theme/custom_theme.dart';
 import 'package:jamie_walker_website/app/theme/text_theme.dart';
 
 extension CustomButtonStyles on ButtonStyle {
@@ -15,9 +15,9 @@ extension CustomButtonStyles on ButtonStyle {
       foregroundColor: MaterialStateProperty.resolveWith(
         (states) {
           if (isCurrentPage || states.contains(MaterialState.hovered)) {
-            return CustomColors.secondaryColor.l1;
+            return context.colorScheme().secondary;
           }
-          return Colors.white;
+          return context.colorScheme().onBackground;
         },
       ),
       overlayColor: MaterialStateProperty.all(
@@ -37,10 +37,10 @@ extension CustomButtonStyles on ButtonStyle {
         layoutForMobile ? textTheme.labelMedium : textTheme.labelLarge;
     return ButtonStyle(
       backgroundColor: MaterialStateProperty.all(
-        CustomColors.secondaryColor.l1,
+        context.colorScheme().secondary,
       ),
       foregroundColor: MaterialStateProperty.all(
-        CustomColors.primaryColor.d2,
+        context.colorScheme().onSecondary,
       ),
       padding: MaterialStateProperty.all(
         const EdgeInsets.symmetric(
@@ -53,13 +53,13 @@ extension CustomButtonStyles on ButtonStyle {
       ),
       textStyle: MaterialStateProperty.all(
         textStyle?.copyWith(
-          color: CustomColors.primaryColor.d2,
+          color: context.colorScheme().secondary,
         ),
       ),
     );
   }
 
-  static ButtonStyle secondaryIconButton() {
+  static ButtonStyle secondaryIconButton(BuildContext context) {
     return ButtonStyle(
       backgroundColor: MaterialStateProperty.all(
         Colors.transparent,
@@ -71,7 +71,7 @@ extension CustomButtonStyles on ButtonStyle {
         const EdgeInsets.all(0),
       ),
       overlayColor: MaterialStateProperty.all(
-        CustomColors.secondaryColor.l1.withOpacity(0.5),
+        context.colorScheme().secondary.withOpacity(0.5),
       ),
     );
   }

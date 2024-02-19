@@ -7,7 +7,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:jamie_walker_website/app/constants/launchable_urls.dart';
 import 'package:jamie_walker_website/app/extensions/screen_size.dart';
 import 'package:jamie_walker_website/app/localization/generated/locale_keys.g.dart';
-import 'package:jamie_walker_website/app/theme/custom_colors.dart';
+import 'package:jamie_walker_website/app/theme/custom_theme.dart';
 import 'package:jamie_walker_website/app/theme/text_theme.dart';
 import 'package:jamie_walker_website/generic/view/primary_text_button.dart';
 import 'package:jamie_walker_website/landing/contact/domain/contact_view_model.dart';
@@ -238,7 +238,7 @@ class __ContactSendingDialogState extends ConsumerState<_ContactSendingDialog> {
           widthFactor: context.layoutForMobile() ? 0.8 : 0.5,
           child: DecoratedBox(
             decoration: BoxDecoration(
-              color: CustomColors.primaryColor.d2,
+              color: context.colorScheme().primaryContainer,
               borderRadius: BorderRadius.circular(10),
             ),
             child: Padding(
@@ -252,7 +252,7 @@ class __ContactSendingDialogState extends ConsumerState<_ContactSendingDialog> {
                     Text(
                       title,
                       style: context.textTheme().displaySmall?.copyWith(
-                            color: CustomColors.secondaryColor.l1,
+                            color: context.colorScheme().onPrimaryContainer,
                           ),
                       textAlign: TextAlign.center,
                     ),
@@ -261,14 +261,21 @@ class __ContactSendingDialogState extends ConsumerState<_ContactSendingDialog> {
                       padding: const EdgeInsets.only(top: 20),
                       child: Text(
                         description,
-                        style: context.textTheme().bodySmall,
+                        style: context
+                            .appTextStyles()
+                            .bodyTextStyle(context)
+                            .copyWith(
+                              color: context.colorScheme().onPrimaryContainer,
+                            ),
                         textAlign: TextAlign.center,
                       ),
                     ),
                   if (showProgressIndicator)
-                    const Padding(
-                      padding: EdgeInsets.only(top: 20),
-                      child: CircularProgressIndicator(),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 20),
+                      child: CircularProgressIndicator(
+                        color: context.colorScheme().onPrimaryContainer,
+                      ),
                     ),
                   if (showDismissButton)
                     Padding(
@@ -281,7 +288,9 @@ class __ContactSendingDialogState extends ConsumerState<_ContactSendingDialog> {
                         },
                         child: Text(
                           tr(LocaleKeys.contactSendingDismiss),
-                          style: context.textTheme().labelMedium,
+                          style: context.textTheme().labelMedium?.copyWith(
+                                color: context.colorScheme().onPrimaryContainer,
+                              ),
                         ),
                       ),
                     ),
