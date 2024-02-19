@@ -67,6 +67,7 @@ class _LandingPageState extends State<LandingPage> {
         },
       ),
       backgroundColor: context.colorScheme().background,
+      extendBodyBehindAppBar: true,
       body: SelectionArea(
         child: ListView.separated(
           controller: _scrollController,
