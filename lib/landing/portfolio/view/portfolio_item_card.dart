@@ -35,25 +35,25 @@ class _PortfolioItemCardState extends State<PortfolioItemCard> {
       }),
       child: GestureDetector(
         onTap: widget.onTap,
-        child: ClipRRect(
-          borderRadius: BorderRadius.circular(10),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              DecoratedBox(
-                decoration: BoxDecoration(
-                  boxShadow: [
-                    StandardBoxShadows.regular(),
-                  ],
-                ),
-                child: AspectRatio(
-                  aspectRatio: 4 / 3,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            DecoratedBox(
+              decoration: BoxDecoration(
+                boxShadow: [
+                  StandardBoxShadows.regular(),
+                ],
+              ),
+              child: AspectRatio(
+                aspectRatio: 4 / 3,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(10),
                   child: Stack(
                     fit: StackFit.expand,
                     children: [
                       FittedBox(
-                        fit: BoxFit.contain,
+                        fit: BoxFit.cover,
                         clipBehavior: Clip.hardEdge,
                         child: Image.asset(
                           widget.model.previewImageAsset,
@@ -70,19 +70,19 @@ class _PortfolioItemCardState extends State<PortfolioItemCard> {
                   ),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.only(
-                  top: 20,
-                ),
-                child: Text(
-                  widget.model.name,
-                  style: context.textTheme().headlineMedium?.copyWith(
-                        color: CustomColors.secondaryColor.l1,
-                      ),
-                ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(
+                top: 20,
               ),
-            ],
-          ),
+              child: Text(
+                widget.model.name,
+                style: context.textTheme().headlineMedium?.copyWith(
+                      color: CustomColors.secondaryColor.l1,
+                    ),
+              ),
+            ),
+          ],
         ),
       ),
     );
