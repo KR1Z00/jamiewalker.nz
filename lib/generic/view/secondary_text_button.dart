@@ -3,11 +3,11 @@ import 'package:jamie_walker_website/app/extensions/screen_size.dart';
 import 'package:jamie_walker_website/app/theme/custom_theme.dart';
 import 'package:jamie_walker_website/app/theme/text_theme.dart';
 
-class PrimaryTextButton extends StatelessWidget {
+class SecondaryTextButton extends StatelessWidget {
   final String title;
   final void Function() onPressed;
 
-  const PrimaryTextButton({
+  const SecondaryTextButton({
     super.key,
     required this.title,
     required this.onPressed,
@@ -27,10 +27,10 @@ class PrimaryTextButton extends StatelessWidget {
         onPressed: onPressed,
         style: ButtonStyle(
           backgroundColor: MaterialStateProperty.all(
-            context.colorScheme().secondary,
+            context.colorScheme().background,
           ),
           foregroundColor: MaterialStateProperty.all(
-            context.colorScheme().onSecondary,
+            context.colorScheme().secondary,
           ),
           padding: MaterialStateProperty.all(
             const EdgeInsets.symmetric(
@@ -43,10 +43,19 @@ class PrimaryTextButton extends StatelessWidget {
               borderRadius: BorderRadius.circular(5),
             ),
           ),
-          overlayColor: MaterialStateProperty.all(
-            Colors.white.withOpacity(0.5),
+          side: MaterialStateProperty.all(
+            BorderSide(
+              color: context.colorScheme().secondary,
+            ),
           ),
-          textStyle: MaterialStateProperty.all(textStyle),
+          overlayColor: MaterialStateProperty.all(
+            context.colorScheme().secondary.withOpacity(0.5),
+          ),
+          textStyle: MaterialStateProperty.all(
+            textStyle?.copyWith(
+              color: context.colorScheme().onBackground,
+            ),
+          ),
         ),
         child: Text(title),
       ),

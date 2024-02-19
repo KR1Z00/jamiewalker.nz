@@ -102,6 +102,9 @@ class _LandingPageState extends State<LandingPage> {
                     onContactMePressed: () => _scrollToSection(
                       LandingPageSection.contact,
                     ),
+                    onViewPortfolioPressed: () => _scrollToSection(
+                      LandingPageSection.portfolio,
+                    ),
                   ),
                 LandingPageSection.services => ServicesSection(
                     key: _sectionKeys[LandingPageSection.services],
