@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:jamie_walker_website/app/extensions/screen_size.dart';
-import 'package:jamie_walker_website/app/extensions/standard_box_shadow.dart';
 import 'package:jamie_walker_website/app/theme/custom_colors.dart';
-import 'package:jamie_walker_website/app/theme/custom_text_styles.dart';
+import 'package:jamie_walker_website/app/theme/text_theme.dart';
 
 extension CustomButtonStyles on ButtonStyle {
-  static ButtonStyle navigationButton({required bool isCurrentPage}) {
+  static ButtonStyle navigationButton(
+    BuildContext context, {
+    required bool isCurrentPage,
+  }) {
     return ButtonStyle(
       backgroundColor: MaterialStateProperty.all(
         Colors.transparent,
@@ -22,21 +24,17 @@ extension CustomButtonStyles on ButtonStyle {
         Colors.transparent,
       ),
       textStyle: MaterialStateProperty.all(
-        TextStyle(
-          fontSize: 20,
-          fontWeight: isCurrentPage ? FontWeight.w600 : FontWeight.w300,
-          shadows: [
-            StandardBoxShadows.light(),
-          ],
-        ),
+        context.textTheme().titleLarge,
       ),
     );
   }
 
   static ButtonStyle primaryActionButton(BuildContext context) {
     final layoutForMobile = context.layoutForMobile();
+    final textTheme = context.textTheme();
+
     final textStyle =
-        layoutForMobile ? CustomTextStyles.header4 : CustomTextStyles.header3;
+        layoutForMobile ? textTheme.labelMedium : textTheme.labelLarge;
     return ButtonStyle(
       backgroundColor: MaterialStateProperty.all(
         CustomColors.secondaryColor.l1,
@@ -54,7 +52,7 @@ extension CustomButtonStyles on ButtonStyle {
         Colors.white.withOpacity(0.5),
       ),
       textStyle: MaterialStateProperty.all(
-        textStyle(
+        textStyle?.copyWith(
           color: CustomColors.primaryColor.d2,
         ),
       ),

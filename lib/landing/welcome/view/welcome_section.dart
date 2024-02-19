@@ -8,7 +8,7 @@ import 'package:jamie_walker_website/app/extensions/standard_box_shadow.dart';
 import 'package:jamie_walker_website/app/localization/generated/locale_keys.g.dart';
 import 'package:jamie_walker_website/app/theme/custom_button_styles.dart';
 import 'package:jamie_walker_website/app/theme/custom_colors.dart';
-import 'package:jamie_walker_website/app/theme/custom_text_styles.dart';
+import 'package:jamie_walker_website/app/theme/text_theme.dart';
 import 'package:jamie_walker_website/generic/view/primary_text_button.dart';
 
 class WelcomeSection extends StatelessWidget {
@@ -77,27 +77,28 @@ class _WelcomeSectionDesktop extends StatelessWidget {
                 children: [
                   Text(
                     tr(LocaleKeys.fullName),
-                    style: CustomTextStyles.header1(),
+                    style: context.textTheme().displayLarge?.copyWith(
+                          color: CustomColors.secondaryColor.l1,
+                        ),
                   ),
                   Text(
-                    tr(LocaleKeys.profession),
-                    style: CustomTextStyles.paragraph1(
-                      color: CustomColors.secondaryColor.l1,
-                      fontStyle: FontStyle.italic,
-                    ),
+                    tr(LocaleKeys.profession).toUpperCase(),
+                    style: context.textTheme().displaySmall?.copyWith(
+                          color: CustomColors.secondaryColor.l1,
+                        ),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(top: 30),
                     child: Text(
                       tr(LocaleKeys.introductionQuestion),
-                      style: CustomTextStyles.paragraph2(),
+                      style: context.appTextStyles().bodyTextStyle(context),
                     ),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(top: 20),
                     child: Text(
                       tr(LocaleKeys.introducion),
-                      style: CustomTextStyles.paragraph2(),
+                      style: context.appTextStyles().bodyTextStyle(context),
                     ),
                   ),
                   Padding(
@@ -212,17 +213,16 @@ class _WelcomeSectionMobile extends StatelessWidget {
             fit: BoxFit.scaleDown,
             child: Text(
               tr(LocaleKeys.fullName),
-              style: CustomTextStyles.header1(),
+              style: context.textTheme().displayLarge,
               textAlign: TextAlign.center,
               maxLines: 1,
             ),
           ),
           Text(
             tr(LocaleKeys.profession),
-            style: CustomTextStyles.paragraph1(
-              fontStyle: FontStyle.italic,
-              color: CustomColors.secondaryColor.l1,
-            ),
+            style: context.textTheme().headlineSmall?.copyWith(
+                  color: CustomColors.secondaryColor.l1,
+                ),
             textAlign: TextAlign.center,
           ),
           Padding(
@@ -272,13 +272,13 @@ class _WelcomeSectionMobile extends StatelessWidget {
           ),
           Text(
             tr(LocaleKeys.introductionQuestion),
-            style: CustomTextStyles.paragraph3(),
+            style: context.textTheme().bodySmall,
           ),
           Padding(
             padding: const EdgeInsets.only(top: 20),
             child: Text(
               tr(LocaleKeys.introducion),
-              style: CustomTextStyles.paragraph3(),
+              style: context.textTheme().bodySmall,
             ),
           ),
         ],

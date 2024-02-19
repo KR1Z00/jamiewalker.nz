@@ -4,7 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:jamie_walker_website/app/extensions/screen_size.dart';
 import 'package:jamie_walker_website/app/theme/custom_colors.dart';
-import 'package:jamie_walker_website/app/theme/custom_text_styles.dart';
+import 'package:jamie_walker_website/app/theme/text_theme.dart';
 import 'package:jamie_walker_website/generic/view/blurred_fitted_image.dart';
 import 'package:jamie_walker_website/landing/portfolio/data/portfolio_item_model.dart';
 import 'package:jamie_walker_website/landing/portfolio/domain/portfolio_item_info_view_model.dart';
@@ -23,9 +23,7 @@ class PortfolioInfoDialog extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(portfolioItemInfoViewModelProvider(model));
     final currentPage = state.pages[state.currentPageIndex];
-    final descriptionTextStyle = context.layoutForMobile()
-        ? CustomTextStyles.paragraph3
-        : CustomTextStyles.paragraph2;
+    final descriptionTextStyle = context.appTextStyles().bodyTextStyle(context);
     final scrollController = useScrollController();
 
     return Scaffold(
@@ -55,9 +53,7 @@ class PortfolioInfoDialog extends HookConsumerWidget {
                           children: [
                             Text(
                               model.name,
-                              style: CustomTextStyles.header3(
-                                color: Colors.black,
-                              ),
+                              style: context.textTheme().displaySmall,
                             ),
                             const Spacer(),
                             IconButton(
@@ -104,9 +100,7 @@ class PortfolioInfoDialog extends HookConsumerWidget {
                                   ),
                                   child: Text(
                                     currentPage.description,
-                                    style: descriptionTextStyle(
-                                      color: Colors.black,
-                                    ),
+                                    style: descriptionTextStyle,
                                   ),
                                 ),
                               ),
