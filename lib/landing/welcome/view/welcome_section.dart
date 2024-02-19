@@ -21,19 +21,17 @@ class WelcomeSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return context.wrappedForHorizontalPosition(
-      child: context.layoutForMobile()
-          ? _WelcomeSectionMobile(
-              onContactMePressed: onContactMePressed,
-              onGithubPressed: _onGithubPressed,
-              onLinkedInPressed: _onLinkedInPressed,
-            )
-          : _WelcomeSectionDesktop(
-              onContactMePressed: onContactMePressed,
-              onGithubPressed: _onGithubPressed,
-              onLinkedInPressed: _onLinkedInPressed,
-            ),
-    );
+    return context.layoutForMobile()
+        ? _WelcomeSectionMobile(
+            onContactMePressed: onContactMePressed,
+            onGithubPressed: _onGithubPressed,
+            onLinkedInPressed: _onLinkedInPressed,
+          )
+        : _WelcomeSectionDesktop(
+            onContactMePressed: onContactMePressed,
+            onGithubPressed: _onGithubPressed,
+            onLinkedInPressed: _onLinkedInPressed,
+          );
   }
 
   void _onGithubPressed() {
@@ -46,9 +44,6 @@ class WelcomeSection extends StatelessWidget {
 }
 
 class _WelcomeSectionDesktop extends StatelessWidget {
-  static const double minHeight = 700;
-  static const double maxHeight = 1000;
-
   final void Function() onContactMePressed;
   final void Function() onGithubPressed;
   final void Function() onLinkedInPressed;
@@ -61,109 +56,130 @@ class _WelcomeSectionDesktop extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final screenHeight = MediaQuery.of(context).size.height;
-    final sectionHeight = max(min(screenHeight - 300, maxHeight), minHeight);
-
-    return SizedBox(
-      height: sectionHeight,
-      child: Center(
-        child: Row(
-          mainAxisSize: MainAxisSize.max,
-          children: [
-            Expanded(
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    tr(LocaleKeys.fullName),
-                    style: context.textTheme().displayLarge?.copyWith(
-                          color: context.colorScheme().secondary,
-                        ),
-                  ),
-                  Text(
-                    tr(LocaleKeys.profession).toUpperCase(),
-                    style: context.textTheme().displaySmall?.copyWith(
-                          color: context.colorScheme().secondary,
-                        ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 30),
-                    child: Text(
-                      tr(LocaleKeys.introductionQuestion),
-                      style: context.appTextStyles().bodyTextStyle(context),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 20),
-                    child: Text(
-                      tr(LocaleKeys.introducion),
-                      style: context.appTextStyles().bodyTextStyle(context),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 80),
-                    child: SizedBox(
-                      height: 60,
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.stretch,
-                        children: [
-                          PrimaryTextButton(
-                            onPressed: onContactMePressed,
-                            title: tr(LocaleKeys.contactMe),
-                          ),
-                          const SizedBox(
-                            width: 20,
-                          ),
-                          IconButton(
-                            onPressed: onLinkedInPressed,
-                            icon: Image.asset(
-                              'assets/images/linkedin.png',
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        SizedBox(
+          height: 340,
+          child: FittedBox(
+            fit: BoxFit.cover,
+            clipBehavior: Clip.hardEdge,
+            child: Image.asset(
+              "assets/images/background.jpg",
+            ),
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: 40),
+          child: context.wrappedForHorizontalPosition(
+            child: Row(
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                Expanded(
+                  flex: 3,
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        tr(LocaleKeys.greeting),
+                        style: context.textTheme().displaySmall?.copyWith(
+                              color: context.colorScheme().secondary,
                             ),
-                            padding: EdgeInsets.zero,
-                            style:
-                                CustomButtonStyles.secondaryIconButton(context),
-                          ),
-                          const SizedBox(
-                            width: 20,
-                          ),
-                          IconButton(
-                            onPressed: onGithubPressed,
-                            icon: Image.asset(
-                              'assets/images/github.png',
+                      ),
+                      Text(
+                        tr(LocaleKeys.fullName),
+                        style: context.textTheme().displayLarge?.copyWith(
+                              color: context.colorScheme().secondary,
                             ),
-                            padding: EdgeInsets.zero,
-                            style:
-                                CustomButtonStyles.secondaryIconButton(context),
+                      ),
+                      Text(
+                        tr(LocaleKeys.profession).toUpperCase(),
+                        style: context.textTheme().displaySmall?.copyWith(
+                              color: context.colorScheme().secondary,
+                            ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 30),
+                        child: Text(
+                          tr(LocaleKeys.introductionQuestion),
+                          style: context.appTextStyles().bodyTextStyle(context),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 20),
+                        child: Text(
+                          tr(LocaleKeys.introducion),
+                          style: context.appTextStyles().bodyTextStyle(context),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 80),
+                        child: SizedBox(
+                          height: 60,
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            children: [
+                              PrimaryTextButton(
+                                onPressed: onContactMePressed,
+                                title: tr(LocaleKeys.contactMe),
+                              ),
+                              const SizedBox(
+                                width: 20,
+                              ),
+                              IconButton(
+                                onPressed: onLinkedInPressed,
+                                icon: Image.asset(
+                                  'assets/images/linkedin.png',
+                                ),
+                                padding: EdgeInsets.zero,
+                                style: CustomButtonStyles.secondaryIconButton(
+                                    context),
+                              ),
+                              const SizedBox(
+                                width: 20,
+                              ),
+                              IconButton(
+                                onPressed: onGithubPressed,
+                                icon: Image.asset(
+                                  'assets/images/github.png',
+                                ),
+                                padding: EdgeInsets.zero,
+                                style: CustomButtonStyles.secondaryIconButton(
+                                    context),
+                              ),
+                            ],
                           ),
-                        ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(
+                  width: 80,
+                ),
+                Expanded(
+                  flex: 2,
+                  child: DecoratedBox(
+                    decoration: BoxDecoration(
+                      boxShadow: [
+                        StandardBoxShadows.regular(),
+                      ],
+                    ),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(10),
+                      child: Image.asset(
+                        'assets/images/profile_picture_square.jpg',
                       ),
                     ),
                   ),
-                ],
-              ),
-            ),
-            const SizedBox(
-              width: 80,
-            ),
-            Expanded(
-              child: DecoratedBox(
-                decoration: BoxDecoration(
-                  boxShadow: [
-                    StandardBoxShadows.regular(),
-                  ],
                 ),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(10),
-                  child: Image.asset(
-                    'assets/images/profile_picture_square.jpg',
-                  ),
-                ),
-              ),
+              ],
             ),
-          ],
+          ),
         ),
-      ),
+      ],
     );
   }
 }

@@ -70,6 +70,7 @@ class _LandingPageState extends State<LandingPage> {
       extendBodyBehindAppBar: true,
       body: SelectionArea(
         child: ListView.separated(
+          padding: EdgeInsets.zero,
           controller: _scrollController,
           itemCount: LandingPageSection.values.length + 1,
           separatorBuilder: (context, index) {
