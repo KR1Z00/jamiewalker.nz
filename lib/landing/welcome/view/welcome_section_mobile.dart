@@ -1,15 +1,18 @@
 part of 'welcome_section.dart';
 
 class _WelcomeSectionMobile extends StatelessWidget {
-  static const double _maximumProfileImageWidth = 500;
-  static const double _maximumProfileImageHeightRelativeToScreen = 0.4;
+  static const double backgroundImageMinimumHeight = 150;
+  static const double backgroundImageMaximumHeight = 250;
+  static const double backgroundImageIdealHeightRatio = 1 / 3;
 
   final void Function() onContactMePressed;
+  final void Function() onViewPortfolioPressed;
   final void Function() onGithubPressed;
   final void Function() onLinkedInPressed;
 
   const _WelcomeSectionMobile({
     required this.onContactMePressed,
+    required this.onViewPortfolioPressed,
     required this.onGithubPressed,
     required this.onLinkedInPressed,
   });
@@ -17,104 +20,174 @@ class _WelcomeSectionMobile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final screenHeight = MediaQuery.of(context).size.height;
-    final profileImageWidth = min(
-      _maximumProfileImageWidth,
-      screenHeight * _maximumProfileImageHeightRelativeToScreen,
-    );
-    return Padding(
-      padding: EdgeInsets.symmetric(
-        vertical: ScreenSize.minimumPadding.toDouble(),
+
+    final imageHeight = max(
+      min(
+        backgroundImageMaximumHeight,
+        (screenHeight * backgroundImageIdealHeightRatio),
       ),
+      backgroundImageMinimumHeight,
+    );
+
+    return ConstrainedBox(
+      constraints: BoxConstraints(minHeight: screenHeight),
       child: Column(
-        mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.stretch,
+        mainAxisSize: MainAxisSize.min,
         children: [
-          Center(
-            child: ConstrainedBox(
-              constraints: BoxConstraints(maxWidth: profileImageWidth),
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(10),
-                child: Image.asset(
-                  'assets/images/profile_picture_square.png',
-                ),
+          SizedBox(
+            height: imageHeight,
+            child: FittedBox(
+              fit: BoxFit.cover,
+              clipBehavior: Clip.hardEdge,
+              child: Image.asset(
+                "assets/images/background.jpg",
               ),
             ),
           ),
-          SizedBox(
-            height: ScreenSize.minimumPadding.toDouble(),
-          ),
-          FittedBox(
-            fit: BoxFit.scaleDown,
-            child: Text(
-              tr(LocaleKeys.fullName),
-              style: context.textTheme().displayLarge?.copyWith(
-                    color: context.colorScheme().secondary,
-                  ),
-              textAlign: TextAlign.center,
-              maxLines: 1,
-            ),
-          ),
-          Text(
-            tr(LocaleKeys.profession),
-            style: context.textTheme().headlineSmall?.copyWith(
-                  color: context.colorScheme().secondary,
-                ),
-            textAlign: TextAlign.center,
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 40),
-            child: Wrap(
-              alignment: WrapAlignment.center,
-              crossAxisAlignment: WrapCrossAlignment.center,
-              spacing: 20,
-              runSpacing: 10,
-              children: [
-                PrimaryTextButton(
-                  onPressed: onContactMePressed,
-                  title: tr(LocaleKeys.contactMe),
-                ),
-                Row(
+          context.wrappedForHorizontalPosition(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 40),
+              child: Align(
+                alignment: Alignment.topCenter,
+                child: Column(
                   mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    SizedBox(
-                      height: 40,
-                      child: IconButton(
-                        onPressed: onLinkedInPressed,
-                        icon: Image.asset(
-                          'assets/images/linkedin.png',
-                        ),
-                        padding: EdgeInsets.zero,
-                        style: CustomButtonStyles.secondaryIconButton(context),
+                    Text(
+                      tr(LocaleKeys.greeting),
+                      style: context.textTheme().headlineSmall?.copyWith(
+                            color: context.colorScheme().secondary,
+                          ),
+                    ),
+                    FittedBox(
+                      fit: BoxFit.scaleDown,
+                      child: Text(
+                        tr(LocaleKeys.fullName),
+                        maxLines: 1,
+                        style: context.textTheme().displayLarge?.copyWith(
+                              color: context.colorScheme().secondary,
+                            ),
+                      ),
+                    ),
+                    FittedBox(
+                      fit: BoxFit.scaleDown,
+                      child: Text(
+                        tr(LocaleKeys.profession).toUpperCase(),
+                        style: context.textTheme().headlineSmall?.copyWith(
+                              color: context.colorScheme().secondary,
+                            ),
                       ),
                     ),
                     const SizedBox(
-                      width: 20,
+                      height: 20,
                     ),
-                    SizedBox(
-                      height: 40,
-                      child: IconButton(
-                        onPressed: onGithubPressed,
-                        icon: Image.asset(
-                          'assets/images/github.png',
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        Expanded(
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                tr(LocaleKeys.introductionQuestion),
+                                style: context
+                                    .appTextStyles()
+                                    .bodyTextStyle(context),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(top: 20),
+                                child: Text(
+                                  tr(LocaleKeys.introducion),
+                                  style: context
+                                      .appTextStyles()
+                                      .bodyTextStyle(context),
+                                ),
+                              ),
+                              const SizedBox(
+                                height: 20,
+                              ),
+                              Column(
+                                children: [
+                                  PrimaryTextButton(
+                                    onPressed: onContactMePressed,
+                                    title: tr(LocaleKeys.contactMe),
+                                  ),
+                                  const SizedBox(
+                                    height: 10,
+                                  ),
+                                  SecondaryTextButton(
+                                    onPressed: onViewPortfolioPressed,
+                                    title: tr(LocaleKeys.viewPortfolio),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
                         ),
-                        padding: EdgeInsets.zero,
-                        style: CustomButtonStyles.secondaryIconButton(context),
-                      ),
+                        const SizedBox(
+                          width: 20,
+                        ),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            children: [
+                              Image.asset(
+                                'assets/images/profile_picture_square.png',
+                              ),
+                              const SizedBox(
+                                height: 20,
+                              ),
+                              SizedBox(
+                                height: 40,
+                                child: Row(
+                                  crossAxisAlignment:
+                                      CrossAxisAlignment.stretch,
+                                  children: [
+                                    const Spacer(),
+                                    IconButton(
+                                      onPressed: onLinkedInPressed,
+                                      icon: Image.asset(
+                                        'assets/images/linkedin.png',
+                                      ),
+                                      padding: EdgeInsets.zero,
+                                      style: CustomButtonStyles
+                                          .secondaryIconButton(context),
+                                    ),
+                                    const SizedBox(
+                                      width: 20,
+                                    ),
+                                    IconButton(
+                                      onPressed: onGithubPressed,
+                                      icon: Image.asset(
+                                        'assets/images/github.png',
+                                      ),
+                                      padding: EdgeInsets.zero,
+                                      style: CustomButtonStyles
+                                          .secondaryIconButton(context),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              const SizedBox(
+                                height: 20,
+                              ),
+                              Text(
+                                "Scroll down to learn more",
+                                style: context.textTheme().titleSmall?.copyWith(
+                                      color: context.colorScheme().tertiary,
+                                    ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
                     ),
                   ],
-                )
-              ],
-            ),
-          ),
-          Text(
-            tr(LocaleKeys.introductionQuestion),
-            style: context.textTheme().bodySmall,
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 20),
-            child: Text(
-              tr(LocaleKeys.introducion),
-              style: context.textTheme().bodySmall,
+                ),
+              ),
             ),
           ),
         ],

@@ -38,6 +38,7 @@ class WelcomeSection extends StatelessWidget {
         onContactMePressed: onContactMePressed,
         onGithubPressed: _onGithubPressed,
         onLinkedInPressed: _onLinkedInPressed,
+        onViewPortfolioPressed: onViewPortfolioPressed,
       ),
     );
   }

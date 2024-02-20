@@ -29,7 +29,7 @@ ColorScheme customColorScheme(BuildContext context) => ColorScheme.dark(
       surface: CustomColors.primaryColor.d1,
       onSurface: CustomColors.secondaryColor.l1,
       surfaceTint: CustomColors.lightGrey.l2,
-      tertiary: CustomColors.lightGrey,
+      tertiary: CustomColors.primaryColor.l1,
       onTertiary: CustomColors.darkGrey.d2,
       primaryContainer: CustomColors.primaryColor.l2,
       onPrimaryContainer: CustomColors.darkGrey.d2,
