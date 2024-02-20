@@ -58,7 +58,7 @@ class JamieWalkerAppBar extends StatelessWidget implements PreferredSizeWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 15),
       child: Image.asset(
-        'assets/images/initials_icon.png',
+        'assets/images/initials_logo.png',
         color: context.colorScheme().secondary,
       ),
     );
