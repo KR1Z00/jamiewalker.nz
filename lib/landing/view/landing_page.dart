@@ -2,7 +2,7 @@ import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:jamie_walker_website/app/extensions/functional_extensions.dart';
 import 'package:jamie_walker_website/app/extensions/screen_size.dart';
-import 'package:jamie_walker_website/app/theme/custom_colors.dart';
+import 'package:jamie_walker_website/app/theme/custom_theme.dart';
 import 'package:jamie_walker_website/generic/view/jamie_walker_app_bar.dart';
 import 'package:jamie_walker_website/generic/view/jamie_walker_navigation_drawer.dart';
 import 'package:jamie_walker_website/landing/contact/view/contact_section.dart';
@@ -66,7 +66,7 @@ class _LandingPageState extends State<LandingPage> {
           _scaffoldKey.currentState?.openEndDrawer();
         },
       ),
-      backgroundColor: CustomColors.primaryColor.d2,
+      backgroundColor: context.colorScheme().background,
       body: SelectionArea(
         child: ListView.separated(
           controller: _scrollController,
@@ -78,9 +78,9 @@ class _LandingPageState extends State<LandingPage> {
             return context.wrappedForHorizontalPosition(
               child: Container(
                 height: 1,
-                color: CustomColors.secondaryColor.l1.withOpacity(
-                  separatorOpacity,
-                ),
+                color: context.colorScheme().secondary.withOpacity(
+                      separatorOpacity,
+                    ),
               ),
             );
           },

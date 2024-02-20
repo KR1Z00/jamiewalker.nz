@@ -7,7 +7,7 @@ import 'package:jamie_walker_website/app/extensions/screen_size.dart';
 import 'package:jamie_walker_website/app/extensions/standard_box_shadow.dart';
 import 'package:jamie_walker_website/app/localization/generated/locale_keys.g.dart';
 import 'package:jamie_walker_website/app/theme/custom_button_styles.dart';
-import 'package:jamie_walker_website/app/theme/custom_colors.dart';
+import 'package:jamie_walker_website/app/theme/custom_theme.dart';
 import 'package:jamie_walker_website/app/theme/text_theme.dart';
 import 'package:jamie_walker_website/generic/view/primary_text_button.dart';
 
@@ -78,13 +78,13 @@ class _WelcomeSectionDesktop extends StatelessWidget {
                   Text(
                     tr(LocaleKeys.fullName),
                     style: context.textTheme().displayLarge?.copyWith(
-                          color: CustomColors.secondaryColor.l1,
+                          color: context.colorScheme().secondary,
                         ),
                   ),
                   Text(
                     tr(LocaleKeys.profession).toUpperCase(),
                     style: context.textTheme().displaySmall?.copyWith(
-                          color: CustomColors.secondaryColor.l1,
+                          color: context.colorScheme().secondary,
                         ),
                   ),
                   Padding(
@@ -121,7 +121,8 @@ class _WelcomeSectionDesktop extends StatelessWidget {
                               'assets/images/linkedin.png',
                             ),
                             padding: EdgeInsets.zero,
-                            style: CustomButtonStyles.secondaryIconButton(),
+                            style:
+                                CustomButtonStyles.secondaryIconButton(context),
                           ),
                           const SizedBox(
                             width: 20,
@@ -132,7 +133,8 @@ class _WelcomeSectionDesktop extends StatelessWidget {
                               'assets/images/github.png',
                             ),
                             padding: EdgeInsets.zero,
-                            style: CustomButtonStyles.secondaryIconButton(),
+                            style:
+                                CustomButtonStyles.secondaryIconButton(context),
                           ),
                         ],
                       ),
@@ -213,7 +215,9 @@ class _WelcomeSectionMobile extends StatelessWidget {
             fit: BoxFit.scaleDown,
             child: Text(
               tr(LocaleKeys.fullName),
-              style: context.textTheme().displayLarge,
+              style: context.textTheme().displayLarge?.copyWith(
+                    color: context.colorScheme().secondary,
+                  ),
               textAlign: TextAlign.center,
               maxLines: 1,
             ),
@@ -221,7 +225,7 @@ class _WelcomeSectionMobile extends StatelessWidget {
           Text(
             tr(LocaleKeys.profession),
             style: context.textTheme().headlineSmall?.copyWith(
-                  color: CustomColors.secondaryColor.l1,
+                  color: context.colorScheme().secondary,
                 ),
             textAlign: TextAlign.center,
           ),
@@ -248,7 +252,7 @@ class _WelcomeSectionMobile extends StatelessWidget {
                           'assets/images/linkedin.png',
                         ),
                         padding: EdgeInsets.zero,
-                        style: CustomButtonStyles.secondaryIconButton(),
+                        style: CustomButtonStyles.secondaryIconButton(context),
                       ),
                     ),
                     const SizedBox(
@@ -262,7 +266,7 @@ class _WelcomeSectionMobile extends StatelessWidget {
                           'assets/images/github.png',
                         ),
                         padding: EdgeInsets.zero,
-                        style: CustomButtonStyles.secondaryIconButton(),
+                        style: CustomButtonStyles.secondaryIconButton(context),
                       ),
                     ),
                   ],

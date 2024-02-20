@@ -3,7 +3,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:jamie_walker_website/app/extensions/screen_size.dart';
-import 'package:jamie_walker_website/app/theme/custom_colors.dart';
+import 'package:jamie_walker_website/app/theme/custom_theme.dart';
 import 'package:jamie_walker_website/app/theme/text_theme.dart';
 import 'package:jamie_walker_website/generic/view/blurred_fitted_image.dart';
 import 'package:jamie_walker_website/landing/portfolio/data/portfolio_item_model.dart';
@@ -23,7 +23,10 @@ class PortfolioInfoDialog extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(portfolioItemInfoViewModelProvider(model));
     final currentPage = state.pages[state.currentPageIndex];
-    final descriptionTextStyle = context.appTextStyles().bodyTextStyle(context);
+    final descriptionTextStyle =
+        context.appTextStyles().bodyTextStyle(context).copyWith(
+              color: context.colorScheme().onPrimaryContainer,
+            );
     final scrollController = useScrollController();
 
     return Scaffold(
@@ -40,7 +43,7 @@ class PortfolioInfoDialog extends HookConsumerWidget {
                   duration: const Duration(milliseconds: 200),
                   constraints: const BoxConstraints(maxWidth: 1700),
                   decoration: BoxDecoration(
-                    color: CustomColors.primaryColor.l2,
+                    color: context.colorScheme().primaryContainer,
                     borderRadius: BorderRadius.circular(10),
                   ),
                   child: Padding(
@@ -53,14 +56,18 @@ class PortfolioInfoDialog extends HookConsumerWidget {
                           children: [
                             Text(
                               model.name,
-                              style: context.textTheme().displaySmall,
+                              style: context.textTheme().displaySmall?.copyWith(
+                                    color: context
+                                        .colorScheme()
+                                        .onPrimaryContainer,
+                                  ),
                             ),
                             const Spacer(),
                             IconButton(
                               onPressed: () => Navigator.of(context).pop(),
-                              icon: const FaIcon(
+                              icon: FaIcon(
                                 FontAwesomeIcons.xmark,
-                                color: Colors.black,
+                                color: context.colorScheme().onPrimaryContainer,
                               ),
                             ),
                           ],
@@ -118,9 +125,9 @@ class PortfolioInfoDialog extends HookConsumerWidget {
                                       portfolioItemInfoViewModelProvider(model)
                                           .notifier)
                                   .selectPreviousPage,
-                              icon: const FaIcon(
+                              icon: FaIcon(
                                 FontAwesomeIcons.chevronLeft,
-                                color: Colors.black,
+                                color: context.colorScheme().onPrimaryContainer,
                               ),
                             ),
                             Expanded(
@@ -131,9 +138,13 @@ class PortfolioInfoDialog extends HookConsumerWidget {
                                   effect: WormEffect(
                                     dotWidth: 8,
                                     dotHeight: 8,
-                                    dotColor: CustomColors.primaryColor
+                                    dotColor: context
+                                        .colorScheme()
+                                        .onPrimaryContainer
                                         .withOpacity(0.3),
-                                    activeDotColor: CustomColors.primaryColor,
+                                    activeDotColor: context
+                                        .colorScheme()
+                                        .onPrimaryContainer,
                                   ),
                                 ),
                               ),
@@ -144,9 +155,9 @@ class PortfolioInfoDialog extends HookConsumerWidget {
                                       portfolioItemInfoViewModelProvider(model)
                                           .notifier)
                                   .selectNextPage,
-                              icon: const FaIcon(
+                              icon: FaIcon(
                                 FontAwesomeIcons.chevronRight,
-                                color: Colors.black,
+                                color: context.colorScheme().onPrimaryContainer,
                               ),
                             ),
                           ],

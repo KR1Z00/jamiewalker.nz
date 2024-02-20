@@ -1,9 +1,7 @@
-import 'dart:ui';
-
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:jamie_walker_website/app/extensions/screen_size.dart';
-import 'package:jamie_walker_website/app/theme/custom_colors.dart';
+import 'package:jamie_walker_website/app/theme/custom_theme.dart';
 import 'package:jamie_walker_website/generic/view/navigation_button.dart';
 
 class JamieWalkerAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -29,26 +27,28 @@ class JamieWalkerAppBar extends StatelessWidget implements PreferredSizeWidget {
     return context.wrappedForHorizontalPosition(
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
-        children: layoutForMobile ? _mobileRowItems() : _desktopRowItems(),
+        children: layoutForMobile
+            ? _mobileRowItems(context)
+            : _desktopRowItems(context),
       ),
     );
   }
 
-  Widget _initialsIcon() {
+  Widget _initialsIcon(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 15),
       child: Image.asset(
         'assets/images/initials_icon.png',
-        color: CustomColors.secondaryColor.l1,
+        color: context.colorScheme().secondary,
       ),
     );
   }
 
   /// The list of items to be added in the main row when laying out for desktop
-  List<Widget> _desktopRowItems() {
+  List<Widget> _desktopRowItems(BuildContext context) {
     return List<Widget>.from(
           [
-            _initialsIcon(),
+            _initialsIcon(context),
             const Spacer(),
           ],
         ) +
@@ -72,9 +72,9 @@ class JamieWalkerAppBar extends StatelessWidget implements PreferredSizeWidget {
   }
 
   /// The list of items to be added in the main row when laying out for mobile
-  List<Widget> _mobileRowItems() {
+  List<Widget> _mobileRowItems(BuildContext context) {
     return [
-      _initialsIcon(),
+      _initialsIcon(context),
       const Spacer(),
       IconButton(
         constraints: BoxConstraints.tight(const Size.square(50)),
