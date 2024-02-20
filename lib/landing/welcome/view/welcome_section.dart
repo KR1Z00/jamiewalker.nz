@@ -14,6 +14,7 @@ import 'package:jamie_walker_website/landing/welcome/view/arrow_down.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 part 'welcome_section_desktop.dart';
+part 'welcome_section_tablet.dart';
 part 'welcome_section_mobile.dart';
 
 class WelcomeSection extends StatelessWidget {
@@ -30,6 +31,12 @@ class WelcomeSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return ScreenTypeLayout.builder(
       desktop: (context) => _WelcomeSectionDesktop(
+        onContactMePressed: onContactMePressed,
+        onViewPortfolioPressed: onViewPortfolioPressed,
+        onGithubPressed: _onGithubPressed,
+        onLinkedInPressed: _onLinkedInPressed,
+      ),
+      tablet: (context) => _WelcomeSectionTablet(
         onContactMePressed: onContactMePressed,
         onViewPortfolioPressed: onViewPortfolioPressed,
         onGithubPressed: _onGithubPressed,
