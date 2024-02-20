@@ -10,6 +10,7 @@ import 'package:jamie_walker_website/app/theme/custom_theme.dart';
 import 'package:jamie_walker_website/app/theme/text_theme.dart';
 import 'package:jamie_walker_website/generic/view/primary_text_button.dart';
 import 'package:jamie_walker_website/generic/view/secondary_text_button.dart';
+import 'package:jamie_walker_website/landing/welcome/view/arrow_down.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 part 'welcome_section_desktop.dart';
