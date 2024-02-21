@@ -9,6 +9,11 @@ ThemeData customThemeData(BuildContext context) => ThemeData(
           Colors.white.withOpacity(0.7),
         ),
       ),
+      dividerTheme: DividerThemeData(
+        color: CustomColors.secondaryColor.l1,
+        space: 1,
+        thickness: 1,
+      ),
       textTheme: customTextTheme(context),
       useMaterial3: true,
     );

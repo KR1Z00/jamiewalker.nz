@@ -1,7 +1,6 @@
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:jamie_walker_website/app/extensions/functional_extensions.dart';
-import 'package:jamie_walker_website/app/extensions/screen_size.dart';
 import 'package:jamie_walker_website/app/theme/custom_theme.dart';
 import 'package:jamie_walker_website/generic/view/jamie_walker_app_bar.dart';
 import 'package:jamie_walker_website/generic/view/jamie_walker_navigation_drawer.dart';
@@ -69,23 +68,10 @@ class _LandingPageState extends State<LandingPage> {
       backgroundColor: context.colorScheme().background,
       extendBodyBehindAppBar: true,
       body: SelectionArea(
-        child: ListView.separated(
+        child: ListView.builder(
           padding: EdgeInsets.zero,
           controller: _scrollController,
           itemCount: LandingPageSection.values.length + 1,
-          separatorBuilder: (context, index) {
-            final isSeparatorForFooter =
-                index == LandingPageSection.values.length - 1;
-            final double separatorOpacity = isSeparatorForFooter ? 0.5 : 1;
-            return context.wrappedForHorizontalPosition(
-              child: Container(
-                height: 1,
-                color: context.colorScheme().secondary.withOpacity(
-                      separatorOpacity,
-                    ),
-              ),
-            );
-          },
           itemBuilder: (context, index) {
             if (index == LandingPageSection.values.length) {
               return const FooterSection();

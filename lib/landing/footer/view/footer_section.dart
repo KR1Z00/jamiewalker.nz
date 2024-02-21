@@ -11,29 +11,36 @@ class FooterSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return context.wrappedForHorizontalPosition(
-      child: Padding(
-        padding: EdgeInsets.symmetric(
-          vertical: ScreenSize.minimumPadding.toDouble(),
-        ),
-        child: Wrap(
-          alignment: WrapAlignment.center,
-          crossAxisAlignment: WrapCrossAlignment.center,
-          spacing: 40,
-          runSpacing: 10,
-          children: [
-            Text(
-              tr(LocaleKeys.copyright),
-              style: context.textTheme().bodyMedium,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          const Divider(),
+          Padding(
+            padding: EdgeInsets.symmetric(
+              vertical: ScreenSize.minimumPadding.toDouble(),
             ),
-            TextButton(
-              onPressed: () => LaunchableUrls.websiteRepository.launch(),
-              child: Text(
-                tr(LocaleKeys.viewSourceCode),
-                style: context.textTheme().bodyMedium,
-              ),
+            child: Wrap(
+              alignment: WrapAlignment.center,
+              crossAxisAlignment: WrapCrossAlignment.center,
+              spacing: 40,
+              runSpacing: 10,
+              children: [
+                Text(
+                  tr(LocaleKeys.copyright),
+                  style: context.textTheme().bodyMedium,
+                ),
+                TextButton(
+                  onPressed: () => LaunchableUrls.websiteRepository.launch(),
+                  child: Text(
+                    tr(LocaleKeys.viewSourceCode),
+                    style: context.textTheme().bodyMedium,
+                  ),
+                ),
+              ],
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
