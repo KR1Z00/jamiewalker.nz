@@ -4,7 +4,7 @@ class _WelcomeSectionMobile extends StatelessWidget {
   static const double backgroundImageMinimumHeight = 150;
   static const double backgroundImageMaximumHeight = 250;
   static const double backgroundImageIdealHeightRatio = 1 / 4;
-  static const double minimumHeight = 730;
+  static const double minimumHeight = 770;
   static const double bottomPadding = 20;
 
   final void Function() onContactMePressed;
