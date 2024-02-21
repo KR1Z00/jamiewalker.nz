@@ -31,11 +31,10 @@ class _WelcomeSectionTablet extends StatelessWidget {
       backgroundImageMinimumHeight,
     );
 
-    final height = bottomPadding +
-        max(
-          minimumHeight,
-          screenHeight,
-        );
+    final height = max(
+      minimumHeight,
+      screenHeight,
+    );
 
     return ConstrainedBox(
       constraints: BoxConstraints.tightFor(height: height),
@@ -147,6 +146,7 @@ class _WelcomeSectionTablet extends StatelessWidget {
                 child: Row(
                   children: [
                     Expanded(
+                      flex: 3,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -200,24 +200,39 @@ class _WelcomeSectionTablet extends StatelessWidget {
                       width: 20,
                     ),
                     Expanded(
-                      child: Column(
-                        children: [
-                          Text(
-                            tr(LocaleKeys.scrollDownGuidance),
-                            textAlign: TextAlign.center,
-                            style: context.textTheme().titleSmall?.copyWith(
-                                  color: context.colorScheme().tertiary,
+                      flex: 2,
+                      child: Align(
+                        alignment: Alignment.bottomCenter,
+                        child: Flexible(
+                          child: ConstrainedBox(
+                            constraints: const BoxConstraints(
+                              maxHeight:
+                                  WelcomeSection.scrollDownGuidanceMaxHeight,
+                            ),
+                            child: Column(
+                              children: [
+                                Text(
+                                  tr(LocaleKeys.scrollDownGuidance),
+                                  textAlign: TextAlign.center,
+                                  style: context
+                                      .textTheme()
+                                      .titleSmall
+                                      ?.copyWith(
+                                        color: context.colorScheme().tertiary,
+                                      ),
                                 ),
-                          ),
-                          const SizedBox(
-                            height: 5,
-                          ),
-                          Expanded(
-                            child: ArrowDown(
-                              color: context.colorScheme().tertiary,
+                                const SizedBox(
+                                  height: 5,
+                                ),
+                                Expanded(
+                                  child: ArrowDown(
+                                    color: context.colorScheme().tertiary,
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
-                        ],
+                        ),
                       ),
                     ),
                   ],

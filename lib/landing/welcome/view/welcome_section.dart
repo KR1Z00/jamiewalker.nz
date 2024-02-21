@@ -18,6 +18,8 @@ part 'welcome_section_tablet.dart';
 part 'welcome_section_mobile.dart';
 
 class WelcomeSection extends StatelessWidget {
+  static const double scrollDownGuidanceMaxHeight = 150;
+
   final void Function() onContactMePressed;
   final void Function() onViewPortfolioPressed;
 

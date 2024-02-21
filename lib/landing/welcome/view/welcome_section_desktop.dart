@@ -31,11 +31,10 @@ class _WelcomeSectionDesktop extends StatelessWidget {
       backgroundImageMinimumHeight,
     );
 
-    final height = bottomPadding +
-        max(
-          minimumHeight,
-          screenHeight,
-        );
+    final height = max(
+      minimumHeight,
+      screenHeight,
+    );
 
     return ConstrainedBox(
       constraints: BoxConstraints.tightFor(height: height),
@@ -197,19 +196,34 @@ class _WelcomeSectionDesktop extends StatelessWidget {
           const SizedBox(
             height: 20,
           ),
-          Text(
-            tr(LocaleKeys.scrollDownGuidance),
-            textAlign: TextAlign.center,
-            style: context.textTheme().titleSmall?.copyWith(
-                  color: context.colorScheme().tertiary,
+          Flexible(
+            child: Align(
+              alignment: Alignment.bottomCenter,
+              child: ConstrainedBox(
+                constraints: const BoxConstraints(
+                  maxHeight: WelcomeSection.scrollDownGuidanceMaxHeight,
                 ),
-          ),
-          const SizedBox(
-            height: 5,
-          ),
-          Expanded(
-            child: ArrowDown(
-              color: context.colorScheme().tertiary,
+                child: Column(
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    Text(
+                      tr(LocaleKeys.scrollDownGuidance),
+                      textAlign: TextAlign.center,
+                      style: context.textTheme().titleSmall?.copyWith(
+                            color: context.colorScheme().tertiary,
+                          ),
+                    ),
+                    const SizedBox(
+                      height: 5,
+                    ),
+                    Expanded(
+                      child: ArrowDown(
+                        color: context.colorScheme().tertiary,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             ),
           ),
           const SizedBox(

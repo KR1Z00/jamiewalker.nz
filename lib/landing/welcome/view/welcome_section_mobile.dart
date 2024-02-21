@@ -4,8 +4,8 @@ class _WelcomeSectionMobile extends StatelessWidget {
   static const double backgroundImageMinimumHeight = 150;
   static const double backgroundImageMaximumHeight = 250;
   static const double backgroundImageIdealHeightRatio = 1 / 4;
-  static const double minimumHeight = 770;
-  static const double bottomPadding = 20;
+  static const double minimumHeight = 790;
+  static const double bottomPadding = 10;
 
   final void Function() onContactMePressed;
   final void Function() onViewPortfolioPressed;
@@ -31,11 +31,10 @@ class _WelcomeSectionMobile extends StatelessWidget {
       backgroundImageMinimumHeight,
     );
 
-    final height = bottomPadding +
-        max(
-          screenHeight,
-          minimumHeight,
-        );
+    final height = max(
+      screenHeight,
+      minimumHeight,
+    );
 
     return ConstrainedBox(
       constraints: BoxConstraints.tightFor(height: height),
@@ -177,19 +176,37 @@ class _WelcomeSectionMobile extends StatelessWidget {
                         const SizedBox(
                           height: 40,
                         ),
-                        Text(
-                          tr(LocaleKeys.scrollDownGuidance),
-                          textAlign: TextAlign.center,
-                          style: context.textTheme().titleSmall?.copyWith(
-                                color: context.colorScheme().tertiary,
+                        Flexible(
+                          child: Align(
+                            alignment: Alignment.bottomCenter,
+                            child: ConstrainedBox(
+                              constraints: const BoxConstraints(
+                                maxHeight:
+                                    WelcomeSection.scrollDownGuidanceMaxHeight,
                               ),
-                        ),
-                        const SizedBox(
-                          height: 5,
-                        ),
-                        Expanded(
-                          child: ArrowDown(
-                            color: context.colorScheme().tertiary,
+                              child: Column(
+                                children: [
+                                  Text(
+                                    tr(LocaleKeys.scrollDownGuidance),
+                                    textAlign: TextAlign.center,
+                                    style: context
+                                        .textTheme()
+                                        .titleSmall
+                                        ?.copyWith(
+                                          color: context.colorScheme().tertiary,
+                                        ),
+                                  ),
+                                  const SizedBox(
+                                    height: 5,
+                                  ),
+                                  Expanded(
+                                    child: ArrowDown(
+                                      color: context.colorScheme().tertiary,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
                           ),
                         ),
                       ],
