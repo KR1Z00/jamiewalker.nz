@@ -9,6 +9,7 @@ import 'package:jamie_walker_website/app/theme/custom_theme.dart';
 import 'package:jamie_walker_website/app/theme/text_theme.dart';
 import 'package:jamie_walker_website/generic/view/wrapping_cards_section.dart';
 import 'package:jamie_walker_website/landing/services/jw_service.dart';
+import 'package:responsive_builder/responsive_builder.dart';
 
 part 'service_card.dart';
 
