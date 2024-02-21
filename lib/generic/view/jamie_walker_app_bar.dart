@@ -1,12 +1,17 @@
+import 'dart:ui';
+
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:jamie_walker_website/app/extensions/screen_size.dart';
+import 'package:jamie_walker_website/app/extensions/standard_box_shadow.dart';
 import 'package:jamie_walker_website/app/theme/custom_theme.dart';
 import 'package:jamie_walker_website/generic/view/navigation_button.dart';
 
 class JamieWalkerAppBar extends StatelessWidget implements PreferredSizeWidget {
+  static const double preferredHeight = 70;
+
   @override
-  Size get preferredSize => const Size.fromHeight(70);
+  Size get preferredSize => const Size.fromHeight(preferredHeight);
 
   final void Function() onHamburgerPressed;
   final List<String> navigationItemTitles;
@@ -24,12 +29,27 @@ class JamieWalkerAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     final layoutForMobile = context.layoutForMobile();
-    return context.wrappedForHorizontalPosition(
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: layoutForMobile
-            ? _mobileRowItems(context)
-            : _desktopRowItems(context),
+    return DecoratedBox(
+      decoration: BoxDecoration(
+        boxShadow: [
+          StandardBoxShadows.regular(),
+        ],
+      ),
+      child: ClipRRect(
+        child: BackdropFilter(
+          filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+          child: ColoredBox(
+            color: context.colorScheme().background.withOpacity(0.5),
+            child: context.wrappedForHorizontalPosition(
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: layoutForMobile
+                    ? _mobileRowItems(context)
+                    : _desktopRowItems(context),
+              ),
+            ),
+          ),
+        ),
       ),
     );
   }
@@ -38,7 +58,7 @@ class JamieWalkerAppBar extends StatelessWidget implements PreferredSizeWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 15),
       child: Image.asset(
-        'assets/images/initials_icon.png',
+        'assets/images/initials_logo.png',
         color: context.colorScheme().secondary,
       ),
     );

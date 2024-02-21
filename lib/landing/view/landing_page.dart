@@ -67,8 +67,10 @@ class _LandingPageState extends State<LandingPage> {
         },
       ),
       backgroundColor: context.colorScheme().background,
+      extendBodyBehindAppBar: true,
       body: SelectionArea(
         child: ListView.separated(
+          padding: EdgeInsets.zero,
           controller: _scrollController,
           itemCount: LandingPageSection.values.length + 1,
           separatorBuilder: (context, index) {
@@ -99,6 +101,9 @@ class _LandingPageState extends State<LandingPage> {
                     key: _sectionKeys[LandingPageSection.home],
                     onContactMePressed: () => _scrollToSection(
                       LandingPageSection.contact,
+                    ),
+                    onViewPortfolioPressed: () => _scrollToSection(
+                      LandingPageSection.portfolio,
                     ),
                   ),
                 LandingPageSection.services => ServicesSection(
