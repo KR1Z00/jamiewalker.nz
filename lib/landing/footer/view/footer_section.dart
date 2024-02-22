@@ -5,6 +5,7 @@ import 'package:jamie_walker_website/app/extensions/screen_size.dart';
 import 'package:jamie_walker_website/app/localization/generated/locale_keys.g.dart';
 import 'package:jamie_walker_website/app/theme/text_theme.dart';
 import 'package:jamie_walker_website/generic/view/standard_horizontal_padding.dart';
+import 'package:jamie_walker_website/generic/view/tertiary_text_button.dart';
 
 class FooterSection extends StatelessWidget {
   const FooterSection({super.key});
@@ -31,12 +32,9 @@ class FooterSection extends StatelessWidget {
                   tr(LocaleKeys.copyright),
                   style: context.textTheme().bodyMedium,
                 ),
-                TextButton(
+                TertiaryTextButton(
                   onPressed: () => LaunchableUrls.websiteRepository.launch(),
-                  child: Text(
-                    tr(LocaleKeys.viewSourceCode),
-                    style: context.textTheme().bodyMedium,
-                  ),
+                  title: tr(LocaleKeys.viewSourceCode),
                 ),
               ],
             ),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:jamie_walker_website/app/extensions/screen_size.dart';
 import 'package:jamie_walker_website/app/theme/custom_theme.dart';
 import 'package:jamie_walker_website/app/theme/text_theme.dart';
+import 'package:responsive_builder/responsive_builder.dart';
 
 class PrimaryTextButton extends StatelessWidget {
   final String title;
@@ -15,11 +15,12 @@ class PrimaryTextButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final layoutForMobile = context.layoutForMobile();
     final textTheme = context.textTheme();
 
     final textStyle =
-        layoutForMobile ? textTheme.labelMedium : textTheme.labelLarge;
+        getDeviceType(MediaQuery.of(context).size) == DeviceScreenType.desktop
+            ? textTheme.labelLarge
+            : textTheme.labelMedium;
 
     return ConstrainedBox(
       constraints: const BoxConstraints(minWidth: 180),
