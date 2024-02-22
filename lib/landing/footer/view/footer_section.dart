@@ -4,13 +4,14 @@ import 'package:jamie_walker_website/app/constants/launchable_urls.dart';
 import 'package:jamie_walker_website/app/extensions/screen_size.dart';
 import 'package:jamie_walker_website/app/localization/generated/locale_keys.g.dart';
 import 'package:jamie_walker_website/app/theme/text_theme.dart';
+import 'package:jamie_walker_website/generic/view/standard_horizontal_padding.dart';
 
 class FooterSection extends StatelessWidget {
   const FooterSection({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return context.wrappedForHorizontalPosition(
+    return StandardHorizontalPadding(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         mainAxisSize: MainAxisSize.min,

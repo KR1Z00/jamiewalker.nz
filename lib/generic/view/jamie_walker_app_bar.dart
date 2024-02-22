@@ -6,6 +6,7 @@ import 'package:jamie_walker_website/app/extensions/screen_size.dart';
 import 'package:jamie_walker_website/app/extensions/standard_box_shadow.dart';
 import 'package:jamie_walker_website/app/theme/custom_theme.dart';
 import 'package:jamie_walker_website/generic/view/navigation_button.dart';
+import 'package:jamie_walker_website/generic/view/standard_horizontal_padding.dart';
 
 class JamieWalkerAppBar extends StatelessWidget implements PreferredSizeWidget {
   static const double preferredHeight = 70;
@@ -40,7 +41,7 @@ class JamieWalkerAppBar extends StatelessWidget implements PreferredSizeWidget {
           filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
           child: ColoredBox(
             color: context.colorScheme().background.withOpacity(0.5),
-            child: context.wrappedForHorizontalPosition(
+            child: StandardHorizontalPadding(
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: layoutForMobile

@@ -52,7 +52,7 @@ class _WelcomeSectionDesktop extends StatelessWidget {
               ),
             ),
           ),
-          context.wrappedForHorizontalPosition(
+          StandardHorizontalPadding(
             child: Padding(
               padding: const EdgeInsets.only(
                 top: 40,

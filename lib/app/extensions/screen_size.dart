@@ -9,41 +9,4 @@ extension ScreenSize on BuildContext {
     final screenSize = MediaQuery.of(this).size;
     return screenSize.width < mobileWidth;
   }
-
-  bool usePaddingForContentHorizontalPosition() {
-    if (layoutForMobile()) {
-      return true;
-    }
-
-    final screenSize = MediaQuery.of(this).size;
-    return screenSize.width < (maximumContentSize + 2 * minimumPadding);
-  }
-
-  bool useCenterForContentHorizontalPosition() {
-    return !usePaddingForContentHorizontalPosition();
-  }
-
-  Widget wrappedForHorizontalPosition({
-    required Widget child,
-  }) {
-    if (useCenterForContentHorizontalPosition()) {
-      return Row(
-        mainAxisSize: MainAxisSize.max,
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [
-          SizedBox(
-            width: maximumContentSize.toDouble(),
-            child: child,
-          ),
-        ],
-      );
-    } else {
-      return Padding(
-        padding: EdgeInsets.symmetric(
-          horizontal: minimumPadding.toDouble(),
-        ),
-        child: child,
-      );
-    }
-  }
 }

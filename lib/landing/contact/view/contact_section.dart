@@ -11,6 +11,7 @@ import 'package:jamie_walker_website/app/theme/custom_theme.dart';
 import 'package:jamie_walker_website/app/theme/text_theme.dart';
 import 'package:jamie_walker_website/generic/view/jamie_walker_app_bar.dart';
 import 'package:jamie_walker_website/generic/view/primary_text_button.dart';
+import 'package:jamie_walker_website/generic/view/standard_horizontal_padding.dart';
 import 'package:jamie_walker_website/landing/contact/domain/contact_view_model.dart';
 
 class ContactSection extends ConsumerWidget {
@@ -31,7 +32,6 @@ class ContactSection extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final screenHeight = MediaQuery.of(context).size.height;
     final height = max(minHeight, screenHeight * (4 / 5));
-    print(screenHeight);
 
     ref.listen(
       contactViewModelProvider,
@@ -53,7 +53,7 @@ class ContactSection extends ConsumerWidget {
     final double paddingBetweenElements =
         context.layoutForMobile() ? 30 : ScreenSize.minimumPadding.toDouble();
 
-    return context.wrappedForHorizontalPosition(
+    return StandardHorizontalPadding(
       child: ConstrainedBox(
         constraints: BoxConstraints(minHeight: height),
         child: Column(
@@ -251,7 +251,7 @@ class __ContactSendingDialogState extends ConsumerState<_ContactSendingDialog> {
     ].contains(_state);
     final showProgressIndicator = _state == ContactViewModelState.sending;
 
-    return context.wrappedForHorizontalPosition(
+    return StandardHorizontalPadding(
       child: Center(
         child: FractionallySizedBox(
           widthFactor: context.layoutForMobile() ? 0.8 : 0.5,

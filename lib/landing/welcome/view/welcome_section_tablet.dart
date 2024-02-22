@@ -51,7 +51,7 @@ class _WelcomeSectionTablet extends StatelessWidget {
               ),
             ),
           ),
-          context.wrappedForHorizontalPosition(
+          StandardHorizontalPadding(
             child: Padding(
               padding: const EdgeInsets.only(top: 40),
               child: Align(
@@ -140,7 +140,7 @@ class _WelcomeSectionTablet extends StatelessWidget {
             ),
           ),
           Expanded(
-            child: context.wrappedForHorizontalPosition(
+            child: StandardHorizontalPadding(
               child: Padding(
                 padding: const EdgeInsets.only(top: 20),
                 child: Row(

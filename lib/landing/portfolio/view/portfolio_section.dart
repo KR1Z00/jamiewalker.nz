@@ -5,6 +5,7 @@ import 'package:jamie_walker_website/app/extensions/screen_size.dart';
 import 'package:jamie_walker_website/app/localization/generated/locale_keys.g.dart';
 import 'package:jamie_walker_website/app/theme/text_theme.dart';
 import 'package:jamie_walker_website/generic/view/jamie_walker_app_bar.dart';
+import 'package:jamie_walker_website/generic/view/standard_horizontal_padding.dart';
 import 'package:jamie_walker_website/generic/view/wrapping_cards_section.dart';
 import 'package:jamie_walker_website/landing/portfolio/data/portfolio_repository.dart';
 import 'package:jamie_walker_website/landing/portfolio/view/portfolio_info_dialog.dart';
@@ -20,7 +21,7 @@ class PortfolioSection extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final portfolioItems = ref.watch(portfolioRepositoryProvider);
-    return context.wrappedForHorizontalPosition(
+    return StandardHorizontalPadding(
       child: Column(
         children: [
           const SizedBox(

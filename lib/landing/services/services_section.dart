@@ -8,6 +8,7 @@ import 'package:jamie_walker_website/app/localization/json_list_translation.dart
 import 'package:jamie_walker_website/app/theme/custom_theme.dart';
 import 'package:jamie_walker_website/app/theme/text_theme.dart';
 import 'package:jamie_walker_website/generic/view/jamie_walker_app_bar.dart';
+import 'package:jamie_walker_website/generic/view/standard_horizontal_padding.dart';
 import 'package:jamie_walker_website/generic/view/wrapping_cards_section.dart';
 import 'package:jamie_walker_website/landing/services/jw_service.dart';
 import 'package:responsive_builder/responsive_builder.dart';
@@ -23,7 +24,7 @@ class ServicesSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return context.wrappedForHorizontalPosition(
+    return StandardHorizontalPadding(
       child: LayoutBuilder(
         builder: (context, constraints) {
           return Column(

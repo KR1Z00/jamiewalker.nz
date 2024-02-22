@@ -10,6 +10,7 @@ import 'package:jamie_walker_website/app/localization/generated/locale_keys.g.da
 import 'package:jamie_walker_website/app/theme/custom_theme.dart';
 import 'package:jamie_walker_website/app/theme/text_theme.dart';
 import 'package:jamie_walker_website/generic/view/jamie_walker_app_bar.dart';
+import 'package:jamie_walker_website/generic/view/standard_horizontal_padding.dart';
 import 'package:jamie_walker_website/landing/testimonials/domain/testimonials_section_view_model.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -59,7 +60,7 @@ class _TestimonialsSectionState extends ConsumerState<TestimonialsSection> {
     final double imageSize = context.layoutForMobile() ? 200 : 300;
     final double commentHeight = context.layoutForMobile() ? 200 : 100;
 
-    return context.wrappedForHorizontalPosition(
+    return StandardHorizontalPadding(
       child: Column(
         children: [
           const SizedBox(

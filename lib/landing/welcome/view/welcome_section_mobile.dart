@@ -51,7 +51,7 @@ class _WelcomeSectionMobile extends StatelessWidget {
               ),
             ),
           ),
-          context.wrappedForHorizontalPosition(
+          StandardHorizontalPadding(
             child: Padding(
               padding: const EdgeInsets.only(top: 40, bottom: 20),
               child: Column(
@@ -87,7 +87,7 @@ class _WelcomeSectionMobile extends StatelessWidget {
             ),
           ),
           Expanded(
-            child: context.wrappedForHorizontalPosition(
+            child: StandardHorizontalPadding(
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisSize: MainAxisSize.max,
