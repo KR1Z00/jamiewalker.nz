@@ -12,6 +12,7 @@ import 'package:jamie_walker_website/app/theme/text_theme.dart';
 import 'package:jamie_walker_website/generic/view/jamie_walker_app_bar.dart';
 import 'package:jamie_walker_website/generic/view/primary_text_button.dart';
 import 'package:jamie_walker_website/generic/view/standard_horizontal_padding.dart';
+import 'package:jamie_walker_website/generic/view/tertiary_text_button.dart';
 import 'package:jamie_walker_website/landing/contact/domain/contact_view_model.dart';
 
 class ContactSection extends ConsumerWidget {
@@ -189,18 +190,9 @@ class ContactSection extends ConsumerWidget {
                           const SizedBox(
                             width: 7,
                           ),
-                          TextButton(
+                          TertiaryTextButton(
                             onPressed: () => LaunchableUrls.emailMe.launch(),
-                            style: ButtonStyle(
-                              padding:
-                                  MaterialStateProperty.all(EdgeInsets.zero),
-                            ),
-                            child: Text(
-                              tr(LocaleKeys.contactEmail),
-                              style: context
-                                  .appTextStyles()
-                                  .bodyTextStyle(context),
-                            ),
+                            title: tr(LocaleKeys.contactEmail),
                           ),
                         ],
                       ),

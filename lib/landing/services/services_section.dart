@@ -16,7 +16,8 @@ import 'package:responsive_builder/responsive_builder.dart';
 part 'service_card.dart';
 
 class ServicesSection extends StatelessWidget {
-  static const double cardSpacing = 40;
+  static const double horizontalSpacing = 40;
+  static const double verticalSpacing = 40;
   static const double minimumCardWidth = 340;
   static const int maximumCardsPerRow = 3;
 
@@ -57,10 +58,11 @@ class ServicesSection extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(
-                      height: cardSpacing,
+                      height: verticalSpacing,
                     ),
                     WrappingCardsSection(
-                      cardSpacing: cardSpacing,
+                      horizontalSpacing: horizontalSpacing,
+                      verticalSpacing: verticalSpacing,
                       minimumCardWidth: minimumCardWidth,
                       maximumCardsPerRow: maximumCardsPerRow,
                       children: JWService.values

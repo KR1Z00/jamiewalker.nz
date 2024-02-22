@@ -203,34 +203,29 @@ class _WelcomeSectionTablet extends StatelessWidget {
                       flex: 2,
                       child: Align(
                         alignment: Alignment.bottomCenter,
-                        child: Flexible(
-                          child: ConstrainedBox(
-                            constraints: const BoxConstraints(
-                              maxHeight:
-                                  WelcomeSection.scrollDownGuidanceMaxHeight,
-                            ),
-                            child: Column(
-                              children: [
-                                Text(
-                                  tr(LocaleKeys.scrollDownGuidance),
-                                  textAlign: TextAlign.center,
-                                  style: context
-                                      .textTheme()
-                                      .titleSmall
-                                      ?.copyWith(
-                                        color: context.colorScheme().tertiary,
-                                      ),
+                        child: ConstrainedBox(
+                          constraints: const BoxConstraints(
+                            maxHeight:
+                                WelcomeSection.scrollDownGuidanceMaxHeight,
+                          ),
+                          child: Column(
+                            children: [
+                              Text(
+                                tr(LocaleKeys.scrollDownGuidance),
+                                textAlign: TextAlign.center,
+                                style: context.textTheme().titleSmall?.copyWith(
+                                      color: context.colorScheme().tertiary,
+                                    ),
+                              ),
+                              const SizedBox(
+                                height: 5,
+                              ),
+                              Expanded(
+                                child: ArrowDown(
+                                  color: context.colorScheme().tertiary,
                                 ),
-                                const SizedBox(
-                                  height: 5,
-                                ),
-                                Expanded(
-                                  child: ArrowDown(
-                                    color: context.colorScheme().tertiary,
-                                  ),
-                                ),
-                              ],
-                            ),
+                              ),
+                            ],
                           ),
                         ),
                       ),

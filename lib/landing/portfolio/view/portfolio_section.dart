@@ -12,7 +12,8 @@ import 'package:jamie_walker_website/landing/portfolio/view/portfolio_info_dialo
 import 'package:jamie_walker_website/landing/portfolio/view/portfolio_item_card.dart';
 
 class PortfolioSection extends ConsumerWidget {
-  static const double cardSpacing = 40;
+  static const double horizontalSpacing = 40;
+  static const double verticalSpacing = 70;
   static const double minimumCardWidth = 400;
   static const int maximumCardsPerRow = 2;
 
@@ -48,7 +49,7 @@ class PortfolioSection extends ConsumerWidget {
                   ),
                 ),
                 const SizedBox(
-                  height: cardSpacing,
+                  height: horizontalSpacing,
                 ),
                 portfolioItems.when(
                   loading: () => const Center(
@@ -58,7 +59,8 @@ class PortfolioSection extends ConsumerWidget {
                     child: CircularProgressIndicator(),
                   ),
                   data: (data) => WrappingCardsSection(
-                    cardSpacing: cardSpacing,
+                    verticalSpacing: verticalSpacing,
+                    horizontalSpacing: horizontalSpacing,
                     maximumCardsPerRow: maximumCardsPerRow,
                     minimumCardWidth: minimumCardWidth,
                     children: data
