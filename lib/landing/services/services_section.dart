@@ -7,8 +7,11 @@ import 'package:jamie_walker_website/app/localization/generated/locale_keys.g.da
 import 'package:jamie_walker_website/app/localization/json_list_translation.dart';
 import 'package:jamie_walker_website/app/theme/custom_theme.dart';
 import 'package:jamie_walker_website/app/theme/text_theme.dart';
+import 'package:jamie_walker_website/generic/view/jamie_walker_app_bar.dart';
+import 'package:jamie_walker_website/generic/view/standard_horizontal_padding.dart';
 import 'package:jamie_walker_website/generic/view/wrapping_cards_section.dart';
 import 'package:jamie_walker_website/landing/services/jw_service.dart';
+import 'package:responsive_builder/responsive_builder.dart';
 
 part 'service_card.dart';
 
@@ -21,28 +24,35 @@ class ServicesSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return context.wrappedForHorizontalPosition(
+    return StandardHorizontalPadding(
       child: LayoutBuilder(
         builder: (context, constraints) {
-          return Padding(
-            padding: EdgeInsets.symmetric(
-              vertical: ScreenSize.minimumPadding.toDouble(),
-            ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                Column(
+          return Column(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              const SizedBox(
+                height: JamieWalkerAppBar.preferredHeight,
+              ),
+              const Divider(),
+              Padding(
+                padding: EdgeInsets.only(
+                  top: ScreenSize.minimumPadding.toDouble(),
+                  bottom: 20,
+                ),
+                child: Column(
                   mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     FittedBox(
                       fit: BoxFit.scaleDown,
+                      alignment: Alignment.centerLeft,
                       child: Text(
                         tr(LocaleKeys.servicesSectionTitleAlt),
                         style: context
                             .appTextStyles()
                             .sectionHeaderTextStyle(context),
-                        textAlign: TextAlign.center,
+                        textAlign: TextAlign.left,
                         maxLines: 1,
                       ),
                     ),
@@ -59,8 +69,8 @@ class ServicesSection extends StatelessWidget {
                     ),
                   ],
                 ),
-              ],
-            ),
+              ),
+            ],
           );
         },
       ),

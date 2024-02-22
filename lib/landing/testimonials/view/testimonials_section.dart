@@ -9,6 +9,8 @@ import 'package:jamie_walker_website/app/extensions/standard_box_shadow.dart';
 import 'package:jamie_walker_website/app/localization/generated/locale_keys.g.dart';
 import 'package:jamie_walker_website/app/theme/custom_theme.dart';
 import 'package:jamie_walker_website/app/theme/text_theme.dart';
+import 'package:jamie_walker_website/generic/view/jamie_walker_app_bar.dart';
+import 'package:jamie_walker_website/generic/view/standard_horizontal_padding.dart';
 import 'package:jamie_walker_website/landing/testimonials/domain/testimonials_section_view_model.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -54,168 +56,170 @@ class _TestimonialsSectionState extends ConsumerState<TestimonialsSection> {
       },
     );
 
-    return context.wrappedForHorizontalPosition(
-      child: LayoutBuilder(
-        builder: (context, constraints) {
-          final int commentMaxLines = context.layoutForMobile() ? 12 : 5;
-          final double imageSize = context.layoutForMobile() ? 200 : 300;
-          final double commentHeight = context.layoutForMobile() ? 200 : 100;
+    final int commentMaxLines = context.layoutForMobile() ? 12 : 5;
+    final double imageSize = context.layoutForMobile() ? 200 : 300;
+    final double commentHeight = context.layoutForMobile() ? 200 : 100;
 
-          return Padding(
-            padding: EdgeInsets.symmetric(
-              vertical: ScreenSize.minimumPadding.toDouble(),
+    return StandardHorizontalPadding(
+      child: Column(
+        children: [
+          const SizedBox(
+            height: JamieWalkerAppBar.preferredHeight,
+          ),
+          const Divider(),
+          Padding(
+            padding: EdgeInsets.only(
+              top: ScreenSize.minimumPadding.toDouble(),
+              bottom: 20,
             ),
             child: AnimatedBuilder(
               animation: animationController,
               builder: (context, child) {
                 return Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  mainAxisSize: MainAxisSize.min,
                   children: [
-                    Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        FittedBox(
-                          fit: BoxFit.scaleDown,
-                          child: Text(
-                            tr(LocaleKeys.testimonialsSectionTitleAlt),
-                            style: context
-                                .appTextStyles()
-                                .sectionHeaderTextStyle(context),
-                            textAlign: TextAlign.center,
-                            maxLines: 1,
-                          ),
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: FittedBox(
+                        fit: BoxFit.scaleDown,
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          tr(LocaleKeys.testimonialsSectionTitleAlt),
+                          style: context
+                              .appTextStyles()
+                              .sectionHeaderTextStyle(context),
+                          textAlign: TextAlign.left,
+                          maxLines: 1,
                         ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 40),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Padding(
-                                padding: EdgeInsets.only(
-                                  right: ScreenSize.minimumPadding.toDouble(),
-                                ),
-                                child: IconButton(
-                                  onPressed: ref
-                                      .read(testimonialsSectionViewModelProvider
-                                          .notifier)
-                                      .selectPreviousTestimonial,
-                                  icon: FaIcon(
-                                    FontAwesomeIcons.chevronLeft,
-                                    color: context.colorScheme().secondary,
-                                  ),
-                                ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 40),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.only(
+                              right: ScreenSize.minimumPadding.toDouble(),
+                            ),
+                            child: IconButton(
+                              onPressed: ref
+                                  .read(testimonialsSectionViewModelProvider
+                                      .notifier)
+                                  .selectPreviousTestimonial,
+                              icon: FaIcon(
+                                FontAwesomeIcons.chevronLeft,
+                                color: context.colorScheme().secondary,
                               ),
-                              Flexible(
-                                child: ConstrainedBox(
-                                  constraints: BoxConstraints(
-                                    maxWidth: imageSize,
-                                  ),
-                                  child: AspectRatio(
-                                    aspectRatio: 1,
-                                    child: Opacity(
-                                      opacity: animationController.value,
-                                      child: Container(
-                                        decoration: BoxDecoration(
-                                          boxShadow: [
-                                            StandardBoxShadows.regular(),
-                                          ],
-                                          border: Border.all(
-                                            color:
-                                                context.colorScheme().secondary,
-                                            width: 2,
-                                          ),
-                                          borderRadius: BorderRadius.circular(
-                                            imageSize / 2,
-                                          ),
-                                        ),
-                                        child: ClipRRect(
-                                          borderRadius: BorderRadius.circular(
-                                            imageSize,
-                                          ),
-                                          child: Image.asset(
-                                            testimonial.imageAsset,
-                                            fit: BoxFit.cover,
-                                          ),
-                                        ),
+                            ),
+                          ),
+                          Flexible(
+                            child: ConstrainedBox(
+                              constraints: BoxConstraints(
+                                maxWidth: imageSize,
+                              ),
+                              child: AspectRatio(
+                                aspectRatio: 1,
+                                child: Opacity(
+                                  opacity: animationController.value,
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      boxShadow: [
+                                        StandardBoxShadows.regular(),
+                                      ],
+                                      border: Border.all(
+                                        color: context.colorScheme().secondary,
+                                        width: 2,
+                                      ),
+                                      borderRadius: BorderRadius.circular(
+                                        imageSize / 2,
+                                      ),
+                                    ),
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(
+                                        imageSize,
+                                      ),
+                                      child: Image.asset(
+                                        testimonial.imageAsset,
+                                        fit: BoxFit.cover,
                                       ),
                                     ),
                                   ),
                                 ),
                               ),
-                              Padding(
-                                padding: EdgeInsets.only(
-                                  left: ScreenSize.minimumPadding.toDouble(),
-                                ),
-                                child: IconButton(
-                                  onPressed: ref
-                                      .read(testimonialsSectionViewModelProvider
-                                          .notifier)
-                                      .selectNextTestimonial,
-                                  icon: FaIcon(FontAwesomeIcons.chevronRight,
-                                      color: context.colorScheme().secondary),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 30, bottom: 10),
-                          child: Opacity(
-                            opacity: animationController.value,
-                            child: FittedBox(
-                              fit: BoxFit.scaleDown,
-                              child: Text(
-                                testimonial.name,
-                                style: context
-                                    .appTextStyles()
-                                    .bodyTextStyle(context),
-                                maxLines: 1,
-                              ),
                             ),
                           ),
-                        ),
-                        ConstrainedBox(
-                          constraints:
-                              BoxConstraints.tightFor(height: commentHeight),
-                          child: Opacity(
-                            opacity: animationController.value,
-                            child: AutoSizeText(
-                              "\"${testimonial.comment}\"",
-                              style: context
-                                  .appTextStyles()
-                                  .bodyTextStyle(context),
-                              textAlign: TextAlign.center,
-                              minFontSize: 10,
-                              maxLines: commentMaxLines,
-                              overflow: TextOverflow.ellipsis,
+                          Padding(
+                            padding: EdgeInsets.only(
+                              left: ScreenSize.minimumPadding.toDouble(),
+                            ),
+                            child: IconButton(
+                              onPressed: ref
+                                  .read(testimonialsSectionViewModelProvider
+                                      .notifier)
+                                  .selectNextTestimonial,
+                              icon: FaIcon(FontAwesomeIcons.chevronRight,
+                                  color: context.colorScheme().secondary),
                             ),
                           ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 40),
-                          child: AnimatedSmoothIndicator(
-                            activeIndex: _state.currentTestimonialIndex,
-                            count: _state.totalTestimonialsCount,
-                            effect: WormEffect(
-                              dotWidth: 8,
-                              dotHeight: 8,
-                              dotColor: context
-                                  .colorScheme()
-                                  .secondary
-                                  .withOpacity(0.3),
-                              activeDotColor: context.colorScheme().secondary,
-                            ),
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 30, bottom: 10),
+                      child: Opacity(
+                        opacity: animationController.value,
+                        child: FittedBox(
+                          fit: BoxFit.scaleDown,
+                          child: Text(
+                            testimonial.name,
+                            style:
+                                context.appTextStyles().bodyTextStyle(context),
+                            maxLines: 1,
                           ),
                         ),
-                      ],
+                      ),
+                    ),
+                    ConstrainedBox(
+                      constraints:
+                          BoxConstraints.tightFor(height: commentHeight),
+                      child: Opacity(
+                        opacity: animationController.value,
+                        child: AutoSizeText(
+                          "\"${testimonial.comment}\"",
+                          style: context.appTextStyles().bodyTextStyle(context),
+                          textAlign: TextAlign.left,
+                          minFontSize: 10,
+                          maxLines: commentMaxLines,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 40),
+                      child: Center(
+                        child: AnimatedSmoothIndicator(
+                          activeIndex: _state.currentTestimonialIndex,
+                          count: _state.totalTestimonialsCount,
+                          effect: WormEffect(
+                            dotWidth: 8,
+                            dotHeight: 8,
+                            dotColor: context
+                                .colorScheme()
+                                .secondary
+                                .withOpacity(0.3),
+                            activeDotColor: context.colorScheme().secondary,
+                          ),
+                        ),
+                      ),
                     ),
                   ],
                 );
               },
             ),
-          );
-        },
+          ),
+        ],
       ),
     );
   }

@@ -6,6 +6,7 @@ import 'package:jamie_walker_website/app/extensions/screen_size.dart';
 import 'package:jamie_walker_website/app/theme/custom_theme.dart';
 import 'package:jamie_walker_website/app/theme/text_theme.dart';
 import 'package:jamie_walker_website/generic/view/blurred_fitted_image.dart';
+import 'package:jamie_walker_website/generic/view/standard_horizontal_padding.dart';
 import 'package:jamie_walker_website/landing/portfolio/data/portfolio_item_model.dart';
 import 'package:jamie_walker_website/landing/portfolio/domain/portfolio_item_info_view_model.dart';
 import 'package:jamie_walker_website/landing/portfolio/view/portfolio_youtube_player.dart';
@@ -31,7 +32,7 @@ class PortfolioInfoDialog extends HookConsumerWidget {
 
     return Scaffold(
       backgroundColor: Colors.black.withOpacity(0.1),
-      body: context.wrappedForHorizontalPosition(
+      body: StandardHorizontalPadding(
         child: SelectionArea(
           child: Padding(
             padding: EdgeInsets.symmetric(

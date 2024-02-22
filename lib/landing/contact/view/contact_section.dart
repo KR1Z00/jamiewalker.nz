@@ -9,11 +9,13 @@ import 'package:jamie_walker_website/app/extensions/screen_size.dart';
 import 'package:jamie_walker_website/app/localization/generated/locale_keys.g.dart';
 import 'package:jamie_walker_website/app/theme/custom_theme.dart';
 import 'package:jamie_walker_website/app/theme/text_theme.dart';
+import 'package:jamie_walker_website/generic/view/jamie_walker_app_bar.dart';
 import 'package:jamie_walker_website/generic/view/primary_text_button.dart';
+import 'package:jamie_walker_website/generic/view/standard_horizontal_padding.dart';
 import 'package:jamie_walker_website/landing/contact/domain/contact_view_model.dart';
 
 class ContactSection extends ConsumerWidget {
-  static const double minHeight = 800;
+  static const double minHeight = 720;
 
   final TextEditingController nameTextEditingController;
   final TextEditingController emailTextEditingController;
@@ -29,7 +31,7 @@ class ContactSection extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final screenHeight = MediaQuery.of(context).size.height;
-    final height = max(minHeight, screenHeight * 0.65);
+    final height = max(minHeight, screenHeight * (4 / 5));
 
     ref.listen(
       contactViewModelProvider,
@@ -51,143 +53,163 @@ class ContactSection extends ConsumerWidget {
     final double paddingBetweenElements =
         context.layoutForMobile() ? 30 : ScreenSize.minimumPadding.toDouble();
 
-    return context.wrappedForHorizontalPosition(
-      child: Center(
-        child: ConstrainedBox(
-          constraints: BoxConstraints(
-            maxWidth: 700,
-            minHeight: height,
-          ),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              Padding(
-                padding: EdgeInsets.symmetric(
-                  vertical: paddingBetweenElements,
-                ),
-                child: FittedBox(
-                  fit: BoxFit.scaleDown,
-                  child: Text(
-                    tr(LocaleKeys.contactSectionTitleAlt),
-                    style:
-                        context.appTextStyles().sectionHeaderTextStyle(context),
-                    textAlign: TextAlign.center,
-                    maxLines: 1,
-                  ),
-                ),
+    return StandardHorizontalPadding(
+      child: ConstrainedBox(
+        constraints: BoxConstraints(minHeight: height),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            const SizedBox(
+              height: JamieWalkerAppBar.preferredHeight,
+            ),
+            const Divider(),
+            Padding(
+              padding: EdgeInsets.symmetric(
+                vertical: ScreenSize.minimumPadding.toDouble(),
               ),
-              Text(
-                tr(LocaleKeys.contactPrompt),
-                style: context.appTextStyles().bodyTextStyle(context),
-              ),
-              SizedBox(
-                height: paddingBetweenElements,
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    tr(LocaleKeys.contactFormName),
-                    style: context.textTheme().labelMedium,
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  TextField(
-                    controller: nameTextEditingController,
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: paddingBetweenElements,
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    tr(LocaleKeys.contactFormEmail),
-                    style: context.textTheme().labelMedium,
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  TextField(
-                    controller: emailTextEditingController,
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: paddingBetweenElements,
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    tr(LocaleKeys.contactFormMessage),
-                    style: context.textTheme().labelMedium,
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  TextField(
-                    controller: messageTextEditingController,
-                    maxLines: null,
-                  ),
-                ],
-              ),
-              Padding(
-                padding: EdgeInsets.symmetric(
-                  vertical: paddingBetweenElements,
-                ),
-                child: Center(
-                  child: PrimaryTextButton(
-                    onPressed: () {
-                      ref
-                          .read(
-                            contactViewModelProvider.notifier,
-                          )
-                          .sendMessage(
-                            name: nameTextEditingController.text,
-                            email: emailTextEditingController.text,
-                            message: messageTextEditingController.text,
-                          );
-                    },
-                    title: tr(LocaleKeys.contactSend),
-                  ),
+              child: FittedBox(
+                fit: BoxFit.scaleDown,
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  tr(LocaleKeys.contactSectionTitleAlt),
+                  style:
+                      context.appTextStyles().sectionHeaderTextStyle(context),
+                  textAlign: TextAlign.left,
+                  maxLines: 1,
                 ),
               ),
-              Padding(
-                padding: EdgeInsets.only(
-                  bottom: paddingBetweenElements,
+            ),
+            Center(
+              child: ConstrainedBox(
+                constraints: const BoxConstraints(
+                  maxWidth: 700,
                 ),
-                child: Wrap(
-                  alignment: WrapAlignment.center,
-                  crossAxisAlignment: WrapCrossAlignment.center,
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     Text(
-                      tr(LocaleKeys.contactDirectEmailGuidance),
+                      tr(LocaleKeys.contactPrompt),
                       style: context.appTextStyles().bodyTextStyle(context),
-                      textAlign: TextAlign.center,
                     ),
-                    const SizedBox(
-                      width: 7,
+                    SizedBox(
+                      height: paddingBetweenElements,
                     ),
-                    TextButton(
-                      onPressed: () => LaunchableUrls.emailMe.launch(),
-                      style: ButtonStyle(
-                        padding: MaterialStateProperty.all(EdgeInsets.zero),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          tr(LocaleKeys.contactFormName),
+                          style: context.textTheme().labelMedium,
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        TextField(
+                          controller: nameTextEditingController,
+                          style: context.appTextStyles().bodyTextStyle(context),
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: paddingBetweenElements,
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          tr(LocaleKeys.contactFormEmail),
+                          style: context.textTheme().labelMedium,
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        TextField(
+                          controller: emailTextEditingController,
+                          style: context.appTextStyles().bodyTextStyle(context),
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: paddingBetweenElements,
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          tr(LocaleKeys.contactFormMessage),
+                          style: context.textTheme().labelMedium,
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        TextField(
+                          controller: messageTextEditingController,
+                          maxLines: null,
+                          style: context.appTextStyles().bodyTextStyle(context),
+                        ),
+                      ],
+                    ),
+                    Padding(
+                      padding: EdgeInsets.symmetric(
+                        vertical: paddingBetweenElements,
                       ),
-                      child: Text(
-                        tr(LocaleKeys.contactEmail),
-                        style: context.appTextStyles().bodyTextStyle(context),
+                      child: Center(
+                        child: PrimaryTextButton(
+                          onPressed: () {
+                            ref
+                                .read(
+                                  contactViewModelProvider.notifier,
+                                )
+                                .sendMessage(
+                                  name: nameTextEditingController.text,
+                                  email: emailTextEditingController.text,
+                                  message: messageTextEditingController.text,
+                                );
+                          },
+                          title: tr(LocaleKeys.contactSend),
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(
+                        bottom: paddingBetweenElements,
+                      ),
+                      child: Wrap(
+                        alignment: WrapAlignment.center,
+                        crossAxisAlignment: WrapCrossAlignment.center,
+                        children: [
+                          Text(
+                            tr(LocaleKeys.contactDirectEmailGuidance),
+                            style:
+                                context.appTextStyles().bodyTextStyle(context),
+                            textAlign: TextAlign.center,
+                          ),
+                          const SizedBox(
+                            width: 7,
+                          ),
+                          TextButton(
+                            onPressed: () => LaunchableUrls.emailMe.launch(),
+                            style: ButtonStyle(
+                              padding:
+                                  MaterialStateProperty.all(EdgeInsets.zero),
+                            ),
+                            child: Text(
+                              tr(LocaleKeys.contactEmail),
+                              style: context
+                                  .appTextStyles()
+                                  .bodyTextStyle(context),
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                   ],
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
@@ -232,7 +254,7 @@ class __ContactSendingDialogState extends ConsumerState<_ContactSendingDialog> {
     ].contains(_state);
     final showProgressIndicator = _state == ContactViewModelState.sending;
 
-    return context.wrappedForHorizontalPosition(
+    return StandardHorizontalPadding(
       child: Center(
         child: FractionallySizedBox(
           widthFactor: context.layoutForMobile() ? 0.8 : 0.5,

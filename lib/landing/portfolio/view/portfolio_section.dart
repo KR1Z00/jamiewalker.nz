@@ -4,6 +4,8 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:jamie_walker_website/app/extensions/screen_size.dart';
 import 'package:jamie_walker_website/app/localization/generated/locale_keys.g.dart';
 import 'package:jamie_walker_website/app/theme/text_theme.dart';
+import 'package:jamie_walker_website/generic/view/jamie_walker_app_bar.dart';
+import 'package:jamie_walker_website/generic/view/standard_horizontal_padding.dart';
 import 'package:jamie_walker_website/generic/view/wrapping_cards_section.dart';
 import 'package:jamie_walker_website/landing/portfolio/data/portfolio_repository.dart';
 import 'package:jamie_walker_website/landing/portfolio/view/portfolio_info_dialog.dart';
@@ -19,23 +21,29 @@ class PortfolioSection extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final portfolioItems = ref.watch(portfolioRepositoryProvider);
-    return context.wrappedForHorizontalPosition(
-      child: LayoutBuilder(
-        builder: (context, constraints) {
-          return Padding(
-            padding: EdgeInsets.symmetric(
-              vertical: ScreenSize.minimumPadding.toDouble(),
+    return StandardHorizontalPadding(
+      child: Column(
+        children: [
+          const SizedBox(
+            height: JamieWalkerAppBar.preferredHeight,
+          ),
+          const Divider(),
+          Padding(
+            padding: EdgeInsets.only(
+              top: ScreenSize.minimumPadding.toDouble(),
+              bottom: 20,
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 FittedBox(
                   fit: BoxFit.scaleDown,
+                  alignment: Alignment.centerLeft,
                   child: Text(
                     tr(LocaleKeys.portfolioSectionTitleAlt),
                     style:
                         context.appTextStyles().sectionHeaderTextStyle(context),
-                    textAlign: TextAlign.center,
+                    textAlign: TextAlign.left,
                     maxLines: 1,
                   ),
                 ),
@@ -74,8 +82,8 @@ class PortfolioSection extends ConsumerWidget {
                 ),
               ],
             ),
-          );
-        },
+          ),
+        ],
       ),
     );
   }

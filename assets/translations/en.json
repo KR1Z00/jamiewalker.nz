@@ -14,19 +14,19 @@
         {
             "key": "ios",
             "serviceName": "iOS Development",
-            "serviceDescription": "Provide your customers with a refined user experience that integrates seamlessly across the Apple ecosystem of devices.\n\nCreate solutions that harness the powerful native frameworks of the iOS and macOS SDKs.",
+            "description": "Building apps for iOS, MacOS and watchOS",
             "serviceSkills": "Swift, SwiftUI, UIKit, Combine, Objective-C(++), AVFoundation, Bluetooth LE, Photos, Firebase, Alamofire, CoreData"
         },
         {
             "key": "flutter",
             "serviceName": "Flutter Development",
-            "serviceDescription": "Build amazing apps that can easily be deployed on multiple platforms including iOS, Android, Mac, Windows, and Web.\n\nEnable rapid development and efficient maintenance to ensure that your users are provided with an excellent experience, no matter what type of device they use.",
+            "description": "Building apps for iOS, Android, MacOS, Windows, and Web",
             "serviceSkills": "Dart, BLoC, Riverpod, Method Channels, Firebase, http, dio, ffi"
         },
         {
             "key": "backends",
             "serviceName": "Cloud Backends",
-            "serviceDescription": "Harnessing the power of Google Firebase, serve your mobile apps with the internet capabilities they require with ease.\n\nCreate backend functionality that works for all platforms, provides a high degree of security, and easily scales to suit the size of your user base.",
+            "description": "Serving mobile, web, and desktop apps using Google Firebase",
             "serviceSkills": "Firestore, Cloud Functions, Cloud Messaging, Analytics, Cloud Storage"
         }
     ],
