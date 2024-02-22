@@ -108,6 +108,7 @@ class ContactSection extends ConsumerWidget {
                         ),
                         TextField(
                           controller: nameTextEditingController,
+                          style: context.appTextStyles().bodyTextStyle(context),
                         ),
                       ],
                     ),
@@ -126,6 +127,7 @@ class ContactSection extends ConsumerWidget {
                         ),
                         TextField(
                           controller: emailTextEditingController,
+                          style: context.appTextStyles().bodyTextStyle(context),
                         ),
                       ],
                     ),
@@ -145,6 +147,7 @@ class ContactSection extends ConsumerWidget {
                         TextField(
                           controller: messageTextEditingController,
                           maxLines: null,
+                          style: context.appTextStyles().bodyTextStyle(context),
                         ),
                       ],
                     ),
