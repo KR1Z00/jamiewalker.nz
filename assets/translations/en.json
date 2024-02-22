@@ -56,6 +56,9 @@
             "itemId": "joby_one",
             "name": "JOBY One",
             "previewImageAsset": "assets/images/portfolio/joby_one/joby_one_preview.png",
+            "previewDescription": "Capture beautiful photos, amazing videos, and breathtaking time lapses with the power of JOBY’s motion control, microphone, and light devices. I was responsible for building this app on iOS, and later Flutter, as an employee for Syrp Lab.",
+            "technologiesUsed": "iOS, Swift, Combine, UIKit, Bluetooth LE, Objective-C(++), C++, MVVM, Swinject, Flutter, BLoC, get_it, camera, Firebase, Firebase Analytics",
+            "appStoreUrl": "https://apps.apple.com/us/app/joby-one/id1611461487",
             "infoPages": [
                 {
                     "contentType": "image",
@@ -78,6 +81,9 @@
             "itemId": "joby_motion",
             "name": "JOBY Motion",
             "previewImageAsset": "assets/images/portfolio/joby_motion/joby_motion_preview.png",
+            "previewDescription": "A predecessor of the JOBY One app. This app integrates seamlessly with the JOBY Spin and Swing motion control devices to allow users to capture awesome motion videos, time lapses, and panoramic images.",
+            "technologiesUsed": "iOS, Swift, Combine, UIKit, Bluetooth LE, Objective-C(++), C++, MVVM, Swinject, Firebase, Firebase Analytics",
+            "appStoreUrl": "https://apps.apple.com/tr/app/joby-motion/id1567101419",
             "infoPages": [
                 {
                     "contentType": "video",
@@ -100,6 +106,8 @@
             "itemId": "my_flatmate",
             "name": "MyFlatmate",
             "previewImageAsset": "assets/images/portfolio/my_flatmate/my_flatmate_preview.png",
+            "previewDescription": "Ever lived in a shared flat? Did you find it frustrating trying to figure out who owes whom money, or who’s turn it is to clean the floor? Enter, MyFlatmate, an app I developed on iOS as my first fully fledged personal project in my early days.",
+            "technologiesUsed": "iOS, Swift, Combine, UIKit, MVVM, Swinject, Firebase, Firestore, Cloud Functions, Cloud Messaging, Push Notifications",
             "infoPages": [
                 {
                     "contentType": "video",
@@ -134,5 +142,9 @@
     "copyright": "Copyright © Jamie Walker 2024",
     "viewSourceCode": "See the source code for this website!",
     "viewPortfolio": "View my Portfolio",
-    "scrollDownGuidance": "Scroll down to learn more"
+    "scrollDownGuidance": "Scroll down to learn more",
+    "technologiesUsed": "Technologies Used",
+    "tapToLearnMore": "Tap to learn more",
+    "clickToLearnMore": "Click to learn more",
+    "viewOnAppStore": "View on the App Store"
 }
