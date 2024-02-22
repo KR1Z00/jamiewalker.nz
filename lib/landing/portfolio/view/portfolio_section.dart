@@ -3,14 +3,17 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:jamie_walker_website/app/extensions/screen_size.dart';
 import 'package:jamie_walker_website/app/localization/generated/locale_keys.g.dart';
-import 'package:jamie_walker_website/app/theme/custom_text_styles.dart';
+import 'package:jamie_walker_website/app/theme/text_theme.dart';
+import 'package:jamie_walker_website/generic/view/jamie_walker_app_bar.dart';
+import 'package:jamie_walker_website/generic/view/standard_horizontal_padding.dart';
 import 'package:jamie_walker_website/generic/view/wrapping_cards_section.dart';
 import 'package:jamie_walker_website/landing/portfolio/data/portfolio_repository.dart';
 import 'package:jamie_walker_website/landing/portfolio/view/portfolio_info_dialog.dart';
 import 'package:jamie_walker_website/landing/portfolio/view/portfolio_item_card.dart';
 
 class PortfolioSection extends ConsumerWidget {
-  static const double cardSpacing = 40;
+  static const double horizontalSpacing = 40;
+  static const double verticalSpacing = 70;
   static const double minimumCardWidth = 400;
   static const int maximumCardsPerRow = 2;
 
@@ -19,27 +22,34 @@ class PortfolioSection extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final portfolioItems = ref.watch(portfolioRepositoryProvider);
-    return context.wrappedForHorizontalPosition(
-      child: LayoutBuilder(
-        builder: (context, constraints) {
-          return Padding(
-            padding: EdgeInsets.symmetric(
-              vertical: ScreenSize.minimumPadding.toDouble(),
+    return StandardHorizontalPadding(
+      child: Column(
+        children: [
+          const SizedBox(
+            height: JamieWalkerAppBar.preferredHeight,
+          ),
+          const Divider(),
+          Padding(
+            padding: EdgeInsets.only(
+              top: ScreenSize.minimumPadding.toDouble(),
+              bottom: 20,
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 FittedBox(
                   fit: BoxFit.scaleDown,
+                  alignment: Alignment.centerLeft,
                   child: Text(
                     tr(LocaleKeys.portfolioSectionTitleAlt),
-                    style: CustomTextStyles.header2(),
-                    textAlign: TextAlign.center,
+                    style:
+                        context.appTextStyles().sectionHeaderTextStyle(context),
+                    textAlign: TextAlign.left,
                     maxLines: 1,
                   ),
                 ),
                 const SizedBox(
-                  height: cardSpacing,
+                  height: horizontalSpacing,
                 ),
                 portfolioItems.when(
                   loading: () => const Center(
@@ -49,7 +59,8 @@ class PortfolioSection extends ConsumerWidget {
                     child: CircularProgressIndicator(),
                   ),
                   data: (data) => WrappingCardsSection(
-                    cardSpacing: cardSpacing,
+                    verticalSpacing: verticalSpacing,
+                    horizontalSpacing: horizontalSpacing,
                     maximumCardsPerRow: maximumCardsPerRow,
                     minimumCardWidth: minimumCardWidth,
                     children: data
@@ -73,8 +84,8 @@ class PortfolioSection extends ConsumerWidget {
                 ),
               ],
             ),
-          );
-        },
+          ),
+        ],
       ),
     );
   }

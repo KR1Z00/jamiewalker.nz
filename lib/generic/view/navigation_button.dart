@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:jamie_walker_website/app/theme/custom_colors.dart';
+import 'package:jamie_walker_website/app/theme/custom_theme.dart';
+import 'package:jamie_walker_website/app/theme/text_theme.dart';
 
 class NavigationButton extends StatefulWidget {
   static const double underlineSize = 2;
@@ -28,13 +29,11 @@ class _NavigationButtonState extends State<NavigationButton> {
   @override
   Widget build(BuildContext context) {
     final double underlineSize = isHovered ? NavigationButton.underlineSize : 0;
-    final textStyle = TextStyle(
-      fontSize: 20,
-      fontWeight: FontWeight.w300,
-      color: isHovered || widget.isCurrentItem
-          ? CustomColors.secondaryColor.l1
-          : Colors.white,
-    );
+    final textStyle = context.textTheme().titleLarge!.copyWith(
+          color: isHovered || widget.isCurrentItem
+              ? context.colorScheme().secondary
+              : context.colorScheme().onBackground,
+        );
 
     return MouseRegion(
       cursor: SystemMouseCursors.click,
@@ -68,7 +67,7 @@ class _NavigationButtonState extends State<NavigationButton> {
                 AnimatedContainer(
                   duration: animationDuration,
                   constraints: BoxConstraints.tightFor(height: underlineSize),
-                  color: CustomColors.secondaryColor.l1,
+                  color: context.colorScheme().secondary,
                 ),
               ],
             ),

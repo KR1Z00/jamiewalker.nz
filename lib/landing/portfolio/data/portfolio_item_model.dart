@@ -9,6 +9,9 @@ class PortfolioItemModel with _$PortfolioItemModel {
     required String itemId,
     required String name,
     required String previewImageAsset,
+    required String previewDescription,
+    required String technologiesUsed,
+    String? appStoreUrl,
     required List<PortfolioItemInfoPage> infoPages,
   }) = _PortfolioItemModel;
 

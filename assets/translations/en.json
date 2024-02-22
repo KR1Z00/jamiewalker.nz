@@ -1,6 +1,7 @@
 {
+    "greeting": "Hello there, I'm",
     "fullName": "Jamie Walker",
-    "profession": "Mobile app developer",
+    "profession": "A Mobile App Developer",
     "location": "Auckland, New Zealand",
     "shortBio": "{} based in {}.",
     "introductionQuestion": "Are you looking to craft a standout mobile app that not only enhances the efficiency of your business but also captivates your customers?",
@@ -13,19 +14,19 @@
         {
             "key": "ios",
             "serviceName": "iOS Development",
-            "serviceDescription": "Provide your customers with a refined user experience that integrates seamlessly across the Apple ecosystem of devices.\n\nCreate solutions that harness the powerful native frameworks of the iOS and macOS SDKs.",
+            "description": "Building apps for iOS, MacOS and watchOS",
             "serviceSkills": "Swift, SwiftUI, UIKit, Combine, Objective-C(++), AVFoundation, Bluetooth LE, Photos, Firebase, Alamofire, CoreData"
         },
         {
             "key": "flutter",
             "serviceName": "Flutter Development",
-            "serviceDescription": "Build amazing apps that can easily be deployed on multiple platforms including iOS, Android, Mac, Windows, and Web.\n\nEnable rapid development and efficient maintenance to ensure that your users are provided with an excellent experience, no matter what type of device they use.",
+            "description": "Building apps for iOS, Android, MacOS, Windows, and Web",
             "serviceSkills": "Dart, BLoC, Riverpod, Method Channels, Firebase, http, dio, ffi"
         },
         {
             "key": "backends",
             "serviceName": "Cloud Backends",
-            "serviceDescription": "Harnessing the power of Google Firebase, serve your mobile apps with the internet capabilities they require with ease.\n\nCreate backend functionality that works for all platforms, provides a high degree of security, and easily scales to suit the size of your user base.",
+            "description": "Serving mobile, web, and desktop apps using Google Firebase",
             "serviceSkills": "Firestore, Cloud Functions, Cloud Messaging, Analytics, Cloud Storage"
         }
     ],
@@ -55,6 +56,9 @@
             "itemId": "joby_one",
             "name": "JOBY One",
             "previewImageAsset": "assets/images/portfolio/joby_one/joby_one_preview.png",
+            "previewDescription": "Capture beautiful photos, amazing videos, and breathtaking time lapses with the power of JOBY’s motion control, microphone, and light devices. I was responsible for building this app on iOS, and later Flutter, as an employee for Syrp Lab.",
+            "technologiesUsed": "iOS, Swift, Combine, UIKit, Bluetooth LE, Objective-C(++), C++, MVVM, Swinject, Flutter, BLoC, get_it, camera, Firebase, Firebase Analytics",
+            "appStoreUrl": "https://apps.apple.com/us/app/joby-one/id1611461487",
             "infoPages": [
                 {
                     "contentType": "image",
@@ -77,6 +81,9 @@
             "itemId": "joby_motion",
             "name": "JOBY Motion",
             "previewImageAsset": "assets/images/portfolio/joby_motion/joby_motion_preview.png",
+            "previewDescription": "A predecessor of the JOBY One app. This app integrates seamlessly with the JOBY Spin and Swing motion control devices to allow users to capture awesome motion videos, time lapses, and panoramic images.",
+            "technologiesUsed": "iOS, Swift, Combine, UIKit, Bluetooth LE, Objective-C(++), C++, MVVM, Swinject, Firebase, Firebase Analytics",
+            "appStoreUrl": "https://apps.apple.com/tr/app/joby-motion/id1567101419",
             "infoPages": [
                 {
                     "contentType": "video",
@@ -99,6 +106,8 @@
             "itemId": "my_flatmate",
             "name": "MyFlatmate",
             "previewImageAsset": "assets/images/portfolio/my_flatmate/my_flatmate_preview.png",
+            "previewDescription": "Ever lived in a shared flat? Did you find it frustrating trying to figure out who owes whom money, or who’s turn it is to clean the floor? Enter, MyFlatmate, an app I developed on iOS as my first fully fledged personal project in my early days.",
+            "technologiesUsed": "iOS, Swift, Combine, UIKit, MVVM, Swinject, Firebase, Firestore, Cloud Functions, Cloud Messaging, Push Notifications",
             "infoPages": [
                 {
                     "contentType": "video",
@@ -131,5 +140,11 @@
     "contactDirectEmailGuidance": "Alternatively, email me directly at",
     "contactEmail": "jamie@jamiewalker.nz",
     "copyright": "Copyright © Jamie Walker 2024",
-    "viewSourceCode": "See the source code for this website!"
+    "viewSourceCode": "See the source code for this website!",
+    "viewPortfolio": "View my Portfolio",
+    "scrollDownGuidance": "Scroll down to learn more",
+    "technologiesUsed": "Technologies Used",
+    "tapToLearnMore": "Tap to learn more",
+    "clickToLearnMore": "Click to learn more",
+    "viewOnAppStore": "View on the App Store"
 }

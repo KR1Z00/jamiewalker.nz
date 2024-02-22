@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:jamie_walker_website/app/extensions/screen_size.dart';
-import 'package:jamie_walker_website/app/extensions/standard_box_shadow.dart';
-import 'package:jamie_walker_website/app/theme/custom_colors.dart';
-import 'package:jamie_walker_website/app/theme/custom_text_styles.dart';
+import 'package:jamie_walker_website/app/theme/custom_theme.dart';
+import 'package:jamie_walker_website/app/theme/text_theme.dart';
 
 extension CustomButtonStyles on ButtonStyle {
-  static ButtonStyle navigationButton({required bool isCurrentPage}) {
+  static ButtonStyle navigationButton(
+    BuildContext context, {
+    required bool isCurrentPage,
+  }) {
     return ButtonStyle(
       backgroundColor: MaterialStateProperty.all(
         Colors.transparent,
@@ -13,55 +14,21 @@ extension CustomButtonStyles on ButtonStyle {
       foregroundColor: MaterialStateProperty.resolveWith(
         (states) {
           if (isCurrentPage || states.contains(MaterialState.hovered)) {
-            return CustomColors.secondaryColor.l1;
+            return context.colorScheme().secondary;
           }
-          return Colors.white;
+          return context.colorScheme().onBackground;
         },
       ),
       overlayColor: MaterialStateProperty.all(
         Colors.transparent,
       ),
       textStyle: MaterialStateProperty.all(
-        TextStyle(
-          fontSize: 20,
-          fontWeight: isCurrentPage ? FontWeight.w600 : FontWeight.w300,
-          shadows: [
-            StandardBoxShadows.light(),
-          ],
-        ),
+        context.textTheme().titleLarge,
       ),
     );
   }
 
-  static ButtonStyle primaryActionButton(BuildContext context) {
-    final layoutForMobile = context.layoutForMobile();
-    final textStyle =
-        layoutForMobile ? CustomTextStyles.header4 : CustomTextStyles.header3;
-    return ButtonStyle(
-      backgroundColor: MaterialStateProperty.all(
-        CustomColors.secondaryColor.l1,
-      ),
-      foregroundColor: MaterialStateProperty.all(
-        CustomColors.primaryColor.d2,
-      ),
-      padding: MaterialStateProperty.all(
-        const EdgeInsets.symmetric(
-          vertical: 20,
-          horizontal: 30,
-        ),
-      ),
-      overlayColor: MaterialStateProperty.all(
-        Colors.white.withOpacity(0.5),
-      ),
-      textStyle: MaterialStateProperty.all(
-        textStyle(
-          color: CustomColors.primaryColor.d2,
-        ),
-      ),
-    );
-  }
-
-  static ButtonStyle secondaryIconButton() {
+  static ButtonStyle secondaryIconButton(BuildContext context) {
     return ButtonStyle(
       backgroundColor: MaterialStateProperty.all(
         Colors.transparent,
@@ -73,7 +40,7 @@ extension CustomButtonStyles on ButtonStyle {
         const EdgeInsets.all(0),
       ),
       overlayColor: MaterialStateProperty.all(
-        CustomColors.secondaryColor.l1.withOpacity(0.5),
+        context.colorScheme().secondary.withOpacity(0.5),
       ),
     );
   }
