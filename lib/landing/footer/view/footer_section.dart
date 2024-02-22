@@ -30,7 +30,7 @@ class FooterSection extends StatelessWidget {
               children: [
                 Text(
                   tr(LocaleKeys.copyright),
-                  style: context.textTheme().bodyMedium,
+                  style: context.appTextStyles().bodyTextStyle(context),
                 ),
                 TertiaryTextButton(
                   onPressed: () => LaunchableUrls.websiteRepository.launch(),
