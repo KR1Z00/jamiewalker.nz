@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 
 class WrappingCardsSection extends StatelessWidget {
   /// The spacing with which the cards should be separated
-  final double cardSpacing;
+  final double horizontalSpacing;
+
+  /// The spacing with which the cards should be separated
+  final double verticalSpacing;
 
   /// The maximum number of cards per row in the section
   final int maximumCardsPerRow;
@@ -15,7 +18,8 @@ class WrappingCardsSection extends StatelessWidget {
 
   const WrappingCardsSection({
     super.key,
-    required this.cardSpacing,
+    required this.horizontalSpacing,
+    required this.verticalSpacing,
     required this.maximumCardsPerRow,
     required this.minimumCardWidth,
     required this.children,
@@ -31,8 +35,8 @@ class WrappingCardsSection extends StatelessWidget {
         return Wrap(
           alignment: WrapAlignment.center,
           crossAxisAlignment: WrapCrossAlignment.center,
-          spacing: cardSpacing,
-          runSpacing: cardSpacing,
+          spacing: horizontalSpacing,
+          runSpacing: verticalSpacing,
           children: children
               .map(
                 (child) => ConstrainedBox(
@@ -54,7 +58,8 @@ class WrappingCardsSection extends StatelessWidget {
   double calculateItemWidthGiven({required double currentWidth}) {
     final itemsPerRow = calculateItemsPerRowGiven(currentWidth: currentWidth);
     final spacingsPerRow = itemsPerRow - 1;
-    final widthWithoutSpacings = currentWidth - (spacingsPerRow * cardSpacing);
+    final widthWithoutSpacings =
+        currentWidth - (spacingsPerRow * horizontalSpacing);
     return widthWithoutSpacings / itemsPerRow;
   }
 
@@ -110,7 +115,7 @@ class WrappingCardsSection extends StatelessWidget {
     return possibleRowCounts.map<double>((possibleRowCount) {
       final numberOfSpacings = possibleRowCount - 1;
       final sumOfCardWidths = possibleRowCount * minimumCardWidth;
-      final sumOfSpacingWidths = numberOfSpacings * cardSpacing;
+      final sumOfSpacingWidths = numberOfSpacings * horizontalSpacing;
       return sumOfCardWidths + sumOfSpacingWidths;
     }).toList();
   }
