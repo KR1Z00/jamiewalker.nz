@@ -39,27 +39,27 @@ class _PortfolioItemCardState extends State<PortfolioItemCard> {
     return ResponsiveBuilder(
       builder: (context, sizingInformation) => Align(
         alignment: Alignment.center,
-        child: MouseRegion(
-          cursor: SystemMouseCursors.click,
-          onEnter: (event) => setState(() {
-            _isHovered = true;
-          }),
-          onExit: (event) => setState(() {
-            _isHovered = false;
-          }),
-          child: GestureDetector(
-            onTap: widget.onTap,
-            child: ConstrainedBox(
-              constraints: BoxConstraints(
-                maxWidth: !sizingInformation.isDesktop
-                    ? PortfolioItemCard.maxImageWidth
-                    : double.infinity,
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  DecoratedBox(
+        child: ConstrainedBox(
+          constraints: BoxConstraints(
+            maxWidth: !sizingInformation.isDesktop
+                ? PortfolioItemCard.maxImageWidth
+                : double.infinity,
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              MouseRegion(
+                cursor: SystemMouseCursors.click,
+                onEnter: (event) => setState(() {
+                  _isHovered = true;
+                }),
+                onExit: (event) => setState(() {
+                  _isHovered = false;
+                }),
+                child: GestureDetector(
+                  onTap: widget.onTap,
+                  child: DecoratedBox(
                     decoration: BoxDecoration(
                       boxShadow: [
                         StandardBoxShadows.regular(),
@@ -80,7 +80,7 @@ class _PortfolioItemCardState extends State<PortfolioItemCard> {
                               ),
                             ),
                             AnimatedOpacity(
-                              opacity: _isHovered ? 1 : 0.3,
+                              opacity: _isHovered ? 1 : 0.0,
                               duration: const Duration(milliseconds: 200),
                               child: ColoredBox(
                                 color: Colors.white.withOpacity(0.3),
@@ -91,67 +91,67 @@ class _PortfolioItemCardState extends State<PortfolioItemCard> {
                       ),
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(
-                      top: 20,
-                    ),
-                    child: Text(
-                      widget.model.name,
-                      style: context.textTheme().headlineMedium?.copyWith(
-                            color: context.colorScheme().secondary,
-                          ),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 5,
-                  ),
-                  SizedBox(
-                    height: sizingInformation.isDesktop
-                        ? PortfolioItemCard.desktopPreviewDescriptionHeight
-                        : PortfolioItemCard.mobilePreviewDescriptionHeight,
-                    child: Text(
-                      widget.model.previewDescription,
-                      style: context.appTextStyles().bodyTextStyle(context),
-                    ),
-                  ),
-                  Text(
-                    tr(LocaleKeys.technologiesUsed),
-                    style: context.textTheme().titleSmall?.copyWith(
-                          color: context.colorScheme().secondary,
-                        ),
-                  ),
-                  SizedBox(
-                    height: sizingInformation.isDesktop
-                        ? PortfolioItemCard.desktopPreviewTechnologiesHeight
-                        : PortfolioItemCard.mobilePreviewTechnologiesHeight,
-                    child: Text(
-                      widget.model.technologiesUsed,
-                      style: context.appTextStyles().bodyTextStyle(context),
-                    ),
-                  ),
-                  Wrap(
-                    alignment: WrapAlignment.start,
-                    crossAxisAlignment: WrapCrossAlignment.center,
-                    spacing: 20,
-                    runSpacing: 20,
-                    children: [
-                      SecondaryTextButton(
-                        title: sizingInformation.isDesktop
-                            ? tr(LocaleKeys.clickToLearnMore)
-                            : tr(LocaleKeys.tapToLearnMore),
-                        onPressed: () => widget.onTap,
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(
+                  top: 20,
+                ),
+                child: Text(
+                  widget.model.name,
+                  style: context.textTheme().headlineMedium?.copyWith(
+                        color: context.colorScheme().secondary,
                       ),
-                      if (widget.model.appStoreUrl != null)
-                        TertiaryTextButton(
-                          onPressed: () =>
-                              launchUrlString(widget.model.appStoreUrl!),
-                          title: tr(LocaleKeys.viewOnAppStore),
-                        ),
-                    ],
+                ),
+              ),
+              const SizedBox(
+                height: 5,
+              ),
+              SizedBox(
+                height: sizingInformation.isDesktop
+                    ? PortfolioItemCard.desktopPreviewDescriptionHeight
+                    : PortfolioItemCard.mobilePreviewDescriptionHeight,
+                child: Text(
+                  widget.model.previewDescription,
+                  style: context.appTextStyles().bodyTextStyle(context),
+                ),
+              ),
+              Text(
+                tr(LocaleKeys.technologiesUsed),
+                style: context.textTheme().titleSmall?.copyWith(
+                      color: context.colorScheme().secondary,
+                    ),
+              ),
+              SizedBox(
+                height: sizingInformation.isDesktop
+                    ? PortfolioItemCard.desktopPreviewTechnologiesHeight
+                    : PortfolioItemCard.mobilePreviewTechnologiesHeight,
+                child: Text(
+                  widget.model.technologiesUsed,
+                  style: context.appTextStyles().bodyTextStyle(context),
+                ),
+              ),
+              Wrap(
+                alignment: WrapAlignment.start,
+                crossAxisAlignment: WrapCrossAlignment.center,
+                spacing: 20,
+                runSpacing: 20,
+                children: [
+                  SecondaryTextButton(
+                    title: sizingInformation.isDesktop
+                        ? tr(LocaleKeys.clickToLearnMore)
+                        : tr(LocaleKeys.tapToLearnMore),
+                    onPressed: widget.onTap,
                   ),
+                  if (widget.model.appStoreUrl != null)
+                    TertiaryTextButton(
+                      onPressed: () =>
+                          launchUrlString(widget.model.appStoreUrl!),
+                      title: tr(LocaleKeys.viewOnAppStore),
+                    ),
                 ],
               ),
-            ),
+            ],
           ),
         ),
       ),
