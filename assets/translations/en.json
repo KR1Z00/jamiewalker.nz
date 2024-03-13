@@ -103,6 +103,56 @@
             ]
         },
         {
+            "itemId": "syrp_genie",
+            "name": "Syrp Genie App",
+            "previewImageAsset": "assets/images/portfolio/syrp_genie/syrp_genie_preview.png",
+            "previewDescription": "The Syrp Genie app allows filmmakers to capture stunning motion time lapses and videos. I was responsible for maintaining and improving this app on iOS as an employee for Syrp Lab.",
+            "technologiesUsed": "iOS, Swift, Combine, UIKit, Bluetooth LE, Objective-C(++), C++, MVVM, Swinject, Firebase, Firebase Analytics",
+            "appStoreUrl": "https://apps.apple.com/us/app/syrp/id1387335063",
+            "infoPages": [
+                {
+                    "contentType": "video",
+                    "youtubeVideoId": "hTSHko9gZOg",
+                    "description": "Syrp Lab make a range of advanced motion control devices that move a camera as it is filming a video or time lapse. The Syrp Genie app enables users to control these devices to capture any sort of shot they can imagine."
+                },
+                {
+                    "contentType": "image",
+                    "imageAsset": "assets/images/portfolio/syrp_genie/pages/page_2.png",
+                    "description": "I maintained and improved this app by adding new features, fixing bugs, and improving the app's performance. I raised the app's crash-free use rate from 70% to 93%, and its unit test coverage from 0% to 60%."
+                },
+                {
+                    "contentType": "image",
+                    "imageAsset": "assets/images/portfolio/syrp_genie/pages/page_3.png",
+                    "description": "Using Syrp's wide range of motion control devices, users can capture content that moves in all sorts of ways. They can move their camera linearly, rotate it, or even move it in a complex path. The app also allows users to control the camera's focus and exposure settings."
+                }
+            ]
+        },
+        {
+            "itemId": "manfrotto_motion",
+            "name": "Manfrotto Motion",
+            "previewImageAsset": "assets/images/portfolio/manfrotto_motion/manfrotto_motion_preview.png",
+            "previewDescription": "During my time working at Syrp Lab, I was responsible for fully rebranding the Syrp Genie App to become the Manfrotto Motion app. This involved a complete overhaul of the app's UI and UX to align with the Manfrotto brand identity.",
+            "technologiesUsed": "iOS, Swift, Combine, UIKit, Bluetooth LE, Objective-C(++), C++, MVVM, Swinject, Firebase, Firebase Analytics",
+            "appStoreUrl": "https://apps.apple.com/nz/app/manfrotto-motion/id1566807793",
+            "infoPages": [
+                {
+                    "contentType": "image",
+                    "imageAsset": "assets/images/portfolio/manfrotto_motion/pages/page_1.png",
+                    "description": "Like the Syrp Genie app, the Manfrotto Motion offers filmmakers a variety of capture modes to create content in different ways. This picture demonstrates how the main screen of the app was rebranded to align with the Manfrotto brand identity."
+                },
+                {
+                    "contentType": "image",
+                    "imageAsset": "assets/images/portfolio/manfrotto_motion/pages/page_2.png",
+                    "description": "The keyframe screen allows the users to record a video or timelapse that moves across any sort of path they desire. This picture demonstrates how this screen was rebranded to align with the Manfrotto brand identity."
+                },
+                {
+                    "contentType": "image",
+                    "imageAsset": "assets/images/portfolio/manfrotto_motion/pages/page_3.png",
+                    "description": "The simple setup screen allows the users to record a video that rotates between a start and end angle. This picture demonstrates how this screen was rebranded to align with the Manfrotto brand identity."
+                }
+            ]
+        },
+        {
             "itemId": "my_flatmate",
             "name": "MyFlatmate",
             "previewImageAsset": "assets/images/portfolio/my_flatmate/my_flatmate_preview.png",
