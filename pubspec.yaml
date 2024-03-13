@@ -59,5 +59,9 @@ flutter:
     - assets/images/portfolio/joby_motion/pages/
     - assets/images/portfolio/my_flatmate/
     - assets/images/portfolio/my_flatmate/pages/
+    - assets/images/portfolio/manfrotto_motion/
+    - assets/images/portfolio/manfrotto_motion/pages/
+    - assets/images/portfolio/syrp_genie/
+    - assets/images/portfolio/syrp_genie/pages/
     - assets/images/services/
     - assets/images/testimonials/
