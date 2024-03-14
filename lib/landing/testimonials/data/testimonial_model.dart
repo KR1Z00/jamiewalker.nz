@@ -11,6 +11,7 @@ part 'testimonial_model.g.dart';
 class TestimonialModel with _$TestimonialModel {
   factory TestimonialModel({
     required String name,
+    required String position,
     required String imageAsset,
     required String comment,
   }) = _TestimonialModel;

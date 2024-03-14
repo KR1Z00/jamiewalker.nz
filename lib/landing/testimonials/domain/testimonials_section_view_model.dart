@@ -28,7 +28,7 @@ class TestimonialsSectionState with _$TestimonialsSectionState {
 /// also allows the user to cycle manually.
 @riverpod
 class TestimonialsSectionViewModel extends _$TestimonialsSectionViewModel {
-  static const Duration _autoCycleDuration = Duration(seconds: 7);
+  static const Duration _autoCycleDuration = Duration(seconds: 25);
 
   int _currentTestimonialIndex = 0;
   late int _numberOfTestimonials;

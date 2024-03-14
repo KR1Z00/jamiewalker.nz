@@ -34,19 +34,28 @@
     "testimonialsSectionTitleAlt": "What others have said",
     "testimonials": [
         {
-            "name": "Kerri M. - My Better Breathing Ltd",
+            "name": "Chris T.",
+            "position": "Design and Innovation Director (SW/HW) | Videndum / Syrp",
+            "imageAsset": "assets/images/testimonials/chris.jpeg",
+            "comment": "We worked with Jamie on a range of iOS and cross platform projects, specifically focussed on BLE/Wifi connected IOT devices. His ability to work across multiple frameworks allowed us to transition our App development to a more streamlined cross platform approach. Combining this and his close working relationship with the other development teams he was able to execute exceptional proof of concept, and production code. We also relied heavily on Jamie for short and long term project estimation and planning as part of a cross functional team running a Hybrid Agile/Waterfall methodology, making him a key contributor to achieving our more strategic goals. His attention to design detail provided the UI team with high accuracy matching of visual and functional prototypes. As with all businesses, we went through regular changes in direction, and Jamie was able to quickly adapt and continue to produce valuable work. I highly recommend Jamie, and hope to work with him again in the future."
+        },
+        {
+            "name": "Kerri M.",
+            "position": "CEO | Goodair Nosebuds",
             "imageAsset": "assets/images/testimonials/kerri.jpeg",
             "comment": "We have been fortunate enough to be able to engage Jamie to develop software for a mobile app  which supports a hardware product. Jamie has been efficient in scoping the project, defining the variables to achieve optimum functionality, sizing and estimating time required and knowledgeable in guiding some of the decisions needing to be made around scope and function of the project. It has been a very smooth, professional process with Jamie. He has been very easy to deal with. I would highly recommend Jamie and we will be using his services and skills again. Thanks Jamie!"
         },
         {
-            "name": "Thueno D.",
-            "imageAsset": "assets/images/testimonials/theuno.jpeg",
-            "comment": "Jamie was an absolute pleasure to work with. I can definitely recommend him. I will most definitely be using him again in the future."
-        },
-        {
-            "name": "Justin R. - Project Manager",
+            "name": "Justin R.",
+            "position": "Project Manager | Syrp Lab",
             "imageAsset": "assets/images/testimonials/justin.png",
             "comment": "If you're looking for a mobile app developer, I highly recommend Jamie. He's a true professional who always meets delivery schedules and works well with other team members to develop requirements and user stories. What's more, Jamie provides accurate estimates, often delivering ahead of schedule, and his work is always of high quality. Communication is key in any project, and Jamie is an excellent communicator. He's very easy to work with and can take the lead when needed. He's capable of managing internal peers and external contractual development resources, making him a valuable asset to any project."
+        },
+        {
+            "name": "Theuno D.",
+            "position": "Client | Upwork",
+            "imageAsset": "assets/images/testimonials/theuno.jpeg",
+            "comment": "Jamie was an absolute pleasure to work with. I can definitely recommend him. I will most definitely be using him again in the future."
         }
     ],
     "portfolioSectionTitle": "Portfolio",
@@ -99,6 +108,56 @@
                     "contentType": "image",
                     "imageAsset": "assets/images/portfolio/joby_motion/pages/page_3_swing.jpg",
                     "description": "The JOBY Swing is a device that moves the user's phone linearly. Users can make their videos move left-to-right, right-to-left, in and out, or any which way they may desire."
+                }
+            ]
+        },
+        {
+            "itemId": "syrp_genie",
+            "name": "Syrp Genie App",
+            "previewImageAsset": "assets/images/portfolio/syrp_genie/syrp_genie_preview.png",
+            "previewDescription": "The Syrp Genie app allows filmmakers to capture stunning motion time lapses and videos. I was responsible for maintaining and improving this app on iOS as an employee for Syrp Lab.",
+            "technologiesUsed": "iOS, Swift, Combine, UIKit, Bluetooth LE, Objective-C(++), C++, MVVM, Swinject, Firebase, Firebase Analytics",
+            "appStoreUrl": "https://apps.apple.com/us/app/syrp/id1387335063",
+            "infoPages": [
+                {
+                    "contentType": "video",
+                    "youtubeVideoId": "hTSHko9gZOg",
+                    "description": "Syrp Lab make a range of advanced motion control devices that move a camera as it is filming a video or time lapse. The Syrp Genie app enables users to control these devices to capture any sort of shot they can imagine."
+                },
+                {
+                    "contentType": "image",
+                    "imageAsset": "assets/images/portfolio/syrp_genie/pages/page_2.png",
+                    "description": "I maintained and improved this app by adding new features, fixing bugs, and improving the app's performance. I raised the app's crash-free use rate from 70% to 93%, and its unit test coverage from 0% to 60%."
+                },
+                {
+                    "contentType": "image",
+                    "imageAsset": "assets/images/portfolio/syrp_genie/pages/page_3.png",
+                    "description": "Using Syrp's wide range of motion control devices, users can capture content that moves in all sorts of ways. They can move their camera linearly, rotate it, or even move it in a complex path. The app also allows users to control the camera's focus and exposure settings."
+                }
+            ]
+        },
+        {
+            "itemId": "manfrotto_motion",
+            "name": "Manfrotto Motion",
+            "previewImageAsset": "assets/images/portfolio/manfrotto_motion/manfrotto_motion_preview.png",
+            "previewDescription": "During my time working at Syrp Lab, I was responsible for fully rebranding the Syrp Genie App to become the Manfrotto Motion app. This involved a complete overhaul of the app's UI and UX to align with the Manfrotto brand identity.",
+            "technologiesUsed": "iOS, Swift, Combine, UIKit, Bluetooth LE, Objective-C(++), C++, MVVM, Swinject, Firebase, Firebase Analytics",
+            "appStoreUrl": "https://apps.apple.com/nz/app/manfrotto-motion/id1566807793",
+            "infoPages": [
+                {
+                    "contentType": "image",
+                    "imageAsset": "assets/images/portfolio/manfrotto_motion/pages/page_1.png",
+                    "description": "Like the Syrp Genie app, the Manfrotto Motion offers filmmakers a variety of capture modes to create content in different ways. This picture demonstrates how the main screen of the app was rebranded to align with the Manfrotto brand identity."
+                },
+                {
+                    "contentType": "image",
+                    "imageAsset": "assets/images/portfolio/manfrotto_motion/pages/page_2.png",
+                    "description": "The keyframe screen allows the users to record a video or timelapse that moves across any sort of path they desire. This picture demonstrates how this screen was rebranded to align with the Manfrotto brand identity."
+                },
+                {
+                    "contentType": "image",
+                    "imageAsset": "assets/images/portfolio/manfrotto_motion/pages/page_3.png",
+                    "description": "The simple setup screen allows the users to record a video that rotates between a start and end angle. This picture demonstrates how this screen was rebranded to align with the Manfrotto brand identity."
                 }
             ]
         },
