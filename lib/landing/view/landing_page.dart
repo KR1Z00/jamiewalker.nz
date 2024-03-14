@@ -10,10 +10,13 @@ import 'package:jamie_walker_website/landing/portfolio/view/portfolio_section.da
 import 'package:jamie_walker_website/landing/services/services_section.dart';
 import 'package:jamie_walker_website/landing/testimonials/view/testimonials_section.dart';
 import 'package:jamie_walker_website/landing/view/landing_page_sections.dart';
+import 'package:jamie_walker_website/landing/view/loading_fade_in.dart';
 import 'package:jamie_walker_website/landing/welcome/view/welcome_section.dart';
 import 'package:scroll_to_index/scroll_to_index.dart';
 
 class LandingPage extends StatefulWidget {
+  static const double sectionfadeInOffsetFromBottom = 300;
+
   const LandingPage({super.key});
 
   @override
@@ -22,9 +25,11 @@ class LandingPage extends StatefulWidget {
 
 class _LandingPageState extends State<LandingPage> {
   final _scrollController = AutoScrollController();
+  int _currentLandingPageSectionIndex = 0;
+
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
   late Map<LandingPageSection, GlobalKey> _sectionKeys;
-  int _currentLandingPageSectionIndex = 0;
+  late Map<LandingPageSection, bool> _sectionHasLoadedMap;
 
   final _nameTextEditingController = TextEditingController();
   final _emailTextEditingController = TextEditingController();
@@ -35,8 +40,16 @@ class _LandingPageState extends State<LandingPage> {
     super.initState();
     _scrollController.addListener(_handleScrollCallback);
     _sectionKeys = {
-      for (var section in LandingPageSection.values) section: GlobalKey()
+      for (var section in LandingPageSection.values) section: GlobalKey(),
     };
+    _sectionHasLoadedMap = {
+      for (var section in LandingPageSection.values) section: false,
+    };
+
+    Future.delayed(
+      const Duration(milliseconds: 50),
+      () => _handleScrollCallback(),
+    );
   }
 
   @override
@@ -78,36 +91,39 @@ class _LandingPageState extends State<LandingPage> {
             }
 
             final section = LandingPageSection.values[index];
+            final hasLoadedBefore = _sectionHasLoadedMap[section]!;
+            if (!hasLoadedBefore) {
+              _sectionHasLoadedMap[section] = true;
+            }
+
             return AutoScrollTag(
               controller: _scrollController,
               index: index,
               key: ValueKey(section),
-              child: switch (section) {
-                LandingPageSection.home => WelcomeSection(
-                    key: _sectionKeys[LandingPageSection.home],
-                    onContactMePressed: () => _scrollToSection(
-                      LandingPageSection.contact,
+              child: LoadingFadeIn(
+                key: _sectionKeys[section],
+                hasLoadedBefore: hasLoadedBefore,
+                child: switch (section) {
+                  LandingPageSection.home => WelcomeSection(
+                      onContactMePressed: () => _scrollToSection(
+                        LandingPageSection.contact,
+                      ),
+                      onViewPortfolioPressed: () => _scrollToSection(
+                        LandingPageSection.portfolio,
+                      ),
                     ),
-                    onViewPortfolioPressed: () => _scrollToSection(
-                      LandingPageSection.portfolio,
+                  LandingPageSection.services => const ServicesSection(),
+                  LandingPageSection.portfolio => const PortfolioSection(),
+                  LandingPageSection.testimonials =>
+                    const TestimonialsSection(),
+                  LandingPageSection.contact => ContactSection(
+                      emailTextEditingController: _emailTextEditingController,
+                      messageTextEditingController:
+                          _messageTextEditingController,
+                      nameTextEditingController: _nameTextEditingController,
                     ),
-                  ),
-                LandingPageSection.services => ServicesSection(
-                    key: _sectionKeys[LandingPageSection.services],
-                  ),
-                LandingPageSection.portfolio => PortfolioSection(
-                    key: _sectionKeys[LandingPageSection.portfolio],
-                  ),
-                LandingPageSection.testimonials => TestimonialsSection(
-                    key: _sectionKeys[LandingPageSection.testimonials],
-                  ),
-                LandingPageSection.contact => ContactSection(
-                    key: _sectionKeys[LandingPageSection.contact],
-                    emailTextEditingController: _emailTextEditingController,
-                    messageTextEditingController: _messageTextEditingController,
-                    nameTextEditingController: _nameTextEditingController,
-                  ),
-              },
+                },
+              ),
             );
           },
         ),
@@ -142,6 +158,20 @@ class _LandingPageState extends State<LandingPage> {
         return MapEntry(key, yLocation);
       },
     );
+
+    final double fadeInOffset = MediaQuery.of(context).size.height -
+        LandingPage.sectionfadeInOffsetFromBottom;
+    for (final sectionEntry in sectionYOffsets.entries) {
+      if (sectionEntry.value == null) {
+        continue;
+      }
+      if (sectionEntry.value! < fadeInOffset) {
+        _sectionKeys[sectionEntry.key]!
+            .currentState
+            ?.castOrNull<LoadingFadeInState>()
+            ?.fadeIn();
+      }
+    }
 
     final double minYLocation =
         sectionYOffsets.values.whereType<double>().map((e) => e.abs()).min;
