@@ -1,6 +1,17 @@
 import 'package:flutter/material.dart';
 
+// A widget to animate a child widget fading in and scaling up.
+//
+// The widget will only animate if hasLoadedBefore is false.
+// If hasLoadedBefore is true, the widget will already be visible and not animated.
+//
+// This is useful for fading in sections of the UI for effects or to show that
+// the content has loaded.
+//
+// The widget can be animated by calling the fadeIn method of its currentState.
 class LoadingFadeIn extends StatefulWidget {
+  static const animationDuration = Duration(milliseconds: 300);
+
   final bool hasLoadedBefore;
   final Widget child;
 
@@ -25,13 +36,13 @@ class LoadingFadeInState extends State<LoadingFadeIn> {
 
   @override
   Widget build(BuildContext context) {
-    const duration = Duration(milliseconds: 300);
     return AnimatedScale(
       scale: _isVisible ? 1 : 0.9,
-      duration: duration,
+      alignment: Alignment.topCenter,
+      duration: LoadingFadeIn.animationDuration,
       child: AnimatedOpacity(
         opacity: _isVisible ? 1 : 0,
-        duration: duration,
+        duration: LoadingFadeIn.animationDuration,
         child: widget.child,
       ),
     );
