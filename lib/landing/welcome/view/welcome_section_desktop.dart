@@ -1,10 +1,7 @@
 part of 'welcome_section.dart';
 
 class _WelcomeSectionDesktop extends StatelessWidget {
-  static const double backgroundImageMinimumHeight = 200;
-  static const double backgroundImageMaximumHeight = 500;
-  static const double backgroundImageIdealHeightRatio = 1 / 3;
-  static const double minimumHeight = 970;
+  static const double minimumHeight = 660;
   static const double bottomPadding = 20;
 
   final void Function() onContactMePressed;
@@ -12,28 +9,25 @@ class _WelcomeSectionDesktop extends StatelessWidget {
   final void Function() onGithubPressed;
   final void Function() onLinkedInPressed;
 
+  /// The amount of space to offset the screen height by when calculating the
+  /// position of the scroll down guidance.
+  final double screenHeightOffset;
+
   const _WelcomeSectionDesktop({
     required this.onContactMePressed,
     required this.onViewPortfolioPressed,
     required this.onGithubPressed,
     required this.onLinkedInPressed,
+    required this.screenHeightOffset,
   });
 
   @override
   Widget build(BuildContext context) {
     final screenHeight = MediaQuery.of(context).size.height;
 
-    final imageHeight = max(
-      min(
-        backgroundImageMaximumHeight,
-        (screenHeight * backgroundImageIdealHeightRatio),
-      ),
-      backgroundImageMinimumHeight,
-    );
-
     final height = max(
       minimumHeight,
-      screenHeight,
+      screenHeight - screenHeightOffset,
     );
 
     return ConstrainedBox(
@@ -42,16 +36,6 @@ class _WelcomeSectionDesktop extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         mainAxisSize: MainAxisSize.min,
         children: [
-          SizedBox(
-            height: imageHeight,
-            child: FittedBox(
-              fit: BoxFit.cover,
-              clipBehavior: Clip.hardEdge,
-              child: Image.asset(
-                "assets/images/background.jpg",
-              ),
-            ),
-          ),
           StandardHorizontalPadding(
             child: Padding(
               padding: const EdgeInsets.only(

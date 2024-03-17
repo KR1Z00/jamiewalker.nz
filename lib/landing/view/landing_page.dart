@@ -2,6 +2,7 @@ import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:jamie_walker_website/app/extensions/functional_extensions.dart';
 import 'package:jamie_walker_website/app/theme/custom_theme.dart';
+import 'package:jamie_walker_website/generic/loading/view/loading_fade_scale_in.dart';
 import 'package:jamie_walker_website/generic/view/jamie_walker_app_bar.dart';
 import 'package:jamie_walker_website/generic/view/jamie_walker_navigation_drawer.dart';
 import 'package:jamie_walker_website/landing/contact/view/contact_section.dart';
@@ -10,8 +11,9 @@ import 'package:jamie_walker_website/landing/portfolio/view/portfolio_section.da
 import 'package:jamie_walker_website/landing/services/services_section.dart';
 import 'package:jamie_walker_website/landing/testimonials/view/testimonials_section.dart';
 import 'package:jamie_walker_website/landing/view/landing_page_sections.dart';
-import 'package:jamie_walker_website/landing/view/loading_fade_in.dart';
+import 'package:jamie_walker_website/generic/loading/view/loading_fade_in.dart';
 import 'package:jamie_walker_website/landing/welcome/view/welcome_section.dart';
+import 'package:responsive_builder/responsive_builder.dart';
 import 'package:scroll_to_index/scroll_to_index.dart';
 
 class LandingPage extends StatefulWidget {
@@ -28,6 +30,8 @@ class _LandingPageState extends State<LandingPage> {
   int _currentLandingPageSectionIndex = 0;
 
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
+  final GlobalKey<LoadingFadeInState> _appBarFadeInKey = GlobalKey();
+  final GlobalKey<LoadingFadeInState> _backgroundImageFadeInKey = GlobalKey();
   late Map<LandingPageSection, GlobalKey> _sectionKeys;
   late Map<LandingPageSection, bool> _sectionHasLoadedMap;
 
@@ -39,6 +43,7 @@ class _LandingPageState extends State<LandingPage> {
   void initState() {
     super.initState();
     _scrollController.addListener(_handleScrollCallback);
+
     _sectionKeys = {
       for (var section in LandingPageSection.values) section: GlobalKey(),
     };
@@ -46,10 +51,7 @@ class _LandingPageState extends State<LandingPage> {
       for (var section in LandingPageSection.values) section: false,
     };
 
-    Future.delayed(
-      const Duration(milliseconds: 50),
-      () => _handleScrollCallback(),
-    );
+    _doLoadingFadeIn();
   }
 
   @override
@@ -69,14 +71,24 @@ class _LandingPageState extends State<LandingPage> {
         currentNavigationItemIndex: _currentLandingPageSectionIndex,
         onNavigationItemIndexPressed: _scrollToSectionWithIndex,
       ),
-      appBar: JamieWalkerAppBar(
-        navigationItemTitles:
-            LandingPageSection.values.map((section) => section.title).toList(),
-        currentNavigationItemIndex: _currentLandingPageSectionIndex,
-        onNavigationItemIndexPressed: _scrollToSectionWithIndex,
-        onHamburgerPressed: () {
-          _scaffoldKey.currentState?.openEndDrawer();
-        },
+      appBar: PreferredSize(
+        preferredSize: const Size.fromHeight(
+          JamieWalkerAppBar.preferredHeight,
+        ),
+        child: LoadingFadeIn(
+          key: _appBarFadeInKey,
+          shouldAnimate: true,
+          child: JamieWalkerAppBar(
+            navigationItemTitles: LandingPageSection.values
+                .map((section) => section.title)
+                .toList(),
+            currentNavigationItemIndex: _currentLandingPageSectionIndex,
+            onNavigationItemIndexPressed: _scrollToSectionWithIndex,
+            onHamburgerPressed: () {
+              _scaffoldKey.currentState?.openEndDrawer();
+            },
+          ),
+        ),
       ),
       backgroundColor: context.colorScheme().background,
       extendBodyBehindAppBar: true,
@@ -96,35 +108,87 @@ class _LandingPageState extends State<LandingPage> {
               _sectionHasLoadedMap[section] = true;
             }
 
-            return AutoScrollTag(
-              controller: _scrollController,
-              index: index,
-              key: ValueKey(section),
-              child: LoadingFadeIn(
-                key: _sectionKeys[section],
-                hasLoadedBefore: hasLoadedBefore,
-                child: switch (section) {
-                  LandingPageSection.home => WelcomeSection(
-                      onContactMePressed: () => _scrollToSection(
-                        LandingPageSection.contact,
-                      ),
-                      onViewPortfolioPressed: () => _scrollToSection(
-                        LandingPageSection.portfolio,
-                      ),
+            if (section == LandingPageSection.home) {
+              return ResponsiveBuilder(
+                builder: (context, sizingInformation) {
+                  double screenHeight = sizingInformation.screenSize.height;
+                  double imageHeight;
+
+                  if (sizingInformation.deviceScreenType ==
+                      DeviceScreenType.desktop) {
+                    imageHeight = screenHeight / 3;
+                    imageHeight = imageHeight.clamp(200.0, 500.0);
+                  } else {
+                    imageHeight = screenHeight / 4;
+                    imageHeight = imageHeight.clamp(150.0, 250.0);
+                  }
+
+                  return AutoScrollTag(
+                    controller: _scrollController,
+                    index: index,
+                    key: ValueKey(section),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        LoadingFadeIn(
+                          shouldAnimate: !hasLoadedBefore,
+                          key: _backgroundImageFadeInKey,
+                          child: Container(
+                            width: double.infinity,
+                            height: imageHeight,
+                            decoration: const BoxDecoration(
+                              image: DecorationImage(
+                                image: AssetImage(
+                                  'assets/images/background.jpg',
+                                ),
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                          ),
+                        ),
+                        LoadingFadeScaleIn(
+                          key: _sectionKeys[section],
+                          shouldAnimate: !hasLoadedBefore,
+                          child: WelcomeSection(
+                            onContactMePressed: () => _scrollToSection(
+                              LandingPageSection.contact,
+                            ),
+                            onViewPortfolioPressed: () => _scrollToSection(
+                              LandingPageSection.portfolio,
+                            ),
+                            screenHeightOffset: imageHeight,
+                          ),
+                        ),
+                      ],
                     ),
-                  LandingPageSection.services => const ServicesSection(),
-                  LandingPageSection.portfolio => const PortfolioSection(),
-                  LandingPageSection.testimonials =>
-                    const TestimonialsSection(),
-                  LandingPageSection.contact => ContactSection(
-                      emailTextEditingController: _emailTextEditingController,
-                      messageTextEditingController:
-                          _messageTextEditingController,
-                      nameTextEditingController: _nameTextEditingController,
-                    ),
+                  );
                 },
-              ),
-            );
+              );
+            } else {
+              return AutoScrollTag(
+                controller: _scrollController,
+                index: index,
+                key: ValueKey(section),
+                child: LoadingFadeScaleIn(
+                  key: _sectionKeys[section],
+                  shouldAnimate: !hasLoadedBefore,
+                  child: switch (section) {
+                    LandingPageSection.services => const ServicesSection(),
+                    LandingPageSection.portfolio => const PortfolioSection(),
+                    LandingPageSection.testimonials =>
+                      const TestimonialsSection(),
+                    LandingPageSection.contact => ContactSection(
+                        emailTextEditingController: _emailTextEditingController,
+                        messageTextEditingController:
+                            _messageTextEditingController,
+                        nameTextEditingController: _nameTextEditingController,
+                      ),
+                    LandingPageSection.home => Container(),
+                  },
+                ),
+              );
+            }
           },
         ),
       ),
@@ -147,7 +211,13 @@ class _LandingPageState extends State<LandingPage> {
   }
 
   void _handleScrollCallback() {
-    final Map<LandingPageSection, double?> sectionYOffsets = _sectionKeys.map(
+    final sectionYOffsets = _calculateSectionYOffsets();
+    _updateCurrentSection(sectionYOffsets: sectionYOffsets);
+    _loadInVisibleSections(sectionYOffsets: sectionYOffsets);
+  }
+
+  Map<LandingPageSection, double?> _calculateSectionYOffsets() {
+    return _sectionKeys.map(
       (key, value) {
         final renderBox =
             value.currentContext?.findRenderObject()?.castOrNull<RenderBox>();
@@ -158,21 +228,11 @@ class _LandingPageState extends State<LandingPage> {
         return MapEntry(key, yLocation);
       },
     );
+  }
 
-    final double fadeInOffset = MediaQuery.of(context).size.height -
-        LandingPage.sectionfadeInOffsetFromBottom;
-    for (final sectionEntry in sectionYOffsets.entries) {
-      if (sectionEntry.value == null) {
-        continue;
-      }
-      if (sectionEntry.value! < fadeInOffset) {
-        _sectionKeys[sectionEntry.key]!
-            .currentState
-            ?.castOrNull<LoadingFadeInState>()
-            ?.fadeIn();
-      }
-    }
-
+  void _updateCurrentSection({
+    required Map<LandingPageSection, double?> sectionYOffsets,
+  }) {
     final double minYLocation =
         sectionYOffsets.values.whereType<double>().map((e) => e.abs()).min;
 
@@ -188,5 +248,42 @@ class _LandingPageState extends State<LandingPage> {
         );
       });
     }
+  }
+
+  void _loadInVisibleSections({
+    required Map<LandingPageSection, double?> sectionYOffsets,
+  }) {
+    final double fadeInOffset = MediaQuery.of(context).size.height -
+        LandingPage.sectionfadeInOffsetFromBottom;
+    for (final sectionEntry in sectionYOffsets.entries) {
+      if (sectionEntry.value == null) {
+        continue;
+      }
+      if (sectionEntry.value! < fadeInOffset) {
+        _sectionKeys[sectionEntry.key]!
+            .currentState
+            ?.castOrNull<LoadingFadeScaleInState>()
+            ?.startAnimation();
+      }
+    }
+  }
+
+  void _doLoadingFadeIn() {
+    Future.delayed(
+      const Duration(milliseconds: 50),
+      () => _backgroundImageFadeInKey.currentState?.startAnimation(),
+    );
+
+    Future.delayed(
+      const Duration(milliseconds: 450),
+      () => _appBarFadeInKey.currentState?.startAnimation(),
+    );
+
+    Future.delayed(
+      const Duration(milliseconds: 250),
+      () => _loadInVisibleSections(
+        sectionYOffsets: _calculateSectionYOffsets(),
+      ),
+    );
   }
 }
