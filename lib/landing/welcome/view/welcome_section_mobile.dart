@@ -1,10 +1,7 @@
 part of 'welcome_section.dart';
 
 class _WelcomeSectionMobile extends StatelessWidget {
-  static const double backgroundImageMinimumHeight = 150;
-  static const double backgroundImageMaximumHeight = 250;
-  static const double backgroundImageIdealHeightRatio = 1 / 4;
-  static const double minimumHeight = 790;
+  static const double minimumHeight = 580;
   static const double bottomPadding = 10;
 
   final void Function() onContactMePressed;
@@ -12,27 +9,24 @@ class _WelcomeSectionMobile extends StatelessWidget {
   final void Function() onGithubPressed;
   final void Function() onLinkedInPressed;
 
+  /// The amount of space to offset the screen height by when calculating the
+  /// position of the scroll down guidance.
+  final double screenHeightOffset;
+
   const _WelcomeSectionMobile({
     required this.onContactMePressed,
     required this.onViewPortfolioPressed,
     required this.onGithubPressed,
     required this.onLinkedInPressed,
+    required this.screenHeightOffset,
   });
 
   @override
   Widget build(BuildContext context) {
     final screenHeight = MediaQuery.of(context).size.height;
 
-    final imageHeight = max(
-      min(
-        backgroundImageMaximumHeight,
-        (screenHeight * backgroundImageIdealHeightRatio),
-      ),
-      backgroundImageMinimumHeight,
-    );
-
     final height = max(
-      screenHeight,
+      screenHeight - screenHeightOffset,
       minimumHeight,
     );
 
@@ -41,16 +35,6 @@ class _WelcomeSectionMobile extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          SizedBox(
-            height: imageHeight,
-            child: FittedBox(
-              fit: BoxFit.cover,
-              clipBehavior: Clip.hardEdge,
-              child: Image.asset(
-                "assets/images/background.jpg",
-              ),
-            ),
-          ),
           StandardHorizontalPadding(
             child: Padding(
               padding: const EdgeInsets.only(top: 40, bottom: 20),

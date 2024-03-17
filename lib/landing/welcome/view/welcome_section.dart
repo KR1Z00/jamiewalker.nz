@@ -23,10 +23,15 @@ class WelcomeSection extends StatelessWidget {
   final void Function() onContactMePressed;
   final void Function() onViewPortfolioPressed;
 
+  /// The amount of space to offset the screen height by when calculating the
+  /// position of the scroll down guidance.
+  final double screenHeightOffset;
+
   const WelcomeSection({
     super.key,
     required this.onContactMePressed,
     required this.onViewPortfolioPressed,
+    required this.screenHeightOffset,
   });
 
   @override
@@ -37,18 +42,21 @@ class WelcomeSection extends StatelessWidget {
         onViewPortfolioPressed: onViewPortfolioPressed,
         onGithubPressed: _onGithubPressed,
         onLinkedInPressed: _onLinkedInPressed,
+        screenHeightOffset: screenHeightOffset,
       ),
       tablet: (context) => _WelcomeSectionTablet(
         onContactMePressed: onContactMePressed,
         onViewPortfolioPressed: onViewPortfolioPressed,
         onGithubPressed: _onGithubPressed,
         onLinkedInPressed: _onLinkedInPressed,
+        screenHeightOffset: screenHeightOffset,
       ),
       mobile: (context) => _WelcomeSectionMobile(
         onContactMePressed: onContactMePressed,
         onGithubPressed: _onGithubPressed,
         onLinkedInPressed: _onLinkedInPressed,
         onViewPortfolioPressed: onViewPortfolioPressed,
+        screenHeightOffset: screenHeightOffset,
       ),
     );
   }
