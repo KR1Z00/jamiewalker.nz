@@ -4,6 +4,7 @@ enum LandingPageSection {
   portfolio('Portfolio'),
   testimonials('Testimonials'),
   contact('Contact'),
+  openAI('AI'),
   ;
 
   final String title;

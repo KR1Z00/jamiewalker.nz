@@ -205,5 +205,12 @@
     "technologiesUsed": "Technologies Used",
     "tapToLearnMore": "Tap to learn more",
     "clickToLearnMore": "Click to learn more",
-    "viewOnAppStore": "View on the App Store"
+    "viewOnAppStore": "View on the App Store",
+    "aiSectionTitle": "AI Workout Generator",
+    "aiPrompt": "Explain the workout you want to generate for people to follow.",
+    "aiGenerate": "Generate",
+    "aiGenerating": "Generating",
+    "aiSuccessTitle": "Your workout",
+    "aiErrorTitle": "Oops!",
+    "aiErrorDescription": "An error occurred trying to generate your workout, please try again."
 }

@@ -5,6 +5,7 @@ import 'package:jamie_walker_website/app/theme/custom_theme.dart';
 import 'package:jamie_walker_website/generic/loading/view/loading_fade_scale_in.dart';
 import 'package:jamie_walker_website/generic/view/jamie_walker_app_bar.dart';
 import 'package:jamie_walker_website/generic/view/jamie_walker_navigation_drawer.dart';
+import 'package:jamie_walker_website/landing/ai/view/ai_view.dart';
 import 'package:jamie_walker_website/landing/contact/view/contact_section.dart';
 import 'package:jamie_walker_website/landing/footer/view/footer_section.dart';
 import 'package:jamie_walker_website/landing/portfolio/view/portfolio_section.dart';
@@ -38,6 +39,8 @@ class _LandingPageState extends State<LandingPage> {
   final _nameTextEditingController = TextEditingController();
   final _emailTextEditingController = TextEditingController();
   final _messageTextEditingController = TextEditingController();
+
+  final _aiPromptController = TextEditingController();
 
   @override
   void initState() {
@@ -185,6 +188,9 @@ class _LandingPageState extends State<LandingPage> {
                         nameTextEditingController: _nameTextEditingController,
                       ),
                     LandingPageSection.home => Container(),
+                    LandingPageSection.openAI => AISection(
+                        aiPromptController: _aiPromptController,
+                      ),
                   },
                 ),
               );
